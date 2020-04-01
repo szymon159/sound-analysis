@@ -10,6 +10,7 @@ namespace SoundTimeParametersEvaluation.Enum
     {
         Volume,
         ShortTimeEnergy,
-        ZeroCrossingRate
+        ZeroCrossingRate,
+        SilentRatio
     }
 }

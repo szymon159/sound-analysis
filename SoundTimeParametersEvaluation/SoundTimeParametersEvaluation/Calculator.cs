@@ -18,18 +18,20 @@ namespace SoundTimeParametersEvaluation
             switch (parameter)
             {
                 case ParameterType.Volume:
-                    return GetRootMeanSquareInFrame(parsedFile, samplesPerFrame, framesCount, out resultInFrame, true);
+                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame, true);
                 case ParameterType.ShortTimeEnergy:
-                    return GetRootMeanSquareInFrame(parsedFile, samplesPerFrame, framesCount, out resultInFrame);
+                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame);
                 case ParameterType.ZeroCrossingRate:
                     return GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                case ParameterType.SilentRatio:
+                    return GetSilentRatio(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
                 default:
                     resultInFrame = new double[framesCount];
                     return 0.0;
             }
         }
 
-        private static double GetRootMeanSquareInFrame(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrame, bool takeRoot = false)
+        private static double GetEnergy(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrame, bool takeRoot = false)
         {
             double avgResult = 0.0f;
             resultInFrame = new double[framesCount];
@@ -42,12 +44,18 @@ namespace SoundTimeParametersEvaluation
                     int sampleIdx = i * samplesPerFrame + j;
                     if (sampleIdx >= parsedFile.Length)
                         break;
+
+                    // Operations for each sample
                     squaredSum += parsedFile[sampleIdx].Y * parsedFile[sampleIdx].Y;
+                    //
                 }
 
+                // Operations for each frame
                 resultInFrame[i] = squaredSum / samplesPerFrame;
                 if (takeRoot)
                     resultInFrame[i] = Math.Sqrt(resultInFrame[i]);
+                //
+
                 avgResult += resultInFrame[i];
             }
 
@@ -69,6 +77,7 @@ namespace SoundTimeParametersEvaluation
                     if (sampleIdx >= parsedFile.Length)
                         break;
 
+                    // Operations for each sample
                     int signI = Math.Sign(parsedFile[sampleIdx].Y);
                     if (sampleIdx > 0)
                     {
@@ -79,9 +88,35 @@ namespace SoundTimeParametersEvaluation
                     {
                         squaredSum += Math.Abs(signI);
                     }
+                    //
                 }
 
+                // Operations for each frame
                 resultInFrame[i] = (sampleRate * squaredSum) / (2 * samplesPerFrame);
+                //
+
+                avgResult += resultInFrame[i];
+            }
+
+            avgResult /= framesCount;
+            return avgResult;
+        }
+
+        private static double GetSilentRatio(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        {
+            double avgResult = 0.0f;
+            resultInFrame = new double[framesCount];
+
+            GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] volumeResultInFrame, true);
+            GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out double[] zcrResultInFrame);
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                // Operations for each frame
+                if (volumeResultInFrame[i] < 0.02 && zcrResultInFrame[i] < 50)
+                    resultInFrame[i] = 1;
+                //
+
                 avgResult += resultInFrame[i];
             }
 

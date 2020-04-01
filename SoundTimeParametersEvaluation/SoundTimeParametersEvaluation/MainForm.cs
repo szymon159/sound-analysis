@@ -38,11 +38,13 @@ namespace SoundTimeParametersEvaluation
             charts.Add(ParameterType.Volume, volumeChart);
             charts.Add(ParameterType.ShortTimeEnergy, steChart);
             charts.Add(ParameterType.ZeroCrossingRate, zcrChart);
+            charts.Add(ParameterType.SilentRatio, silenceChart);
 
             labels = new Dictionary<ParameterType, Label>();
             labels.Add(ParameterType.Volume, volumeValueLabel);
             labels.Add(ParameterType.ShortTimeEnergy, steValueLabel);
             labels.Add(ParameterType.ZeroCrossingRate, zcrValueLabel);
+            labels.Add(ParameterType.SilentRatio, silenceValueLabel);
         }
 
         private void UpdateParameters()
@@ -50,6 +52,7 @@ namespace SoundTimeParametersEvaluation
             UpdateParameter(ParameterType.Volume);
             UpdateParameter(ParameterType.ShortTimeEnergy);
             UpdateParameter(ParameterType.ZeroCrossingRate);
+            UpdateParameter(ParameterType.SilentRatio);
         }
 
         private void UpdateParameter(ParameterType parameter)
