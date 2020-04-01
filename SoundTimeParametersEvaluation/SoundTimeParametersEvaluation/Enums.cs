@@ -18,6 +18,7 @@ namespace SoundTimeParametersEvaluation.Enum
     {
         VolumeStandardDeviation,
         VolumeDynamicRange,
-        LowShortTimeEnergyRatio
+        LowShortTimeEnergyRatio,
+        HighZeroCrossingRateRatio
     }
 }

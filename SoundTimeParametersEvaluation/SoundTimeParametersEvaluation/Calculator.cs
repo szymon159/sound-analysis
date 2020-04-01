@@ -31,7 +31,7 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static double CalculateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, CustomPoint[] parsedFile, double sampleRate)
+        public static double CalculateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, double[] zeroCrossingRate, CustomPoint[] parsedFile, double sampleRate)
         {
             switch (parameter)
             {
@@ -41,6 +41,8 @@ namespace SoundTimeParametersEvaluation
                     return GetVolumeDynamicRange(volume);
                 case ClipLevelParamType.LowShortTimeEnergyRatio:
                     return GetLowShortTimeEnergyRatio(energy, parsedFile, sampleRate);
+                case ClipLevelParamType.HighZeroCrossingRateRatio:
+                    return GetHighZeroCrossingRateRatio(zeroCrossingRate, parsedFile, sampleRate);
                 default:
                     return 0.0;
             }
@@ -171,6 +173,20 @@ namespace SoundTimeParametersEvaluation
             var sum = energy.Sum(value => Math.Sign(0.5 * avg - value) + 1);
 
             return sum / (2.0 * energy.Length);
+        }
+
+        private static double GetHighZeroCrossingRateRatio(double[] zeroCrossingRate, CustomPoint[] parsedFile, double sampleRate)
+        {
+            int framesCount = parsedFile.Length / (int)sampleRate;
+            if (parsedFile.Length % sampleRate != 0)
+                framesCount++;
+
+            GetZeroCrossingRate(parsedFile, (int)sampleRate, framesCount, sampleRate, out double[] zcrInOneSecFrame);
+
+            var avg = zcrInOneSecFrame.Average();
+            var sum = zeroCrossingRate.Sum(value => Math.Sign(value - 1.5 * avg) + 1);
+
+            return sum / (2.0 * zeroCrossingRate.Length);
         }
     }
 }

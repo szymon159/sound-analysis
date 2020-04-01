@@ -51,6 +51,7 @@ namespace SoundTimeParametersEvaluation
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
             labels.Add(ClipLevelParamType.VolumeDynamicRange, vdrValueLabel);
             labels.Add(ClipLevelParamType.LowShortTimeEnergyRatio, lsterValueLabel);
+            labels.Add(ClipLevelParamType.HighZeroCrossingRateRatio, hzcrrValueLabel);
         }
 
         private void UpdateParameters()
@@ -62,10 +63,12 @@ namespace SoundTimeParametersEvaluation
 
             var volume = volumeChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
             var energy = steChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 
+            var zeroCrossingRate = zcrChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 
 
-            UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume, energy);
-            UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume, energy);
-            UpdateClipLevelParameter(ClipLevelParamType.LowShortTimeEnergyRatio, volume, energy);
+            UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume, energy, zeroCrossingRate);
+            UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume, energy, zeroCrossingRate);
+            UpdateClipLevelParameter(ClipLevelParamType.LowShortTimeEnergyRatio, volume, energy, zeroCrossingRate);
+            UpdateClipLevelParameter(ClipLevelParamType.HighZeroCrossingRateRatio, volume, energy, zeroCrossingRate);
         }
 
         private void UpdateFrameLevelParameter(FrameLevelParamType parameter)
@@ -77,9 +80,9 @@ namespace SoundTimeParametersEvaluation
             ChartHelper.UpdateChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
         }
 
-        private void UpdateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy)
+        private void UpdateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, double[] zeroCrossingRate)
         {
-            double result = Calculator.CalculateClipLevelParameter(parameter, volume, energy, parsedFile, sampleRate);
+            double result = Calculator.CalculateClipLevelParameter(parameter, volume, energy, zeroCrossingRate, parsedFile, sampleRate);
             labels[parameter].Text = result.ToString("0.000");
         }
 
