@@ -173,7 +173,11 @@ namespace SoundTimeParametersEvaluation
             popup.Show(this);
         }
 
-        #endregion
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            statistics.ExportByType(StatisticsType.Silence);
+        }
 
+        #endregion
     }
 }

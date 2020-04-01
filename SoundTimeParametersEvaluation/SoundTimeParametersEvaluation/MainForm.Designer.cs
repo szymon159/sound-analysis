@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -136,25 +136,25 @@
             // 
             // chart1
             // 
-            chartArea9.AxisX.LabelStyle.Format = "{0:0.0000}s";
-            chartArea9.AxisX.MajorGrid.Enabled = false;
-            chartArea9.AxisX.Minimum = 0D;
-            chartArea9.AxisY.IsLabelAutoFit = false;
-            chartArea9.AxisY.LabelStyle.Enabled = false;
-            chartArea9.AxisY.MajorGrid.Enabled = false;
-            chartArea9.AxisY.MajorTickMark.Enabled = false;
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
+            chartArea1.AxisX.LabelStyle.Format = "{0:0.0000}s";
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelStyle.Enabled = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart1.Location = new System.Drawing.Point(282, 16);
             this.chart1.Margin = new System.Windows.Forms.Padding(6);
             this.chart1.Name = "chart1";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series9.Color = System.Drawing.Color.Green;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chart1.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Color = System.Drawing.Color.Green;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1052, 125);
             this.chart1.TabIndex = 0;
             // 
@@ -187,169 +187,169 @@
             // 
             // musicChart
             // 
-            chartArea10.AxisX.LabelStyle.Enabled = false;
-            chartArea10.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea10.AxisX.MajorGrid.Enabled = false;
-            chartArea10.AxisX.Minimum = 0D;
-            chartArea10.AxisY.IsLabelAutoFit = false;
-            chartArea10.AxisY.LabelStyle.Enabled = false;
-            chartArea10.AxisY.MajorGrid.Enabled = false;
-            chartArea10.AxisY.MajorTickMark.Enabled = false;
-            chartArea10.Name = "ChartArea1";
-            this.musicChart.ChartAreas.Add(chartArea10);
+            chartArea2.AxisX.LabelStyle.Enabled = false;
+            chartArea2.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY.LabelStyle.Enabled = false;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.AxisY.MajorTickMark.Enabled = false;
+            chartArea2.Name = "ChartArea1";
+            this.musicChart.ChartAreas.Add(chartArea2);
             this.musicChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.musicChart.Location = new System.Drawing.Point(3, 345);
             this.musicChart.Name = "musicChart";
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series10.Color = System.Drawing.Color.Green;
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.musicChart.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.Color = System.Drawing.Color.Green;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.musicChart.Series.Add(series2);
             this.musicChart.Size = new System.Drawing.Size(1052, 57);
             this.musicChart.TabIndex = 8;
             // 
             // soundSpeechChart
             // 
-            chartArea11.AxisX.LabelStyle.Enabled = false;
-            chartArea11.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea11.AxisX.MajorGrid.Enabled = false;
-            chartArea11.AxisX.Minimum = 0D;
-            chartArea11.AxisY.IsLabelAutoFit = false;
-            chartArea11.AxisY.LabelStyle.Enabled = false;
-            chartArea11.AxisY.MajorGrid.Enabled = false;
-            chartArea11.AxisY.MajorTickMark.Enabled = false;
-            chartArea11.Name = "ChartArea1";
-            this.soundSpeechChart.ChartAreas.Add(chartArea11);
+            chartArea3.AxisX.LabelStyle.Enabled = false;
+            chartArea3.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea3.AxisX.MajorGrid.Enabled = false;
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisY.IsLabelAutoFit = false;
+            chartArea3.AxisY.LabelStyle.Enabled = false;
+            chartArea3.AxisY.MajorGrid.Enabled = false;
+            chartArea3.AxisY.MajorTickMark.Enabled = false;
+            chartArea3.Name = "ChartArea1";
+            this.soundSpeechChart.ChartAreas.Add(chartArea3);
             this.soundSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.soundSpeechChart.Location = new System.Drawing.Point(3, 288);
             this.soundSpeechChart.Name = "soundSpeechChart";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series11.Color = System.Drawing.Color.Green;
-            series11.Legend = "Legend1";
-            series11.Name = "Series1";
-            this.soundSpeechChart.Series.Add(series11);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series3.Color = System.Drawing.Color.Green;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.soundSpeechChart.Series.Add(series3);
             this.soundSpeechChart.Size = new System.Drawing.Size(1052, 51);
             this.soundSpeechChart.TabIndex = 7;
             // 
             // volumeChart
             // 
-            chartArea12.AxisX.LabelStyle.Enabled = false;
-            chartArea12.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea12.AxisX.MajorGrid.Enabled = false;
-            chartArea12.AxisX.Minimum = 0D;
-            chartArea12.AxisY.IsLabelAutoFit = false;
-            chartArea12.AxisY.LabelStyle.Enabled = false;
-            chartArea12.AxisY.MajorGrid.Enabled = false;
-            chartArea12.AxisY.MajorTickMark.Enabled = false;
-            chartArea12.Name = "ChartArea1";
-            this.volumeChart.ChartAreas.Add(chartArea12);
+            chartArea4.AxisX.LabelStyle.Enabled = false;
+            chartArea4.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea4.AxisX.MajorGrid.Enabled = false;
+            chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisY.IsLabelAutoFit = false;
+            chartArea4.AxisY.LabelStyle.Enabled = false;
+            chartArea4.AxisY.MajorGrid.Enabled = false;
+            chartArea4.AxisY.MajorTickMark.Enabled = false;
+            chartArea4.Name = "ChartArea1";
+            this.volumeChart.ChartAreas.Add(chartArea4);
             this.volumeChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumeChart.Location = new System.Drawing.Point(3, 3);
             this.volumeChart.Name = "volumeChart";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series12.Color = System.Drawing.Color.Green;
-            series12.Legend = "Legend1";
-            series12.Name = "Series1";
-            this.volumeChart.Series.Add(series12);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series4.Color = System.Drawing.Color.Green;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.volumeChart.Series.Add(series4);
             this.volumeChart.Size = new System.Drawing.Size(1052, 51);
             this.volumeChart.TabIndex = 6;
             // 
             // soundlessSpeechChart
             // 
-            chartArea13.AxisX.LabelStyle.Enabled = false;
-            chartArea13.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea13.AxisX.MajorGrid.Enabled = false;
-            chartArea13.AxisX.Minimum = 0D;
-            chartArea13.AxisY.IsLabelAutoFit = false;
-            chartArea13.AxisY.LabelStyle.Enabled = false;
-            chartArea13.AxisY.MajorGrid.Enabled = false;
-            chartArea13.AxisY.MajorTickMark.Enabled = false;
-            chartArea13.Name = "ChartArea1";
-            this.soundlessSpeechChart.ChartAreas.Add(chartArea13);
+            chartArea5.AxisX.LabelStyle.Enabled = false;
+            chartArea5.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea5.AxisX.MajorGrid.Enabled = false;
+            chartArea5.AxisX.Minimum = 0D;
+            chartArea5.AxisY.IsLabelAutoFit = false;
+            chartArea5.AxisY.LabelStyle.Enabled = false;
+            chartArea5.AxisY.MajorGrid.Enabled = false;
+            chartArea5.AxisY.MajorTickMark.Enabled = false;
+            chartArea5.Name = "ChartArea1";
+            this.soundlessSpeechChart.ChartAreas.Add(chartArea5);
             this.soundlessSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.soundlessSpeechChart.Location = new System.Drawing.Point(3, 231);
             this.soundlessSpeechChart.Name = "soundlessSpeechChart";
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series13.Color = System.Drawing.Color.Green;
-            series13.Legend = "Legend1";
-            series13.Name = "Series1";
-            this.soundlessSpeechChart.Series.Add(series13);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series5.Color = System.Drawing.Color.Green;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.soundlessSpeechChart.Series.Add(series5);
             this.soundlessSpeechChart.Size = new System.Drawing.Size(1052, 51);
             this.soundlessSpeechChart.TabIndex = 5;
             // 
             // silenceChart
             // 
-            chartArea14.AxisX.LabelStyle.Enabled = false;
-            chartArea14.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea14.AxisX.MajorGrid.Enabled = false;
-            chartArea14.AxisX.Minimum = 0D;
-            chartArea14.AxisY.IsLabelAutoFit = false;
-            chartArea14.AxisY.LabelStyle.Enabled = false;
-            chartArea14.AxisY.MajorGrid.Enabled = false;
-            chartArea14.AxisY.MajorTickMark.Enabled = false;
-            chartArea14.Name = "ChartArea1";
-            this.silenceChart.ChartAreas.Add(chartArea14);
+            chartArea6.AxisX.LabelStyle.Enabled = false;
+            chartArea6.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea6.AxisX.MajorGrid.Enabled = false;
+            chartArea6.AxisX.Minimum = 0D;
+            chartArea6.AxisY.IsLabelAutoFit = false;
+            chartArea6.AxisY.LabelStyle.Enabled = false;
+            chartArea6.AxisY.MajorGrid.Enabled = false;
+            chartArea6.AxisY.MajorTickMark.Enabled = false;
+            chartArea6.Name = "ChartArea1";
+            this.silenceChart.ChartAreas.Add(chartArea6);
             this.silenceChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.silenceChart.Location = new System.Drawing.Point(3, 174);
             this.silenceChart.Name = "silenceChart";
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series14.Color = System.Drawing.Color.Green;
-            series14.Legend = "Legend1";
-            series14.Name = "Series1";
-            this.silenceChart.Series.Add(series14);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series6.Color = System.Drawing.Color.Green;
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.silenceChart.Series.Add(series6);
             this.silenceChart.Size = new System.Drawing.Size(1052, 51);
             this.silenceChart.TabIndex = 4;
             // 
             // zcrChart
             // 
-            chartArea15.AxisX.LabelStyle.Enabled = false;
-            chartArea15.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea15.AxisX.MajorGrid.Enabled = false;
-            chartArea15.AxisX.Minimum = 0D;
-            chartArea15.AxisY.IsLabelAutoFit = false;
-            chartArea15.AxisY.LabelStyle.Enabled = false;
-            chartArea15.AxisY.MajorGrid.Enabled = false;
-            chartArea15.AxisY.MajorTickMark.Enabled = false;
-            chartArea15.Name = "ChartArea1";
-            this.zcrChart.ChartAreas.Add(chartArea15);
+            chartArea7.AxisX.LabelStyle.Enabled = false;
+            chartArea7.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea7.AxisX.MajorGrid.Enabled = false;
+            chartArea7.AxisX.Minimum = 0D;
+            chartArea7.AxisY.IsLabelAutoFit = false;
+            chartArea7.AxisY.LabelStyle.Enabled = false;
+            chartArea7.AxisY.MajorGrid.Enabled = false;
+            chartArea7.AxisY.MajorTickMark.Enabled = false;
+            chartArea7.Name = "ChartArea1";
+            this.zcrChart.ChartAreas.Add(chartArea7);
             this.zcrChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zcrChart.Location = new System.Drawing.Point(3, 117);
             this.zcrChart.Name = "zcrChart";
-            series15.ChartArea = "ChartArea1";
-            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series15.Color = System.Drawing.Color.Green;
-            series15.Legend = "Legend1";
-            series15.Name = "Series1";
-            this.zcrChart.Series.Add(series15);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series7.Color = System.Drawing.Color.Green;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.zcrChart.Series.Add(series7);
             this.zcrChart.Size = new System.Drawing.Size(1052, 51);
             this.zcrChart.TabIndex = 3;
             // 
             // steChart
             // 
-            chartArea16.AxisX.LabelStyle.Enabled = false;
-            chartArea16.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea16.AxisX.MajorGrid.Enabled = false;
-            chartArea16.AxisX.Minimum = 0D;
-            chartArea16.AxisY.IsLabelAutoFit = false;
-            chartArea16.AxisY.LabelStyle.Enabled = false;
-            chartArea16.AxisY.MajorGrid.Enabled = false;
-            chartArea16.AxisY.MajorTickMark.Enabled = false;
-            chartArea16.Name = "ChartArea1";
-            this.steChart.ChartAreas.Add(chartArea16);
+            chartArea8.AxisX.LabelStyle.Enabled = false;
+            chartArea8.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea8.AxisX.MajorGrid.Enabled = false;
+            chartArea8.AxisX.Minimum = 0D;
+            chartArea8.AxisY.IsLabelAutoFit = false;
+            chartArea8.AxisY.LabelStyle.Enabled = false;
+            chartArea8.AxisY.MajorGrid.Enabled = false;
+            chartArea8.AxisY.MajorTickMark.Enabled = false;
+            chartArea8.Name = "ChartArea1";
+            this.steChart.ChartAreas.Add(chartArea8);
             this.steChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.steChart.Location = new System.Drawing.Point(3, 60);
             this.steChart.Name = "steChart";
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series16.Color = System.Drawing.Color.Green;
-            series16.Legend = "Legend1";
-            series16.Name = "Series1";
-            this.steChart.Series.Add(series16);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series8.Color = System.Drawing.Color.Green;
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.steChart.Series.Add(series8);
             this.steChart.Size = new System.Drawing.Size(1052, 51);
             this.steChart.TabIndex = 2;
             // 
@@ -751,6 +751,7 @@
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // soundlessSpeechToolStripMenuItem
             // 
@@ -763,7 +764,7 @@
             // workInProgressToolStripMenuItem2
             // 
             this.workInProgressToolStripMenuItem2.Name = "workInProgressToolStripMenuItem2";
-            this.workInProgressToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.workInProgressToolStripMenuItem2.Size = new System.Drawing.Size(163, 22);
             this.workInProgressToolStripMenuItem2.Text = "Work In Progress";
             // 
             // soundSpeechToolStripMenuItem
@@ -777,7 +778,7 @@
             // workInProgressToolStripMenuItem1
             // 
             this.workInProgressToolStripMenuItem1.Name = "workInProgressToolStripMenuItem1";
-            this.workInProgressToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.workInProgressToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.workInProgressToolStripMenuItem1.Text = "Work In Progress";
             // 
             // musicToolStripMenuItem

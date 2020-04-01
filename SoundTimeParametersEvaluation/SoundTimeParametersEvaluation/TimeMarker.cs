@@ -28,5 +28,10 @@ namespace SoundTimeParametersEvaluation
 
             return new TimeMarker(begin, end);
         }
+
+        public override string ToString()
+        {
+            return Begin + "," + End + "," + Duration.TotalMilliseconds;
+        }
     }
 }
