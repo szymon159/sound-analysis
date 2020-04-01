@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace SoundTimeParametersEvaluation.Enum
 {
-    public enum ParameterType
+    public enum FrameLevelParamType
     {
         Volume,
         ShortTimeEnergy,
         ZeroCrossingRate,
         SilentRatio
+    }
+
+    public enum ClipLevelParamType
+    {
+        VolumeStandardDeviation
     }
 }

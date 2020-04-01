@@ -9,7 +9,7 @@ namespace SoundTimeParametersEvaluation
 {
     public static class Calculator
     {
-        public static double CalculateFrameLevelParameter(ParameterType parameter, CustomPoint[] parsedFile, int samplesPerFrame, double sampleRate, out double[] resultInFrame)
+        public static double CalculateFrameLevelParameter(FrameLevelParamType parameter, CustomPoint[] parsedFile, int samplesPerFrame, double sampleRate, out double[] resultInFrame)
         {
             int framesCount = parsedFile.Length / samplesPerFrame;
             if (parsedFile.Length % samplesPerFrame != 0)
@@ -17,16 +17,32 @@ namespace SoundTimeParametersEvaluation
 
             switch (parameter)
             {
-                case ParameterType.Volume:
+                case FrameLevelParamType.Volume:
                     return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame, true);
-                case ParameterType.ShortTimeEnergy:
+                case FrameLevelParamType.ShortTimeEnergy:
                     return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame);
-                case ParameterType.ZeroCrossingRate:
+                case FrameLevelParamType.ZeroCrossingRate:
                     return GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
-                case ParameterType.SilentRatio:
+                case FrameLevelParamType.SilentRatio:
                     return GetSilentRatio(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
                 default:
                     resultInFrame = new double[framesCount];
+                    return 0.0;
+            }
+        }
+
+        public static double CalculateClipLevelParameter(ClipLevelParamType parameter, double[] volume)
+        {
+            switch(parameter)
+            {
+                case ClipLevelParamType.VolumeStandardDeviation:
+                    if (volume.Length <= 1)
+                        return 0.0;
+                    var avg = volume.Average();
+                    var sum = volume.Sum(v => (v - avg) * (v - avg));
+                    sum /= (volume.Length - 1);
+                    return Math.Sqrt(sum) / volume.Max();
+                default:
                     return 0.0;
             }
         }

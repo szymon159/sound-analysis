@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="ChartHelper.cs" />
-    <Compile Include="Enum\ParameterType.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

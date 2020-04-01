@@ -15,8 +15,9 @@ namespace SoundTimeParametersEvaluation
 {
     public partial class MainForm : Form
     {
-        private Dictionary<ParameterType, Chart> charts;
-        private Dictionary<ParameterType, Label> labels;
+        private Dictionary<FrameLevelParamType, Chart> charts;
+        private Dictionary<FrameLevelParamType, Label> chartLabels;
+        private Dictionary<ClipLevelParamType, Label> labels;
 
         private int milisecondsPerFrame = 100;
         private int samplesPerFrame;
@@ -34,34 +35,48 @@ namespace SoundTimeParametersEvaluation
 
         private void InitializeCollections()
         {
-            charts = new Dictionary<ParameterType, Chart>();
-            charts.Add(ParameterType.Volume, volumeChart);
-            charts.Add(ParameterType.ShortTimeEnergy, steChart);
-            charts.Add(ParameterType.ZeroCrossingRate, zcrChart);
-            charts.Add(ParameterType.SilentRatio, silenceChart);
+            charts = new Dictionary<FrameLevelParamType, Chart>();
+            charts.Add(FrameLevelParamType.Volume, volumeChart);
+            charts.Add(FrameLevelParamType.ShortTimeEnergy, steChart);
+            charts.Add(FrameLevelParamType.ZeroCrossingRate, zcrChart);
+            charts.Add(FrameLevelParamType.SilentRatio, silenceChart);
 
-            labels = new Dictionary<ParameterType, Label>();
-            labels.Add(ParameterType.Volume, volumeValueLabel);
-            labels.Add(ParameterType.ShortTimeEnergy, steValueLabel);
-            labels.Add(ParameterType.ZeroCrossingRate, zcrValueLabel);
-            labels.Add(ParameterType.SilentRatio, silenceValueLabel);
+            chartLabels = new Dictionary<FrameLevelParamType, Label>();
+            chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
+            chartLabels.Add(FrameLevelParamType.ShortTimeEnergy, steValueLabel);
+            chartLabels.Add(FrameLevelParamType.ZeroCrossingRate, zcrValueLabel);
+            chartLabels.Add(FrameLevelParamType.SilentRatio, silenceValueLabel);
+
+            labels = new Dictionary<ClipLevelParamType, Label>();
+            labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
         }
 
         private void UpdateParameters()
         {
-            UpdateParameter(ParameterType.Volume);
-            UpdateParameter(ParameterType.ShortTimeEnergy);
-            UpdateParameter(ParameterType.ZeroCrossingRate);
-            UpdateParameter(ParameterType.SilentRatio);
+            UpdateFrameLevelParameter(FrameLevelParamType.Volume);
+            UpdateFrameLevelParameter(FrameLevelParamType.ShortTimeEnergy);
+            UpdateFrameLevelParameter(FrameLevelParamType.ZeroCrossingRate);
+            UpdateFrameLevelParameter(FrameLevelParamType.SilentRatio);
+
+            var volume = volumeChart.Series[0].Points.SelectMany(point => { return point.YValues; }).ToArray();
+
+            UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume);
+        
         }
 
-        private void UpdateParameter(ParameterType parameter)
+        private void UpdateFrameLevelParameter(FrameLevelParamType parameter)
         {
             double result = Calculator.CalculateFrameLevelParameter(parameter, parsedFile, samplesPerFrame, sampleRate, out double[] valueInFrame);
-            labels[parameter].Text = result.ToString("0.000");
+            chartLabels[parameter].Text = result.ToString("0.000");
 
             var chart = charts[parameter];
             ChartHelper.UpdateChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+        }
+
+        private void UpdateClipLevelParameter(ClipLevelParamType parameter, double[] volume)
+        {
+            double result = Calculator.CalculateClipLevelParameter(parameter, volume);
+            labels[parameter].Text = result.ToString("0.000");
         }
 
         private void UpdateMPFTextBox()
