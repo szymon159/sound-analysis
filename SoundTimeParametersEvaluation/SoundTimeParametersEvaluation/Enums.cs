@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoundTimeParametersEvaluation.Enum
+namespace SoundTimeParametersEvaluation
 {
     public enum FrameLevelParamType
     {
@@ -20,5 +20,10 @@ namespace SoundTimeParametersEvaluation.Enum
         VolumeDynamicRange,
         LowShortTimeEnergyRatio,
         HighZeroCrossingRateRatio
+    }
+
+    public enum StatisticsType
+    {
+        Silence
     }
 }

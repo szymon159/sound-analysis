@@ -1,5 +1,4 @@
 ﻿using NAudio.Wave;
-using SoundTimeParametersEvaluation.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -170,7 +169,8 @@ namespace SoundTimeParametersEvaluation
 
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var popup = new StatisticsPopup(statistics, StatisticsType.Silence);
+            popup.Show(this);
         }
 
         #endregion

@@ -63,6 +63,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statistics.cs" />
+    <Compile Include="StatisticsPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatisticsPopup.Designer.cs">
+      <DependentUpon>StatisticsPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="TimeMarker.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -76,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StatisticsPopup.resx">
+      <DependentUpon>StatisticsPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
