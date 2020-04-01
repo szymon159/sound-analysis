@@ -123,7 +123,7 @@
             this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.mainLayoutPanel.Size = new System.Drawing.Size(1034, 426);
+            this.mainLayoutPanel.Size = new System.Drawing.Size(1350, 705);
             this.mainLayoutPanel.TabIndex = 0;
             // 
             // chart1
@@ -138,7 +138,7 @@
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chart1.Location = new System.Drawing.Point(218, 16);
+            this.chart1.Location = new System.Drawing.Point(282, 16);
             this.chart1.Margin = new System.Windows.Forms.Padding(6);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
@@ -147,7 +147,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(800, 69);
+            this.chart1.Size = new System.Drawing.Size(1052, 125);
             this.chart1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -162,7 +162,7 @@
             this.tableLayoutPanel1.Controls.Add(this.zcrChart, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.steChart, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(215, 94);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(279, 150);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -174,7 +174,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(806, 237);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1058, 405);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // musicChart
@@ -190,7 +190,7 @@
             chartArea2.Name = "ChartArea1";
             this.musicChart.ChartAreas.Add(chartArea2);
             this.musicChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.musicChart.Location = new System.Drawing.Point(3, 201);
+            this.musicChart.Location = new System.Drawing.Point(3, 345);
             this.musicChart.Name = "musicChart";
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -198,7 +198,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.musicChart.Series.Add(series2);
-            this.musicChart.Size = new System.Drawing.Size(800, 33);
+            this.musicChart.Size = new System.Drawing.Size(1052, 57);
             this.musicChart.TabIndex = 8;
             // 
             // soundSpeechChart
@@ -214,7 +214,7 @@
             chartArea3.Name = "ChartArea1";
             this.soundSpeechChart.ChartAreas.Add(chartArea3);
             this.soundSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.soundSpeechChart.Location = new System.Drawing.Point(3, 168);
+            this.soundSpeechChart.Location = new System.Drawing.Point(3, 288);
             this.soundSpeechChart.Name = "soundSpeechChart";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -222,7 +222,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.soundSpeechChart.Series.Add(series3);
-            this.soundSpeechChart.Size = new System.Drawing.Size(800, 27);
+            this.soundSpeechChart.Size = new System.Drawing.Size(1052, 51);
             this.soundSpeechChart.TabIndex = 7;
             // 
             // volumeChart
@@ -246,7 +246,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.volumeChart.Series.Add(series4);
-            this.volumeChart.Size = new System.Drawing.Size(800, 27);
+            this.volumeChart.Size = new System.Drawing.Size(1052, 51);
             this.volumeChart.TabIndex = 6;
             // 
             // soundlessSpeechChart
@@ -262,7 +262,7 @@
             chartArea5.Name = "ChartArea1";
             this.soundlessSpeechChart.ChartAreas.Add(chartArea5);
             this.soundlessSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.soundlessSpeechChart.Location = new System.Drawing.Point(3, 135);
+            this.soundlessSpeechChart.Location = new System.Drawing.Point(3, 231);
             this.soundlessSpeechChart.Name = "soundlessSpeechChart";
             series5.ChartArea = "ChartArea1";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -270,7 +270,7 @@
             series5.Legend = "Legend1";
             series5.Name = "Series1";
             this.soundlessSpeechChart.Series.Add(series5);
-            this.soundlessSpeechChart.Size = new System.Drawing.Size(800, 27);
+            this.soundlessSpeechChart.Size = new System.Drawing.Size(1052, 51);
             this.soundlessSpeechChart.TabIndex = 5;
             // 
             // silenceChart
@@ -286,7 +286,7 @@
             chartArea6.Name = "ChartArea1";
             this.silenceChart.ChartAreas.Add(chartArea6);
             this.silenceChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.silenceChart.Location = new System.Drawing.Point(3, 102);
+            this.silenceChart.Location = new System.Drawing.Point(3, 174);
             this.silenceChart.Name = "silenceChart";
             series6.ChartArea = "ChartArea1";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -294,7 +294,7 @@
             series6.Legend = "Legend1";
             series6.Name = "Series1";
             this.silenceChart.Series.Add(series6);
-            this.silenceChart.Size = new System.Drawing.Size(800, 27);
+            this.silenceChart.Size = new System.Drawing.Size(1052, 51);
             this.silenceChart.TabIndex = 4;
             // 
             // zcrChart
@@ -310,7 +310,7 @@
             chartArea7.Name = "ChartArea1";
             this.zcrChart.ChartAreas.Add(chartArea7);
             this.zcrChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zcrChart.Location = new System.Drawing.Point(3, 69);
+            this.zcrChart.Location = new System.Drawing.Point(3, 117);
             this.zcrChart.Name = "zcrChart";
             series7.ChartArea = "ChartArea1";
             series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -318,7 +318,7 @@
             series7.Legend = "Legend1";
             series7.Name = "Series1";
             this.zcrChart.Series.Add(series7);
-            this.zcrChart.Size = new System.Drawing.Size(800, 27);
+            this.zcrChart.Size = new System.Drawing.Size(1052, 51);
             this.zcrChart.TabIndex = 3;
             // 
             // steChart
@@ -334,7 +334,7 @@
             chartArea8.Name = "ChartArea1";
             this.steChart.ChartAreas.Add(chartArea8);
             this.steChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.steChart.Location = new System.Drawing.Point(3, 36);
+            this.steChart.Location = new System.Drawing.Point(3, 60);
             this.steChart.Name = "steChart";
             series8.ChartArea = "ChartArea1";
             series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
@@ -342,7 +342,7 @@
             series8.Legend = "Legend1";
             series8.Name = "Series1";
             this.steChart.Series.Add(series8);
-            this.steChart.Size = new System.Drawing.Size(800, 27);
+            this.steChart.Size = new System.Drawing.Size(1052, 51);
             this.steChart.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -365,7 +365,7 @@
             this.tableLayoutPanel2.Controls.Add(this.musicLabel, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.volumeValueLabel, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 94);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 150);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -375,7 +375,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(196, 237);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(260, 405);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // musicValueLabel
@@ -383,7 +383,7 @@
             this.musicValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.musicValueLabel.AutoSize = true;
             this.musicValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.musicValueLabel.Location = new System.Drawing.Point(140, 209);
+            this.musicValueLabel.Location = new System.Drawing.Point(185, 365);
             this.musicValueLabel.Name = "musicValueLabel";
             this.musicValueLabel.Size = new System.Drawing.Size(17, 17);
             this.musicValueLabel.TabIndex = 13;
@@ -394,7 +394,7 @@
             this.soundSpeechValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.soundSpeechValueLabel.AutoSize = true;
             this.soundSpeechValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundSpeechValueLabel.Location = new System.Drawing.Point(140, 173);
+            this.soundSpeechValueLabel.Location = new System.Drawing.Point(185, 305);
             this.soundSpeechValueLabel.Name = "soundSpeechValueLabel";
             this.soundSpeechValueLabel.Size = new System.Drawing.Size(17, 17);
             this.soundSpeechValueLabel.TabIndex = 12;
@@ -405,7 +405,7 @@
             this.soundlessSpeechValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.soundlessSpeechValueLabel.AutoSize = true;
             this.soundlessSpeechValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundlessSpeechValueLabel.Location = new System.Drawing.Point(140, 140);
+            this.soundlessSpeechValueLabel.Location = new System.Drawing.Point(185, 248);
             this.soundlessSpeechValueLabel.Name = "soundlessSpeechValueLabel";
             this.soundlessSpeechValueLabel.Size = new System.Drawing.Size(17, 17);
             this.soundlessSpeechValueLabel.TabIndex = 11;
@@ -416,7 +416,7 @@
             this.silenceValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.silenceValueLabel.AutoSize = true;
             this.silenceValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.silenceValueLabel.Location = new System.Drawing.Point(140, 107);
+            this.silenceValueLabel.Location = new System.Drawing.Point(185, 191);
             this.silenceValueLabel.Name = "silenceValueLabel";
             this.silenceValueLabel.Size = new System.Drawing.Size(17, 17);
             this.silenceValueLabel.TabIndex = 10;
@@ -427,7 +427,7 @@
             this.zcrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.zcrValueLabel.AutoSize = true;
             this.zcrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zcrValueLabel.Location = new System.Drawing.Point(140, 74);
+            this.zcrValueLabel.Location = new System.Drawing.Point(185, 134);
             this.zcrValueLabel.Name = "zcrValueLabel";
             this.zcrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.zcrValueLabel.TabIndex = 9;
@@ -438,7 +438,7 @@
             this.steValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.steValueLabel.AutoSize = true;
             this.steValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.steValueLabel.Location = new System.Drawing.Point(140, 41);
+            this.steValueLabel.Location = new System.Drawing.Point(185, 77);
             this.steValueLabel.Name = "steValueLabel";
             this.steValueLabel.Size = new System.Drawing.Size(17, 17);
             this.steValueLabel.TabIndex = 8;
@@ -449,7 +449,7 @@
             this.volumeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.volumeLabel.AutoSize = true;
             this.volumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.volumeLabel.Location = new System.Drawing.Point(75, 8);
+            this.volumeLabel.Location = new System.Drawing.Point(120, 20);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(59, 17);
             this.volumeLabel.TabIndex = 0;
@@ -460,7 +460,7 @@
             this.steLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.steLabel.AutoSize = true;
             this.steLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.steLabel.Location = new System.Drawing.Point(95, 41);
+            this.steLabel.Location = new System.Drawing.Point(140, 77);
             this.steLabel.Name = "steLabel";
             this.steLabel.Size = new System.Drawing.Size(39, 17);
             this.steLabel.TabIndex = 1;
@@ -471,7 +471,7 @@
             this.zcrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.zcrLabel.AutoSize = true;
             this.zcrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zcrLabel.Location = new System.Drawing.Point(94, 74);
+            this.zcrLabel.Location = new System.Drawing.Point(139, 134);
             this.zcrLabel.Name = "zcrLabel";
             this.zcrLabel.Size = new System.Drawing.Size(40, 17);
             this.zcrLabel.TabIndex = 2;
@@ -482,7 +482,7 @@
             this.silenceLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.silenceLabel.AutoSize = true;
             this.silenceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.silenceLabel.Location = new System.Drawing.Point(76, 107);
+            this.silenceLabel.Location = new System.Drawing.Point(121, 191);
             this.silenceLabel.Name = "silenceLabel";
             this.silenceLabel.Size = new System.Drawing.Size(58, 17);
             this.silenceLabel.TabIndex = 3;
@@ -493,7 +493,7 @@
             this.soundlessSpeechLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.soundlessSpeechLabel.AutoSize = true;
             this.soundlessSpeechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundlessSpeechLabel.Location = new System.Drawing.Point(9, 140);
+            this.soundlessSpeechLabel.Location = new System.Drawing.Point(54, 248);
             this.soundlessSpeechLabel.Name = "soundlessSpeechLabel";
             this.soundlessSpeechLabel.Size = new System.Drawing.Size(125, 16);
             this.soundlessSpeechLabel.TabIndex = 4;
@@ -504,7 +504,7 @@
             this.soundSpeechLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.soundSpeechLabel.AutoSize = true;
             this.soundSpeechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundSpeechLabel.Location = new System.Drawing.Point(29, 173);
+            this.soundSpeechLabel.Location = new System.Drawing.Point(74, 305);
             this.soundSpeechLabel.Name = "soundSpeechLabel";
             this.soundSpeechLabel.Size = new System.Drawing.Size(105, 17);
             this.soundSpeechLabel.TabIndex = 5;
@@ -515,7 +515,7 @@
             this.musicLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.musicLabel.AutoSize = true;
             this.musicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.musicLabel.Location = new System.Drawing.Point(86, 209);
+            this.musicLabel.Location = new System.Drawing.Point(131, 365);
             this.musicLabel.Name = "musicLabel";
             this.musicLabel.Size = new System.Drawing.Size(48, 17);
             this.musicLabel.TabIndex = 6;
@@ -526,7 +526,7 @@
             this.volumeValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.volumeValueLabel.AutoSize = true;
             this.volumeValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.volumeValueLabel.Location = new System.Drawing.Point(140, 8);
+            this.volumeValueLabel.Location = new System.Drawing.Point(185, 20);
             this.volumeValueLabel.Name = "volumeValueLabel";
             this.volumeValueLabel.Size = new System.Drawing.Size(17, 17);
             this.volumeValueLabel.TabIndex = 7;
@@ -539,7 +539,7 @@
             this.mpfGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mpfGroupBox.Location = new System.Drawing.Point(13, 13);
             this.mpfGroupBox.Name = "mpfGroupBox";
-            this.mpfGroupBox.Size = new System.Drawing.Size(196, 75);
+            this.mpfGroupBox.Size = new System.Drawing.Size(260, 131);
             this.mpfGroupBox.TabIndex = 3;
             this.mpfGroupBox.TabStop = false;
             this.mpfGroupBox.Text = "Miliseconds per frame";
@@ -551,7 +551,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mpfButton.Location = new System.Drawing.Point(59, 46);
             this.mpfButton.Name = "mpfButton";
-            this.mpfButton.Size = new System.Drawing.Size(75, 23);
+            this.mpfButton.Size = new System.Drawing.Size(139, 79);
             this.mpfButton.TabIndex = 1;
             this.mpfButton.Text = "Redraw";
             this.mpfButton.UseVisualStyleBackColor = true;
@@ -563,7 +563,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mpfTextBox.Location = new System.Drawing.Point(12, 20);
             this.mpfTextBox.Name = "mpfTextBox";
-            this.mpfTextBox.Size = new System.Drawing.Size(178, 20);
+            this.mpfTextBox.Size = new System.Drawing.Size(242, 20);
             this.mpfTextBox.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -582,12 +582,12 @@
             this.tableLayoutPanel3.Controls.Add(this.lsterLabel, 2, 1);
             this.tableLayoutPanel3.Controls.Add(this.vstdValueLabel, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(215, 337);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(279, 561);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(806, 76);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1058, 131);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // lsterValueLabel
@@ -595,7 +595,7 @@
             this.lsterValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lsterValueLabel.AutoSize = true;
             this.lsterValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lsterValueLabel.Location = new System.Drawing.Point(606, 48);
+            this.lsterValueLabel.Location = new System.Drawing.Point(795, 89);
             this.lsterValueLabel.Name = "lsterValueLabel";
             this.lsterValueLabel.Size = new System.Drawing.Size(17, 17);
             this.lsterValueLabel.TabIndex = 7;
@@ -606,7 +606,7 @@
             this.vdrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.vdrValueLabel.AutoSize = true;
             this.vdrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vdrValueLabel.Location = new System.Drawing.Point(204, 48);
+            this.vdrValueLabel.Location = new System.Drawing.Point(267, 89);
             this.vdrValueLabel.Name = "vdrValueLabel";
             this.vdrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.vdrValueLabel.TabIndex = 6;
@@ -617,7 +617,7 @@
             this.hzcrrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.hzcrrValueLabel.AutoSize = true;
             this.hzcrrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hzcrrValueLabel.Location = new System.Drawing.Point(606, 10);
+            this.hzcrrValueLabel.Location = new System.Drawing.Point(795, 24);
             this.hzcrrValueLabel.Name = "hzcrrValueLabel";
             this.hzcrrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.hzcrrValueLabel.TabIndex = 5;
@@ -628,7 +628,7 @@
             this.vstdLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.vstdLabel.AutoSize = true;
             this.vstdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vstdLabel.Location = new System.Drawing.Point(149, 10);
+            this.vstdLabel.Location = new System.Drawing.Point(212, 24);
             this.vstdLabel.Name = "vstdLabel";
             this.vstdLabel.Size = new System.Drawing.Size(49, 17);
             this.vstdLabel.TabIndex = 0;
@@ -639,7 +639,7 @@
             this.vdrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.vdrLabel.AutoSize = true;
             this.vdrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vdrLabel.Location = new System.Drawing.Point(157, 48);
+            this.vdrLabel.Location = new System.Drawing.Point(220, 89);
             this.vdrLabel.Name = "vdrLabel";
             this.vdrLabel.Size = new System.Drawing.Size(41, 17);
             this.vdrLabel.TabIndex = 1;
@@ -650,7 +650,7 @@
             this.hzcrrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.hzcrrLabel.AutoSize = true;
             this.hzcrrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hzcrrLabel.Location = new System.Drawing.Point(540, 10);
+            this.hzcrrLabel.Location = new System.Drawing.Point(729, 24);
             this.hzcrrLabel.Name = "hzcrrLabel";
             this.hzcrrLabel.Size = new System.Drawing.Size(60, 17);
             this.hzcrrLabel.TabIndex = 2;
@@ -661,7 +661,7 @@
             this.lsterLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lsterLabel.AutoSize = true;
             this.lsterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lsterLabel.Location = new System.Drawing.Point(543, 48);
+            this.lsterLabel.Location = new System.Drawing.Point(732, 89);
             this.lsterLabel.Name = "lsterLabel";
             this.lsterLabel.Size = new System.Drawing.Size(57, 17);
             this.lsterLabel.TabIndex = 3;
@@ -672,7 +672,7 @@
             this.vstdValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.vstdValueLabel.AutoSize = true;
             this.vstdValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vstdValueLabel.Location = new System.Drawing.Point(204, 10);
+            this.vstdValueLabel.Location = new System.Drawing.Point(267, 24);
             this.vstdValueLabel.Name = "vstdValueLabel";
             this.vstdValueLabel.Size = new System.Drawing.Size(17, 17);
             this.vstdValueLabel.TabIndex = 4;
@@ -684,7 +684,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1034, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1350, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -727,7 +727,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 450);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.mainLayoutPanel);
             this.Controls.Add(this.menuStrip);
             this.Name = "MainForm";
