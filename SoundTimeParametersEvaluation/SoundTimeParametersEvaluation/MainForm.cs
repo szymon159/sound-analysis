@@ -91,6 +91,12 @@ namespace SoundTimeParametersEvaluation
             mpfTextBox.Text = milisecondsPerFrame.ToString();
         }
 
+        private void UpdateMPFValue()
+        {
+            if(int.TryParse(mpfTextBox.Text, out milisecondsPerFrame))
+                samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
+        }
+
         #region Forms handlers
 
         // TODO: Refactor
@@ -129,6 +135,12 @@ namespace SoundTimeParametersEvaluation
                 }
             }
 
+            UpdateParameters();
+        }
+
+        private void mpfButton_Click(object sender, EventArgs e)
+        {
+            UpdateMPFValue();
             UpdateParameters();
         }
 
