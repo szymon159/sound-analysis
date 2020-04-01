@@ -109,7 +109,7 @@ namespace SoundTimeParametersEvaluation
                 }
 
                 // Operations for each frame
-                resultInFrame[i] = (sampleRate * squaredSum) / (2 * samplesPerFrame);
+                resultInFrame[i] = squaredSum / 2.0;
                 //
 
                 avgResult += resultInFrame[i];
