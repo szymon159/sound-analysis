@@ -97,9 +97,33 @@ namespace SoundTimeParametersEvaluation
                 samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
         }
 
+        private void LoadFile(string filePath)
+        {
+            using (var audioFileReader = new AudioFileReader(filePath))
+            {
+                var wholeFile = new List<float>((int)(audioFileReader.Length / 4));
+                var readBuffer = new float[audioFileReader.WaveFormat.SampleRate * audioFileReader.WaveFormat.Channels];
+                int samplesRead;
+                while ((samplesRead = audioFileReader.Read(readBuffer, 0, readBuffer.Length)) > 0)
+                {
+                    wholeFile.AddRange(readBuffer.Take(samplesRead));
+                }
+
+                parsedFile = new CustomPoint[wholeFile.Count];
+                sampleRate = audioFileReader.WaveFormat.SampleRate;
+                samplesPerFrame = milisecondsPerFrame * audioFileReader.WaveFormat.SampleRate / 1000;
+                for (int i = 0; i < wholeFile.Count; i++)
+                {
+                    double timeInSeconds = i / sampleRate;
+                    parsedFile[i] = new CustomPoint(timeInSeconds, wholeFile[i]);
+
+                    chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
+                }
+            }
+        }
+
         #region Forms handlers
 
-        // TODO: Refactor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
@@ -112,27 +136,7 @@ namespace SoundTimeParametersEvaluation
                 var filePath = openFileDialog.FileName;
                 chart1.Series[0].Points.Clear();
 
-                using (var audioFileReader = new AudioFileReader(filePath))
-                {
-                    var wholeFile = new List<float>((int)(audioFileReader.Length / 4));
-                    var readBuffer = new float[audioFileReader.WaveFormat.SampleRate * audioFileReader.WaveFormat.Channels];
-                    int samplesRead;
-                    while ((samplesRead = audioFileReader.Read(readBuffer, 0, readBuffer.Length)) > 0)
-                    {
-                        wholeFile.AddRange(readBuffer.Take(samplesRead));
-                    }
-
-                    parsedFile = new CustomPoint[wholeFile.Count];
-                    sampleRate = audioFileReader.WaveFormat.SampleRate;
-                    samplesPerFrame = milisecondsPerFrame * audioFileReader.WaveFormat.SampleRate / 1000;
-                    for (int i = 0; i < wholeFile.Count; i++)
-                    {
-                        double timeInSeconds = i / sampleRate;
-                        parsedFile[i] = new CustomPoint(timeInSeconds, wholeFile[i]);
-
-                        chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
-                    }
-                }
+                LoadFile(filePath);
             }
 
             UpdateParameters();
