@@ -16,6 +16,7 @@ namespace SoundTimeParametersEvaluation.Enum
 
     public enum ClipLevelParamType
     {
-        VolumeStandardDeviation
+        VolumeStandardDeviation,
+        VolumeDynamicRange
     }
 }

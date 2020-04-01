@@ -40,8 +40,12 @@ namespace SoundTimeParametersEvaluation
                         return 0.0;
                     var avg = volume.Average();
                     var sum = volume.Sum(v => (v - avg) * (v - avg));
-                    sum /= (volume.Length - 1);
+                    sum /= volume.Length;
                     return Math.Sqrt(sum) / volume.Max();
+                case ClipLevelParamType.VolumeDynamicRange:
+                    var max = volume.Max();
+                    var min = volume.Min();
+                    return (max - min) / max;
                 default:
                     return 0.0;
             }

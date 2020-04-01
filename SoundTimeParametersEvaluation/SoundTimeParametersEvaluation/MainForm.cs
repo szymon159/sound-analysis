@@ -49,6 +49,7 @@ namespace SoundTimeParametersEvaluation
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
+            labels.Add(ClipLevelParamType.VolumeDynamicRange, vdrValueLabel);
         }
 
         private void UpdateParameters()
@@ -61,7 +62,7 @@ namespace SoundTimeParametersEvaluation
             var volume = volumeChart.Series[0].Points.SelectMany(point => { return point.YValues; }).ToArray();
 
             UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume);
-        
+            UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume);
         }
 
         private void UpdateFrameLevelParameter(FrameLevelParamType parameter)
