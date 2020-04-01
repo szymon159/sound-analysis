@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SoundTimeParametersEvaluation
 {
-    public struct Point_f
+    public struct CustomPoint
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
 
-        public Point_f(float x, float y)
+        public CustomPoint(double x, double y)
         {
             X = x;
             Y = y;

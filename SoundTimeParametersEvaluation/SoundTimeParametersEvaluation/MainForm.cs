@@ -1,4 +1,5 @@
 ﻿using NAudio.Wave;
+using SoundTimeParametersEvaluation.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,29 +15,50 @@ namespace SoundTimeParametersEvaluation
 {
     public partial class MainForm : Form
     {
+        private Dictionary<ParameterType, Chart> charts;
+        private Dictionary<ParameterType, Label> labels;
+
         private int milisecondsPerFrame = 100;
         private int samplesPerFrame;
-        private float sampleRate;
+        private double sampleRate;
 
-        private Point_f[] parsedFile;
+        private CustomPoint[] parsedFile;
 
         public MainForm()
         {
             InitializeComponent();
+            InitializeCollections();
 
             UpdateMPFTextBox();
         }
 
-        private void UpdateParameters()
+        private void InitializeCollections()
         {
-            UpdateVolume();
+            charts = new Dictionary<ParameterType, Chart>();
+            charts.Add(ParameterType.Volume, volumeChart);
+            charts.Add(ParameterType.ShortTimeEnergy, steChart);
+            charts.Add(ParameterType.ZeroCrossingRate, zcrChart);
+
+            labels = new Dictionary<ParameterType, Label>();
+            labels.Add(ParameterType.Volume, volumeValueLabel);
+            labels.Add(ParameterType.ShortTimeEnergy, steValueLabel);
+            labels.Add(ParameterType.ZeroCrossingRate, zcrValueLabel);
         }
 
-        private void UpdateVolume()
+        private void UpdateParameters()
         {
-            float calculatedVolume = Calculator.CalculateVolume(parsedFile, samplesPerFrame, out float[] volumeInFrame);
-            volumeValueLabel.Text = calculatedVolume.ToString("0.000");
-            ChartHelper.UpdateChart(ref volumeChart, volumeInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+            UpdateParameter(ParameterType.Volume);
+            UpdateParameter(ParameterType.ShortTimeEnergy);
+            UpdateParameter(ParameterType.ZeroCrossingRate);
+        }
+
+        private void UpdateParameter(ParameterType parameter)
+        {
+            double result = Calculator.CalculateFrameLevelParameter(parameter, parsedFile, samplesPerFrame, sampleRate, out double[] valueInFrame);
+            labels[parameter].Text = result.ToString("0.000");
+
+            var chart = charts[parameter];
+            ChartHelper.UpdateChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
         }
 
         private void UpdateMPFTextBox()
@@ -46,6 +68,7 @@ namespace SoundTimeParametersEvaluation
 
         #region Forms handlers
 
+        // TODO: Refactor
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
@@ -68,13 +91,13 @@ namespace SoundTimeParametersEvaluation
                         wholeFile.AddRange(readBuffer.Take(samplesRead));
                     }
 
-                    parsedFile = new Point_f[wholeFile.Count];
-                    sampleRate = (float)audioFileReader.WaveFormat.SampleRate;
+                    parsedFile = new CustomPoint[wholeFile.Count];
+                    sampleRate = audioFileReader.WaveFormat.SampleRate;
                     samplesPerFrame = milisecondsPerFrame * audioFileReader.WaveFormat.SampleRate / 1000;
                     for (int i = 0; i < wholeFile.Count; i++)
                     {
-                        float timeInSeconds = i / sampleRate;
-                        parsedFile[i] = new Point_f(timeInSeconds, wholeFile[i]);
+                        double timeInSeconds = i / sampleRate;
+                        parsedFile[i] = new CustomPoint(timeInSeconds, wholeFile[i]);
 
                         chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
                     }

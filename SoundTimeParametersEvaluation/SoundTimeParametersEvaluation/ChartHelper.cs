@@ -9,7 +9,7 @@ namespace SoundTimeParametersEvaluation
 {
     public static class ChartHelper
     {
-        public static void UpdateChart(ref Chart chart, float[] valueInFrame, int samplesPerFrame, int samplesCount, float sampleRate)
+        public static void UpdateChart(ref Chart chart, double[] valueInFrame, int samplesPerFrame, int samplesCount, double sampleRate)
         {
             chart.Series[0].Points.Clear();
 
@@ -23,7 +23,7 @@ namespace SoundTimeParametersEvaluation
                 else
                     frameCenter += samplesPerFrame;
 
-                float timeInSeconds = frameCenter / sampleRate;
+                double timeInSeconds = frameCenter / sampleRate;
                 chart.Series[0].Points.AddXY(timeInSeconds, valueInFrame[i]);
             }
         }
