@@ -109,7 +109,7 @@ namespace SoundTimeParametersEvaluation
                 }
 
                 // Operations for each frame
-                resultInFrame[i] = squaredSum / 2.0;
+                resultInFrame[i] = squaredSum / (2.0 * samplesPerFrame);
                 //
 
                 avgResult += resultInFrame[i];
@@ -130,7 +130,7 @@ namespace SoundTimeParametersEvaluation
             for (int i = 0; i < framesCount; i++)
             {
                 // Operations for each frame
-                if (volumeResultInFrame[i] < 0.02 && zcrResultInFrame[i] < 50)
+                if (volumeResultInFrame[i] < 0.02 && zcrResultInFrame[i] < 0.5)
                     resultInFrame[i] = 1;
                 //
 
