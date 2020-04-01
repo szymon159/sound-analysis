@@ -31,21 +31,16 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static double CalculateClipLevelParameter(ClipLevelParamType parameter, double[] volume)
+        public static double CalculateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, CustomPoint[] parsedFile, double sampleRate)
         {
-            switch(parameter)
+            switch (parameter)
             {
                 case ClipLevelParamType.VolumeStandardDeviation:
-                    if (volume.Length <= 1)
-                        return 0.0;
-                    var avg = volume.Average();
-                    var sum = volume.Sum(v => (v - avg) * (v - avg));
-                    sum /= volume.Length;
-                    return Math.Sqrt(sum) / volume.Max();
+                    return GetVolumeStandardDeviation(volume);
                 case ClipLevelParamType.VolumeDynamicRange:
-                    var max = volume.Max();
-                    var min = volume.Min();
-                    return (max - min) / max;
+                    return GetVolumeDynamicRange(volume);
+                case ClipLevelParamType.LowShortTimeEnergyRatio:
+                    return GetLowShortTimeEnergyRatio(energy, parsedFile, sampleRate);
                 default:
                     return 0.0;
             }
@@ -142,6 +137,40 @@ namespace SoundTimeParametersEvaluation
 
             avgResult /= framesCount;
             return avgResult;
+        }
+    
+        private static double GetVolumeStandardDeviation(double[] volume)
+        {
+            if (volume.Length <= 1)
+                return 0.0;
+
+            var avg = volume.Average();
+            var sum = volume.Sum(value => (value - avg) * (value - avg));
+            sum /= volume.Length;
+
+            return Math.Sqrt(sum) / volume.Max();
+        }
+
+        private static double GetVolumeDynamicRange(double[] volume)
+        {
+            var max = volume.Max();
+            var min = volume.Min();
+
+            return (max - min) / max;
+        }
+
+        private static double GetLowShortTimeEnergyRatio(double[] energy, CustomPoint[] parsedFile, double sampleRate)
+        {
+            int framesCount = parsedFile.Length / (int)sampleRate;
+            if (parsedFile.Length % sampleRate != 0)
+                framesCount++;
+
+            GetEnergy(parsedFile, (int)sampleRate, framesCount, out double[] energyInOneSecFrame);
+
+            var avg = energyInOneSecFrame.Average();
+            var sum = energy.Sum(value => Math.Sign(0.5 * avg - value) + 1);
+
+            return sum / (2.0 * energy.Length);
         }
     }
 }
