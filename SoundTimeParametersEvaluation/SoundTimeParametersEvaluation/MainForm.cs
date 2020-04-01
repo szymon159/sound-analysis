@@ -14,10 +14,37 @@ namespace SoundTimeParametersEvaluation
 {
     public partial class MainForm : Form
     {
+        private int milisecondsPerFrame = 100;
+        private int samplesPerFrame;
+        private float sampleRate;
+
+        private Point_f[] parsedFile;
+
         public MainForm()
         {
             InitializeComponent();
+
+            UpdateMPFTextBox();
         }
+
+        private void UpdateParameters()
+        {
+            UpdateVolume();
+        }
+
+        private void UpdateVolume()
+        {
+            float calculatedVolume = Calculator.CalculateVolume(parsedFile, samplesPerFrame, out float[] volumeInFrame);
+            volumeValueLabel.Text = calculatedVolume.ToString("0.000");
+            ChartHelper.UpdateChart(ref volumeChart, volumeInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+        }
+
+        private void UpdateMPFTextBox()
+        {
+            mpfTextBox.Text = milisecondsPerFrame.ToString();
+        }
+
+        #region Forms handlers
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -41,13 +68,22 @@ namespace SoundTimeParametersEvaluation
                         wholeFile.AddRange(readBuffer.Take(samplesRead));
                     }
 
-                    for(int i = 0; i < wholeFile.Count; i++)
+                    parsedFile = new Point_f[wholeFile.Count];
+                    sampleRate = (float)audioFileReader.WaveFormat.SampleRate;
+                    samplesPerFrame = milisecondsPerFrame * audioFileReader.WaveFormat.SampleRate / 1000;
+                    for (int i = 0; i < wholeFile.Count; i++)
                     {
-                        float timeInSeconds = i / (float)audioFileReader.WaveFormat.SampleRate;
-                        chart1.Series[0].Points.AddXY(timeInSeconds, wholeFile[i]);
+                        float timeInSeconds = i / sampleRate;
+                        parsedFile[i] = new Point_f(timeInSeconds, wholeFile[i]);
+
+                        chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
                     }
                 }
             }
+
+            UpdateParameters();
         }
+
+        #endregion
     }
 }
