@@ -24,6 +24,7 @@ namespace SoundTimeParametersEvaluation
         private double sampleRate;
 
         private CustomPoint[] parsedFile;
+        private Statistics statistics;
 
         public MainForm()
         {
@@ -35,6 +36,8 @@ namespace SoundTimeParametersEvaluation
 
         private void InitializeCollections()
         {
+            statistics = new Statistics();
+
             charts = new Dictionary<FrameLevelParamType, Chart>();
             charts.Add(FrameLevelParamType.Volume, volumeChart);
             charts.Add(FrameLevelParamType.ShortTimeEnergy, steChart);
@@ -69,6 +72,8 @@ namespace SoundTimeParametersEvaluation
             UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.LowShortTimeEnergyRatio, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.HighZeroCrossingRateRatio, volume, energy, zeroCrossingRate);
+
+            UpdateStatistics();
         }
 
         private void UpdateFrameLevelParameter(FrameLevelParamType parameter)
@@ -84,6 +89,21 @@ namespace SoundTimeParametersEvaluation
         {
             double result = Calculator.CalculateClipLevelParameter(parameter, volume, energy, zeroCrossingRate, parsedFile, sampleRate);
             labels[parameter].Text = result.ToString("0.000");
+        }
+
+        private void UpdateStatistics()
+        {
+            statistics.Clear();
+            int framesCount = silenceChart.Series[0].Points.Count;
+
+            for(int i = 0; i < framesCount; i++)
+            {
+                var point = new CustomPoint(silenceChart.Series[0].Points[i]);
+                if (point.Y == 1)
+                {
+                    statistics.SilenceTimeMarkers.Add(TimeMarker.FromSample(point.X, milisecondsPerFrame));
+                }
+            }
         }
 
         private void UpdateMPFTextBox()
@@ -148,6 +168,12 @@ namespace SoundTimeParametersEvaluation
             UpdateParameters();
         }
 
+        private void displayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         #endregion
+
     }
 }
