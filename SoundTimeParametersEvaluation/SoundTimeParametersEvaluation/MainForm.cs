@@ -29,11 +29,7 @@ namespace SoundTimeParametersEvaluation
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var filePath = openFileDialog.FileName;
-
-                chart1.Series.Add("wave");
-                chart1.Series["wave"].ChartType = SeriesChartType.FastLine;
-                chart1.Series["wave"].ChartArea = "ChartArea1";
-
+                chart1.Series[0].Points.Clear();
 
                 using (var audioFileReader = new AudioFileReader(filePath))
                 {
@@ -44,13 +40,14 @@ namespace SoundTimeParametersEvaluation
                     {
                         wholeFile.AddRange(readBuffer.Take(samplesRead));
                     }
-                    foreach(var point in wholeFile)
+
+                    for(int i = 0; i < wholeFile.Count; i++)
                     {
-                        chart1.Series["wave"].Points.Add(point);
+                        float timeInSeconds = i / (float)audioFileReader.WaveFormat.SampleRate;
+                        chart1.Series[0].Points.AddXY(timeInSeconds, wholeFile[i]);
                     }
                 }
             }
-
         }
     }
 }
