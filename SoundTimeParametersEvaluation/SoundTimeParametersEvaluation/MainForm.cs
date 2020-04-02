@@ -173,7 +173,8 @@ namespace SoundTimeParametersEvaluation
         private void mpfButton_Click(object sender, EventArgs e)
         {
             UpdateMPFValue();
-            UpdateParameters();
+            if(parsedFile != null && parsedFile.Length > 0)
+                UpdateParameters();
         }
 
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
