@@ -44,6 +44,7 @@ namespace SoundTimeParametersEvaluation
             charts.Add(FrameLevelParamType.SilentRatio, silenceChart);
             charts.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechChart);
             charts.Add(FrameLevelParamType.SoundSpeech, soundSpeechChart);
+            charts.Add(FrameLevelParamType.Music, musicChart);
 
             chartLabels = new Dictionary<FrameLevelParamType, Label>();
             chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
@@ -52,6 +53,7 @@ namespace SoundTimeParametersEvaluation
             chartLabels.Add(FrameLevelParamType.SilentRatio, silenceValueLabel);
             chartLabels.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechValueLabel);
             chartLabels.Add(FrameLevelParamType.SoundSpeech, soundSpeechValueLabel);
+            chartLabels.Add(FrameLevelParamType.Music, musicValueLabel);
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
@@ -68,6 +70,7 @@ namespace SoundTimeParametersEvaluation
             UpdateFrameLevelParameter(FrameLevelParamType.SilentRatio);
             UpdateFrameLevelParameter(FrameLevelParamType.SoundlessSpeech);
             UpdateFrameLevelParameter(FrameLevelParamType.SoundSpeech);
+            UpdateFrameLevelParameter(FrameLevelParamType.Music);
 
             var volume = volumeChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
             var energy = steChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 

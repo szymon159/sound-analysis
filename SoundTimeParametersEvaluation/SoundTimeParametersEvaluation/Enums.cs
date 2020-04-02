@@ -13,7 +13,8 @@ namespace SoundTimeParametersEvaluation
         ZeroCrossingRate,
         SilentRatio,
         SoundlessSpeech,
-        SoundSpeech
+        SoundSpeech,
+        Music
     }
 
     public enum ClipLevelParamType

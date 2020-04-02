@@ -28,6 +28,8 @@ namespace SoundTimeParametersEvaluation
                     return GetSoundlessSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
                 case FrameLevelParamType.SoundSpeech:
                     return GetSoundSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                case FrameLevelParamType.Music:
+                    return GetMusic(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
                 default:
                     resultInFrame = new double[framesCount];
                     return 0.0;
@@ -155,7 +157,7 @@ namespace SoundTimeParametersEvaluation
             for (int i = 0; i < framesCount; i++)
             {
                 // Operations for each frame
-                if (energyResultInFrame[i] < 0.01 && zcrResultInFrame[i] > 0.1)
+                if (energyResultInFrame[i] < 0.001 && zcrResultInFrame[i] < 0.1)
                     resultInFrame[i] = 1;
                 //
 
@@ -177,7 +179,32 @@ namespace SoundTimeParametersEvaluation
             for (int i = 0; i < framesCount; i++)
             {
                 // Operations for each frame
-                if (energyResultInFrame[i] > 0.01 && zcrResultInFrame[i] > 0.1)
+                if (energyResultInFrame[i] > 0.001 && zcrResultInFrame[i] < 0.1)
+                    resultInFrame[i] = 1;
+                //  
+
+                avgResult += resultInFrame[i];
+            }
+
+            avgResult /= framesCount;
+            return avgResult;
+        }
+
+        private static double GetMusic(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        {
+            double avgResult = 0.0f;
+            resultInFrame = new double[framesCount];
+
+            GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] energyResultInFrame);
+            GetEnergy(parsedFile, (int)sampleRate, framesCount, out double[] energyInOneSecFrame);
+            GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out double[] zcrResultInFrame);
+
+            var avg = energyInOneSecFrame.Average();
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                // Operations for each frame
+                if (energyResultInFrame[i] > 0.001 && zcrResultInFrame[i] > 0.1)
                     resultInFrame[i] = 1;
                 //  
 
