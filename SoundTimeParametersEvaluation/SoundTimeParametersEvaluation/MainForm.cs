@@ -42,12 +42,16 @@ namespace SoundTimeParametersEvaluation
             charts.Add(FrameLevelParamType.ShortTimeEnergy, steChart);
             charts.Add(FrameLevelParamType.ZeroCrossingRate, zcrChart);
             charts.Add(FrameLevelParamType.SilentRatio, silenceChart);
+            charts.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechChart);
+            charts.Add(FrameLevelParamType.SoundSpeech, soundSpeechChart);
 
             chartLabels = new Dictionary<FrameLevelParamType, Label>();
             chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
             chartLabels.Add(FrameLevelParamType.ShortTimeEnergy, steValueLabel);
             chartLabels.Add(FrameLevelParamType.ZeroCrossingRate, zcrValueLabel);
             chartLabels.Add(FrameLevelParamType.SilentRatio, silenceValueLabel);
+            chartLabels.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechValueLabel);
+            chartLabels.Add(FrameLevelParamType.SoundSpeech, soundSpeechValueLabel);
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
@@ -62,6 +66,8 @@ namespace SoundTimeParametersEvaluation
             UpdateFrameLevelParameter(FrameLevelParamType.ShortTimeEnergy);
             UpdateFrameLevelParameter(FrameLevelParamType.ZeroCrossingRate);
             UpdateFrameLevelParameter(FrameLevelParamType.SilentRatio);
+            UpdateFrameLevelParameter(FrameLevelParamType.SoundlessSpeech);
+            UpdateFrameLevelParameter(FrameLevelParamType.SoundSpeech);
 
             var volume = volumeChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
             var energy = steChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 
