@@ -11,15 +11,24 @@ namespace SoundTimeParametersEvaluation
     public class Statistics
     {
         public List<TimeMarker> SilenceTimeMarkers { get; set; }
+        public List<TimeMarker> SoundlessSpeechTimeMarkers { get; set; }
+        public List<TimeMarker> SoundSpeechTimeMarkers { get; set; }
+        public List<TimeMarker> MusicTimeMarkers { get; set; }
 
         public Statistics()
         {
             SilenceTimeMarkers = new List<TimeMarker>();
+            SoundlessSpeechTimeMarkers = new List<TimeMarker>();
+            SoundSpeechTimeMarkers = new List<TimeMarker>();
+            MusicTimeMarkers = new List<TimeMarker>();
         }
 
         public void Clear()
         {
             SilenceTimeMarkers.Clear();
+            SoundlessSpeechTimeMarkers.Clear();
+            SoundSpeechTimeMarkers.Clear();
+            MusicTimeMarkers.Clear();
         }
 
         public List<TimeMarker> GetListByType(StatisticsType type)
@@ -28,6 +37,12 @@ namespace SoundTimeParametersEvaluation
             {
                 case StatisticsType.Silence:
                     return SilenceTimeMarkers;
+                case StatisticsType.SoundlessSpeech:
+                    return SoundlessSpeechTimeMarkers;
+                case StatisticsType.SoundSpeech:
+                    return SoundSpeechTimeMarkers;
+                case StatisticsType.Music:
+                    return MusicTimeMarkers;
                 default:
                     return new List<TimeMarker>();
             }

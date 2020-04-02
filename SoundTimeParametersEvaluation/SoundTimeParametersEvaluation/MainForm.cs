@@ -106,11 +106,18 @@ namespace SoundTimeParametersEvaluation
 
             for(int i = 0; i < framesCount; i++)
             {
-                var point = new CustomPoint(silenceChart.Series[0].Points[i]);
-                if (point.Y == 1)
-                {
-                    statistics.SilenceTimeMarkers.Add(TimeMarker.FromSample(point.X, milisecondsPerFrame));
-                }
+                var silencePoint = new CustomPoint(silenceChart.Series[0].Points[i]);
+                var soundlessSoundPoint = new CustomPoint(soundlessSpeechChart.Series[0].Points[i]);
+                var soundPoint = new CustomPoint(soundSpeechChart.Series[0].Points[i]);
+                var musicPoint = new CustomPoint(musicChart.Series[0].Points[i]);
+                if (silencePoint.Y == 1)
+                    statistics.SilenceTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                if (soundlessSoundPoint.Y == 1)
+                    statistics.SoundlessSpeechTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                if (soundPoint.Y == 1)
+                    statistics.SoundSpeechTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                if (musicPoint.Y == 1)
+                    statistics.MusicTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
             }
         }
 
@@ -165,9 +172,8 @@ namespace SoundTimeParametersEvaluation
                 chart1.Series[0].Points.Clear();
 
                 LoadFile(filePath);
+                UpdateParameters();
             }
-
-            UpdateParameters();
         }
 
         private void mpfButton_Click(object sender, EventArgs e)
@@ -179,13 +185,17 @@ namespace SoundTimeParametersEvaluation
 
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var popup = new StatisticsPopup(statistics, StatisticsType.Silence);
+            var type = (sender as ToolStripMenuItem).ToStatisticsType();
+
+            var popup = new StatisticsPopup(statistics, type);
             popup.Show(this);
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            statistics.ExportByType(StatisticsType.Silence);
+            var type = (sender as ToolStripMenuItem).ToStatisticsType();
+
+            statistics.ExportByType(type);
         }
 
         #endregion

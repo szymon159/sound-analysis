@@ -53,6 +53,7 @@
     <Compile Include="Calculator.cs" />
     <Compile Include="ChartHelper.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
