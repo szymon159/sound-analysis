@@ -111,13 +111,13 @@ namespace SoundTimeParametersEvaluation
                 var soundPoint = new CustomPoint(soundSpeechChart.Series[0].Points[i]);
                 var musicPoint = new CustomPoint(musicChart.Series[0].Points[i]);
                 if (silencePoint.Y == 1)
-                    statistics.SilenceTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                    statistics.AddMarkerByType(StatisticsType.Silence, TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
                 if (soundlessSoundPoint.Y == 1)
-                    statistics.SoundlessSpeechTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                    statistics.AddMarkerByType(StatisticsType.SoundlessSpeech, TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
                 if (soundPoint.Y == 1)
-                    statistics.SoundSpeechTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                    statistics.AddMarkerByType(StatisticsType.SoundSpeech, TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
                 if (musicPoint.Y == 1)
-                    statistics.MusicTimeMarkers.Add(TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
+                    statistics.AddMarkerByType(StatisticsType.Music, TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
             }
         }
 

@@ -19,6 +19,16 @@ namespace SoundTimeParametersEvaluation
             End = end;
         }
 
+        public void ModifyEndMarker(TimeSpan newValue)
+        {
+            End = newValue;
+        }
+
+        public override string ToString()
+        {
+            return Begin + "," + End + "," + Duration.TotalMilliseconds;
+        }
+
         public static TimeMarker FromSample(double sampleCenter, int milisecondsPerSample)
         {
             int sampleCenterMs = (int)(1000 * sampleCenter);
@@ -27,11 +37,6 @@ namespace SoundTimeParametersEvaluation
             var end = new TimeSpan(0, 0, 0, 0, sampleCenterMs + milisecondsPerSample / 2);
 
             return new TimeMarker(begin, end);
-        }
-
-        public override string ToString()
-        {
-            return Begin + "," + End + "," + Duration.TotalMilliseconds;
         }
     }
 }

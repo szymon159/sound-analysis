@@ -10,10 +10,10 @@ namespace SoundTimeParametersEvaluation
 {
     public class Statistics
     {
-        public List<TimeMarker> SilenceTimeMarkers { get; set; }
-        public List<TimeMarker> SoundlessSpeechTimeMarkers { get; set; }
-        public List<TimeMarker> SoundSpeechTimeMarkers { get; set; }
-        public List<TimeMarker> MusicTimeMarkers { get; set; }
+        public List<TimeMarker> SilenceTimeMarkers { get; private set; }
+        public List<TimeMarker> SoundlessSpeechTimeMarkers { get; private set; }
+        public List<TimeMarker> SoundSpeechTimeMarkers { get; private set; }
+        public List<TimeMarker> MusicTimeMarkers { get; private set; }
 
         public Statistics()
         {
@@ -46,6 +46,21 @@ namespace SoundTimeParametersEvaluation
                 default:
                     return new List<TimeMarker>();
             }
+        }
+
+        public void AddMarkerByType(StatisticsType type, TimeMarker markerToAdd)
+        {
+            var list = GetListByType(type);
+            if(list.Count == 0)
+            {
+                list.Add(markerToAdd);
+                return;
+            }
+
+            if (list[list.Count - 1].End == markerToAdd.Begin)
+                list[list.Count - 1] = new TimeMarker(list[list.Count - 1].Begin, markerToAdd.End);
+            else
+                list.Add(markerToAdd);
         }
 
         public ListViewItem[] GetListViewItemsByType(StatisticsType type)
