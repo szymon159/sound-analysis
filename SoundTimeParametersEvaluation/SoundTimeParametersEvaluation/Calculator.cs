@@ -135,7 +135,7 @@ namespace SoundTimeParametersEvaluation
             for (int i = 0; i < framesCount; i++)
             {
                 // Operations for each frame
-                if (volumeResultInFrame[i] < 0.002 && zcrResultInFrame[i] < 0.1)
+                if (volumeResultInFrame[i] < 0.005 && zcrResultInFrame[i] < 0.1)
                     resultInFrame[i] = 1;
                 //
 

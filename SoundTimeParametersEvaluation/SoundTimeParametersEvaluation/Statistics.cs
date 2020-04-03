@@ -95,9 +95,10 @@ namespace SoundTimeParametersEvaluation
 
                 using (StreamWriter file = new StreamWriter(filePath))
                 {
-                    for(int i = 0; i < list.Count; i++)
+                    file.WriteLine("Id,From,To,Duration(in miliseconds)");
+                    for (int i = 0; i < list.Count; i++)
                     {
-                        file.WriteLine(i + "," + list[i]);
+                        file.WriteLine((i+1) + "," + list[i]);
                     }
                 }
             }
