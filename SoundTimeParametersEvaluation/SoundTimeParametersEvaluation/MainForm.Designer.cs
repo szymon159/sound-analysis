@@ -30,25 +30,25 @@ namespace SoundTimeParametersEvaluation
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea13 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.timeParamsChartTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.musicChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.soundSpeechChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.volumeChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -56,7 +56,7 @@ namespace SoundTimeParametersEvaluation
             this.silenceChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.zcrChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.steChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.timeParamsLabelsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.musicValueLabel = new System.Windows.Forms.Label();
             this.soundSpeechValueLabel = new System.Windows.Forms.Label();
             this.soundlessSpeechValueLabel = new System.Windows.Forms.Label();
@@ -74,7 +74,7 @@ namespace SoundTimeParametersEvaluation
             this.mpfGroupBox = new System.Windows.Forms.GroupBox();
             this.mpfButton = new System.Windows.Forms.Button();
             this.mpfTextBox = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.timeParamsClipLevelTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.lsterValueLabel = new System.Windows.Forms.Label();
             this.vdrValueLabel = new System.Windows.Forms.Label();
             this.hzcrrValueLabel = new System.Windows.Forms.Label();
@@ -101,9 +101,13 @@ namespace SoundTimeParametersEvaluation
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timeParamsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.timeParamsTabPage = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.timeParamsChartTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.musicChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundSpeechChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeChart)).BeginInit();
@@ -111,11 +115,14 @@ namespace SoundTimeParametersEvaluation
             ((System.ComponentModel.ISupportInitialize)(this.silenceChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.zcrChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.steChart)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.timeParamsLabelsTableLayoutPanel.SuspendLayout();
             this.mpfGroupBox.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.timeParamsClipLevelTableLayoutPanel.SuspendLayout();
             this.windowTypeGroupBox.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.timeParamsTableLayoutPanel.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
+            this.timeParamsTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -124,284 +131,282 @@ namespace SoundTimeParametersEvaluation
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.mainLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.mainLayoutPanel.Controls.Add(this.chart1, 1, 0);
-            this.mainLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 2);
-            this.mainLayoutPanel.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.mainLayoutPanel.Controls.Add(this.mpfGroupBox, 0, 0);
-            this.mainLayoutPanel.Controls.Add(this.tableLayoutPanel3, 1, 3);
             this.mainLayoutPanel.Controls.Add(this.windowTypeGroupBox, 0, 1);
+            this.mainLayoutPanel.Controls.Add(this.mainTabControl, 0, 2);
             this.mainLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayoutPanel.Location = new System.Drawing.Point(0, 24);
             this.mainLayoutPanel.Margin = new System.Windows.Forms.Padding(10);
             this.mainLayoutPanel.MinimumSize = new System.Drawing.Size(1000, 426);
             this.mainLayoutPanel.Name = "mainLayoutPanel";
             this.mainLayoutPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.mainLayoutPanel.RowCount = 4;
+            this.mainLayoutPanel.RowCount = 3;
             this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.mainLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.mainLayoutPanel.Size = new System.Drawing.Size(1350, 705);
             this.mainLayoutPanel.TabIndex = 0;
             // 
             // chart1
             // 
-            chartArea1.AxisX.LabelStyle.Format = "{0:0.0000}s";
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.LabelStyle.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea9.AxisX.LabelStyle.Format = "{0:0.0000}s";
+            chartArea9.AxisX.MajorGrid.Enabled = false;
+            chartArea9.AxisX.Minimum = 0D;
+            chartArea9.AxisY.IsLabelAutoFit = false;
+            chartArea9.AxisY.LabelStyle.Enabled = false;
+            chartArea9.AxisY.MajorGrid.Enabled = false;
+            chartArea9.AxisY.MajorTickMark.Enabled = false;
+            chartArea9.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea9);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart1.Location = new System.Drawing.Point(282, 16);
             this.chart1.Margin = new System.Windows.Forms.Padding(6);
             this.chart1.Name = "chart1";
             this.mainLayoutPanel.SetRowSpan(this.chart1, 2);
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.Green;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series9.Color = System.Drawing.Color.Green;
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.chart1.Series.Add(series9);
             this.chart1.Size = new System.Drawing.Size(1052, 124);
             this.chart1.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // timeParamsChartTableLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.musicChart, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.soundSpeechChart, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.volumeChart, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.soundlessSpeechChart, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.silenceChart, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.zcrChart, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.steChart, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(279, 149);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1058, 405);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.timeParamsChartTableLayoutPanel.ColumnCount = 1;
+            this.timeParamsChartTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.musicChart, 0, 6);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.soundSpeechChart, 0, 5);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.volumeChart, 0, 0);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.soundlessSpeechChart, 0, 4);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.silenceChart, 0, 3);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.zcrChart, 0, 2);
+            this.timeParamsChartTableLayoutPanel.Controls.Add(this.steChart, 0, 1);
+            this.timeParamsChartTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeParamsChartTableLayoutPanel.Location = new System.Drawing.Point(265, 3);
+            this.timeParamsChartTableLayoutPanel.Name = "timeParamsChartTableLayoutPanel";
+            this.timeParamsChartTableLayoutPanel.RowCount = 7;
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.timeParamsChartTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.timeParamsChartTableLayoutPanel.Size = new System.Drawing.Size(1042, 377);
+            this.timeParamsChartTableLayoutPanel.TabIndex = 1;
             // 
             // musicChart
             // 
-            chartArea2.AxisX.LabelStyle.Enabled = false;
-            chartArea2.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelStyle.Enabled = false;
-            chartArea2.AxisY.MajorGrid.Enabled = false;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.Name = "ChartArea1";
-            this.musicChart.ChartAreas.Add(chartArea2);
+            chartArea10.AxisX.LabelStyle.Enabled = false;
+            chartArea10.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea10.AxisX.MajorGrid.Enabled = false;
+            chartArea10.AxisX.Minimum = 0D;
+            chartArea10.AxisY.IsLabelAutoFit = false;
+            chartArea10.AxisY.LabelStyle.Enabled = false;
+            chartArea10.AxisY.MajorGrid.Enabled = false;
+            chartArea10.AxisY.MajorTickMark.Enabled = false;
+            chartArea10.Name = "ChartArea1";
+            this.musicChart.ChartAreas.Add(chartArea10);
             this.musicChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.musicChart.Location = new System.Drawing.Point(3, 345);
+            this.musicChart.Location = new System.Drawing.Point(3, 321);
             this.musicChart.Name = "musicChart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.Green;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.musicChart.Series.Add(series2);
-            this.musicChart.Size = new System.Drawing.Size(1052, 57);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series10.Color = System.Drawing.Color.Green;
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.musicChart.Series.Add(series10);
+            this.musicChart.Size = new System.Drawing.Size(1036, 53);
             this.musicChart.TabIndex = 8;
             // 
             // soundSpeechChart
             // 
-            chartArea3.AxisX.LabelStyle.Enabled = false;
-            chartArea3.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.AxisY.IsLabelAutoFit = false;
-            chartArea3.AxisY.LabelStyle.Enabled = false;
-            chartArea3.AxisY.MajorGrid.Enabled = false;
-            chartArea3.AxisY.MajorTickMark.Enabled = false;
-            chartArea3.Name = "ChartArea1";
-            this.soundSpeechChart.ChartAreas.Add(chartArea3);
+            chartArea11.AxisX.LabelStyle.Enabled = false;
+            chartArea11.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea11.AxisX.MajorGrid.Enabled = false;
+            chartArea11.AxisX.Minimum = 0D;
+            chartArea11.AxisY.IsLabelAutoFit = false;
+            chartArea11.AxisY.LabelStyle.Enabled = false;
+            chartArea11.AxisY.MajorGrid.Enabled = false;
+            chartArea11.AxisY.MajorTickMark.Enabled = false;
+            chartArea11.Name = "ChartArea1";
+            this.soundSpeechChart.ChartAreas.Add(chartArea11);
             this.soundSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.soundSpeechChart.Location = new System.Drawing.Point(3, 288);
+            this.soundSpeechChart.Location = new System.Drawing.Point(3, 268);
             this.soundSpeechChart.Name = "soundSpeechChart";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Color = System.Drawing.Color.Green;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.soundSpeechChart.Series.Add(series3);
-            this.soundSpeechChart.Size = new System.Drawing.Size(1052, 51);
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series11.Color = System.Drawing.Color.Green;
+            series11.Legend = "Legend1";
+            series11.Name = "Series1";
+            this.soundSpeechChart.Series.Add(series11);
+            this.soundSpeechChart.Size = new System.Drawing.Size(1036, 47);
             this.soundSpeechChart.TabIndex = 7;
             // 
             // volumeChart
             // 
-            chartArea4.AxisX.LabelStyle.Enabled = false;
-            chartArea4.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.AxisY.IsLabelAutoFit = false;
-            chartArea4.AxisY.LabelStyle.Enabled = false;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.AxisY.MajorTickMark.Enabled = false;
-            chartArea4.Name = "ChartArea1";
-            this.volumeChart.ChartAreas.Add(chartArea4);
+            chartArea12.AxisX.LabelStyle.Enabled = false;
+            chartArea12.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea12.AxisX.MajorGrid.Enabled = false;
+            chartArea12.AxisX.Minimum = 0D;
+            chartArea12.AxisY.IsLabelAutoFit = false;
+            chartArea12.AxisY.LabelStyle.Enabled = false;
+            chartArea12.AxisY.MajorGrid.Enabled = false;
+            chartArea12.AxisY.MajorTickMark.Enabled = false;
+            chartArea12.Name = "ChartArea1";
+            this.volumeChart.ChartAreas.Add(chartArea12);
             this.volumeChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumeChart.Location = new System.Drawing.Point(3, 3);
             this.volumeChart.Name = "volumeChart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series4.Color = System.Drawing.Color.Green;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.volumeChart.Series.Add(series4);
-            this.volumeChart.Size = new System.Drawing.Size(1052, 51);
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series12.Color = System.Drawing.Color.Green;
+            series12.Legend = "Legend1";
+            series12.Name = "Series1";
+            this.volumeChart.Series.Add(series12);
+            this.volumeChart.Size = new System.Drawing.Size(1036, 47);
             this.volumeChart.TabIndex = 6;
             // 
             // soundlessSpeechChart
             // 
-            chartArea5.AxisX.LabelStyle.Enabled = false;
-            chartArea5.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea5.AxisX.MajorGrid.Enabled = false;
-            chartArea5.AxisX.Minimum = 0D;
-            chartArea5.AxisY.IsLabelAutoFit = false;
-            chartArea5.AxisY.LabelStyle.Enabled = false;
-            chartArea5.AxisY.MajorGrid.Enabled = false;
-            chartArea5.AxisY.MajorTickMark.Enabled = false;
-            chartArea5.Name = "ChartArea1";
-            this.soundlessSpeechChart.ChartAreas.Add(chartArea5);
+            chartArea13.AxisX.LabelStyle.Enabled = false;
+            chartArea13.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea13.AxisX.MajorGrid.Enabled = false;
+            chartArea13.AxisX.Minimum = 0D;
+            chartArea13.AxisY.IsLabelAutoFit = false;
+            chartArea13.AxisY.LabelStyle.Enabled = false;
+            chartArea13.AxisY.MajorGrid.Enabled = false;
+            chartArea13.AxisY.MajorTickMark.Enabled = false;
+            chartArea13.Name = "ChartArea1";
+            this.soundlessSpeechChart.ChartAreas.Add(chartArea13);
             this.soundlessSpeechChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.soundlessSpeechChart.Location = new System.Drawing.Point(3, 231);
+            this.soundlessSpeechChart.Location = new System.Drawing.Point(3, 215);
             this.soundlessSpeechChart.Name = "soundlessSpeechChart";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series5.Color = System.Drawing.Color.Green;
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.soundlessSpeechChart.Series.Add(series5);
-            this.soundlessSpeechChart.Size = new System.Drawing.Size(1052, 51);
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series13.Color = System.Drawing.Color.Green;
+            series13.Legend = "Legend1";
+            series13.Name = "Series1";
+            this.soundlessSpeechChart.Series.Add(series13);
+            this.soundlessSpeechChart.Size = new System.Drawing.Size(1036, 47);
             this.soundlessSpeechChart.TabIndex = 5;
             // 
             // silenceChart
             // 
-            chartArea6.AxisX.LabelStyle.Enabled = false;
-            chartArea6.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea6.AxisX.MajorGrid.Enabled = false;
-            chartArea6.AxisX.Minimum = 0D;
-            chartArea6.AxisY.IsLabelAutoFit = false;
-            chartArea6.AxisY.LabelStyle.Enabled = false;
-            chartArea6.AxisY.MajorGrid.Enabled = false;
-            chartArea6.AxisY.MajorTickMark.Enabled = false;
-            chartArea6.Name = "ChartArea1";
-            this.silenceChart.ChartAreas.Add(chartArea6);
+            chartArea14.AxisX.LabelStyle.Enabled = false;
+            chartArea14.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea14.AxisX.MajorGrid.Enabled = false;
+            chartArea14.AxisX.Minimum = 0D;
+            chartArea14.AxisY.IsLabelAutoFit = false;
+            chartArea14.AxisY.LabelStyle.Enabled = false;
+            chartArea14.AxisY.MajorGrid.Enabled = false;
+            chartArea14.AxisY.MajorTickMark.Enabled = false;
+            chartArea14.Name = "ChartArea1";
+            this.silenceChart.ChartAreas.Add(chartArea14);
             this.silenceChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.silenceChart.Location = new System.Drawing.Point(3, 174);
+            this.silenceChart.Location = new System.Drawing.Point(3, 162);
             this.silenceChart.Name = "silenceChart";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series6.Color = System.Drawing.Color.Green;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.silenceChart.Series.Add(series6);
-            this.silenceChart.Size = new System.Drawing.Size(1052, 51);
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series14.Color = System.Drawing.Color.Green;
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            this.silenceChart.Series.Add(series14);
+            this.silenceChart.Size = new System.Drawing.Size(1036, 47);
             this.silenceChart.TabIndex = 4;
             // 
             // zcrChart
             // 
-            chartArea7.AxisX.LabelStyle.Enabled = false;
-            chartArea7.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea7.AxisX.MajorGrid.Enabled = false;
-            chartArea7.AxisX.Minimum = 0D;
-            chartArea7.AxisY.IsLabelAutoFit = false;
-            chartArea7.AxisY.LabelStyle.Enabled = false;
-            chartArea7.AxisY.MajorGrid.Enabled = false;
-            chartArea7.AxisY.MajorTickMark.Enabled = false;
-            chartArea7.Name = "ChartArea1";
-            this.zcrChart.ChartAreas.Add(chartArea7);
+            chartArea15.AxisX.LabelStyle.Enabled = false;
+            chartArea15.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea15.AxisX.MajorGrid.Enabled = false;
+            chartArea15.AxisX.Minimum = 0D;
+            chartArea15.AxisY.IsLabelAutoFit = false;
+            chartArea15.AxisY.LabelStyle.Enabled = false;
+            chartArea15.AxisY.MajorGrid.Enabled = false;
+            chartArea15.AxisY.MajorTickMark.Enabled = false;
+            chartArea15.Name = "ChartArea1";
+            this.zcrChart.ChartAreas.Add(chartArea15);
             this.zcrChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zcrChart.Location = new System.Drawing.Point(3, 117);
+            this.zcrChart.Location = new System.Drawing.Point(3, 109);
             this.zcrChart.Name = "zcrChart";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series7.Color = System.Drawing.Color.Green;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.zcrChart.Series.Add(series7);
-            this.zcrChart.Size = new System.Drawing.Size(1052, 51);
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series15.Color = System.Drawing.Color.Green;
+            series15.Legend = "Legend1";
+            series15.Name = "Series1";
+            this.zcrChart.Series.Add(series15);
+            this.zcrChart.Size = new System.Drawing.Size(1036, 47);
             this.zcrChart.TabIndex = 3;
             // 
             // steChart
             // 
-            chartArea8.AxisX.LabelStyle.Enabled = false;
-            chartArea8.AxisX.LabelStyle.Format = "{0:0.0000}";
-            chartArea8.AxisX.MajorGrid.Enabled = false;
-            chartArea8.AxisX.Minimum = 0D;
-            chartArea8.AxisY.IsLabelAutoFit = false;
-            chartArea8.AxisY.LabelStyle.Enabled = false;
-            chartArea8.AxisY.MajorGrid.Enabled = false;
-            chartArea8.AxisY.MajorTickMark.Enabled = false;
-            chartArea8.Name = "ChartArea1";
-            this.steChart.ChartAreas.Add(chartArea8);
+            chartArea16.AxisX.LabelStyle.Enabled = false;
+            chartArea16.AxisX.LabelStyle.Format = "{0:0.0000}";
+            chartArea16.AxisX.MajorGrid.Enabled = false;
+            chartArea16.AxisX.Minimum = 0D;
+            chartArea16.AxisY.IsLabelAutoFit = false;
+            chartArea16.AxisY.LabelStyle.Enabled = false;
+            chartArea16.AxisY.MajorGrid.Enabled = false;
+            chartArea16.AxisY.MajorTickMark.Enabled = false;
+            chartArea16.Name = "ChartArea1";
+            this.steChart.ChartAreas.Add(chartArea16);
             this.steChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.steChart.Location = new System.Drawing.Point(3, 60);
+            this.steChart.Location = new System.Drawing.Point(3, 56);
             this.steChart.Name = "steChart";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series8.Color = System.Drawing.Color.Green;
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.steChart.Series.Add(series8);
-            this.steChart.Size = new System.Drawing.Size(1052, 51);
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series16.Color = System.Drawing.Color.Green;
+            series16.Legend = "Legend1";
+            series16.Name = "Series1";
+            this.steChart.Series.Add(series16);
+            this.steChart.Size = new System.Drawing.Size(1036, 47);
             this.steChart.TabIndex = 2;
             // 
-            // tableLayoutPanel2
+            // timeParamsLabelsTableLayoutPanel
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel2.Controls.Add(this.musicValueLabel, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.soundSpeechValueLabel, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.soundlessSpeechValueLabel, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.silenceValueLabel, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.zcrValueLabel, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.steValueLabel, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.volumeLabel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.steLabel, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.zcrLabel, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.silenceLabel, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.soundlessSpeechLabel, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.soundSpeechLabel, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.musicLabel, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.volumeValueLabel, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 149);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 7;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(260, 405);
-            this.tableLayoutPanel2.TabIndex = 2;
+            this.timeParamsLabelsTableLayoutPanel.ColumnCount = 2;
+            this.timeParamsLabelsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.timeParamsLabelsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.musicValueLabel, 1, 6);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.soundSpeechValueLabel, 1, 5);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.soundlessSpeechValueLabel, 1, 4);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.silenceValueLabel, 1, 3);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.zcrValueLabel, 1, 2);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.steValueLabel, 1, 1);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.volumeLabel, 0, 0);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.steLabel, 0, 1);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.zcrLabel, 0, 2);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.silenceLabel, 0, 3);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.soundlessSpeechLabel, 0, 4);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.soundSpeechLabel, 0, 5);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.musicLabel, 0, 6);
+            this.timeParamsLabelsTableLayoutPanel.Controls.Add(this.volumeValueLabel, 1, 0);
+            this.timeParamsLabelsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeParamsLabelsTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.timeParamsLabelsTableLayoutPanel.Name = "timeParamsLabelsTableLayoutPanel";
+            this.timeParamsLabelsTableLayoutPanel.RowCount = 7;
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.timeParamsLabelsTableLayoutPanel.Size = new System.Drawing.Size(256, 377);
+            this.timeParamsLabelsTableLayoutPanel.TabIndex = 2;
             // 
             // musicValueLabel
             // 
             this.musicValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.musicValueLabel.AutoSize = true;
             this.musicValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.musicValueLabel.Location = new System.Drawing.Point(185, 365);
+            this.musicValueLabel.Location = new System.Drawing.Point(182, 339);
             this.musicValueLabel.Name = "musicValueLabel";
             this.musicValueLabel.Size = new System.Drawing.Size(17, 17);
             this.musicValueLabel.TabIndex = 13;
@@ -412,7 +417,7 @@ namespace SoundTimeParametersEvaluation
             this.soundSpeechValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.soundSpeechValueLabel.AutoSize = true;
             this.soundSpeechValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundSpeechValueLabel.Location = new System.Drawing.Point(185, 305);
+            this.soundSpeechValueLabel.Location = new System.Drawing.Point(182, 283);
             this.soundSpeechValueLabel.Name = "soundSpeechValueLabel";
             this.soundSpeechValueLabel.Size = new System.Drawing.Size(17, 17);
             this.soundSpeechValueLabel.TabIndex = 12;
@@ -423,7 +428,7 @@ namespace SoundTimeParametersEvaluation
             this.soundlessSpeechValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.soundlessSpeechValueLabel.AutoSize = true;
             this.soundlessSpeechValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundlessSpeechValueLabel.Location = new System.Drawing.Point(185, 248);
+            this.soundlessSpeechValueLabel.Location = new System.Drawing.Point(182, 230);
             this.soundlessSpeechValueLabel.Name = "soundlessSpeechValueLabel";
             this.soundlessSpeechValueLabel.Size = new System.Drawing.Size(17, 17);
             this.soundlessSpeechValueLabel.TabIndex = 11;
@@ -434,7 +439,7 @@ namespace SoundTimeParametersEvaluation
             this.silenceValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.silenceValueLabel.AutoSize = true;
             this.silenceValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.silenceValueLabel.Location = new System.Drawing.Point(185, 191);
+            this.silenceValueLabel.Location = new System.Drawing.Point(182, 177);
             this.silenceValueLabel.Name = "silenceValueLabel";
             this.silenceValueLabel.Size = new System.Drawing.Size(17, 17);
             this.silenceValueLabel.TabIndex = 10;
@@ -445,7 +450,7 @@ namespace SoundTimeParametersEvaluation
             this.zcrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.zcrValueLabel.AutoSize = true;
             this.zcrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zcrValueLabel.Location = new System.Drawing.Point(185, 134);
+            this.zcrValueLabel.Location = new System.Drawing.Point(182, 124);
             this.zcrValueLabel.Name = "zcrValueLabel";
             this.zcrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.zcrValueLabel.TabIndex = 9;
@@ -456,7 +461,7 @@ namespace SoundTimeParametersEvaluation
             this.steValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.steValueLabel.AutoSize = true;
             this.steValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.steValueLabel.Location = new System.Drawing.Point(185, 77);
+            this.steValueLabel.Location = new System.Drawing.Point(182, 71);
             this.steValueLabel.Name = "steValueLabel";
             this.steValueLabel.Size = new System.Drawing.Size(17, 17);
             this.steValueLabel.TabIndex = 8;
@@ -467,7 +472,7 @@ namespace SoundTimeParametersEvaluation
             this.volumeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.volumeLabel.AutoSize = true;
             this.volumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.volumeLabel.Location = new System.Drawing.Point(120, 20);
+            this.volumeLabel.Location = new System.Drawing.Point(117, 18);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(59, 17);
             this.volumeLabel.TabIndex = 0;
@@ -478,7 +483,7 @@ namespace SoundTimeParametersEvaluation
             this.steLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.steLabel.AutoSize = true;
             this.steLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.steLabel.Location = new System.Drawing.Point(140, 77);
+            this.steLabel.Location = new System.Drawing.Point(137, 71);
             this.steLabel.Name = "steLabel";
             this.steLabel.Size = new System.Drawing.Size(39, 17);
             this.steLabel.TabIndex = 1;
@@ -489,7 +494,7 @@ namespace SoundTimeParametersEvaluation
             this.zcrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.zcrLabel.AutoSize = true;
             this.zcrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zcrLabel.Location = new System.Drawing.Point(139, 134);
+            this.zcrLabel.Location = new System.Drawing.Point(136, 124);
             this.zcrLabel.Name = "zcrLabel";
             this.zcrLabel.Size = new System.Drawing.Size(40, 17);
             this.zcrLabel.TabIndex = 2;
@@ -500,7 +505,7 @@ namespace SoundTimeParametersEvaluation
             this.silenceLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.silenceLabel.AutoSize = true;
             this.silenceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.silenceLabel.Location = new System.Drawing.Point(121, 191);
+            this.silenceLabel.Location = new System.Drawing.Point(118, 177);
             this.silenceLabel.Name = "silenceLabel";
             this.silenceLabel.Size = new System.Drawing.Size(58, 17);
             this.silenceLabel.TabIndex = 3;
@@ -511,7 +516,7 @@ namespace SoundTimeParametersEvaluation
             this.soundlessSpeechLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.soundlessSpeechLabel.AutoSize = true;
             this.soundlessSpeechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundlessSpeechLabel.Location = new System.Drawing.Point(54, 248);
+            this.soundlessSpeechLabel.Location = new System.Drawing.Point(51, 230);
             this.soundlessSpeechLabel.Name = "soundlessSpeechLabel";
             this.soundlessSpeechLabel.Size = new System.Drawing.Size(125, 16);
             this.soundlessSpeechLabel.TabIndex = 4;
@@ -522,7 +527,7 @@ namespace SoundTimeParametersEvaluation
             this.soundSpeechLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.soundSpeechLabel.AutoSize = true;
             this.soundSpeechLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.soundSpeechLabel.Location = new System.Drawing.Point(74, 305);
+            this.soundSpeechLabel.Location = new System.Drawing.Point(71, 283);
             this.soundSpeechLabel.Name = "soundSpeechLabel";
             this.soundSpeechLabel.Size = new System.Drawing.Size(105, 17);
             this.soundSpeechLabel.TabIndex = 5;
@@ -533,7 +538,7 @@ namespace SoundTimeParametersEvaluation
             this.musicLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.musicLabel.AutoSize = true;
             this.musicLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.musicLabel.Location = new System.Drawing.Point(131, 365);
+            this.musicLabel.Location = new System.Drawing.Point(128, 339);
             this.musicLabel.Name = "musicLabel";
             this.musicLabel.Size = new System.Drawing.Size(48, 17);
             this.musicLabel.TabIndex = 6;
@@ -544,7 +549,7 @@ namespace SoundTimeParametersEvaluation
             this.volumeValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.volumeValueLabel.AutoSize = true;
             this.volumeValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.volumeValueLabel.Location = new System.Drawing.Point(185, 20);
+            this.volumeValueLabel.Location = new System.Drawing.Point(182, 18);
             this.volumeValueLabel.Name = "volumeValueLabel";
             this.volumeValueLabel.Size = new System.Drawing.Size(17, 17);
             this.volumeValueLabel.TabIndex = 7;
@@ -581,36 +586,36 @@ namespace SoundTimeParametersEvaluation
             this.mpfTextBox.Size = new System.Drawing.Size(139, 20);
             this.mpfTextBox.TabIndex = 0;
             // 
-            // tableLayoutPanel3
+            // timeParamsClipLevelTableLayoutPanel
             // 
-            this.tableLayoutPanel3.ColumnCount = 4;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel3.Controls.Add(this.lsterValueLabel, 3, 1);
-            this.tableLayoutPanel3.Controls.Add(this.vdrValueLabel, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.hzcrrValueLabel, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.vstdLabel, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.vdrLabel, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.hzcrrLabel, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.lsterLabel, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.vstdValueLabel, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(279, 560);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1058, 132);
-            this.tableLayoutPanel3.TabIndex = 4;
+            this.timeParamsClipLevelTableLayoutPanel.ColumnCount = 4;
+            this.timeParamsClipLevelTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.timeParamsClipLevelTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.timeParamsClipLevelTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.timeParamsClipLevelTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.lsterValueLabel, 3, 1);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.vdrValueLabel, 1, 1);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.hzcrrValueLabel, 3, 0);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.vstdLabel, 0, 0);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.vdrLabel, 0, 1);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.hzcrrLabel, 2, 0);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.lsterLabel, 2, 1);
+            this.timeParamsClipLevelTableLayoutPanel.Controls.Add(this.vstdValueLabel, 1, 0);
+            this.timeParamsClipLevelTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeParamsClipLevelTableLayoutPanel.Location = new System.Drawing.Point(265, 386);
+            this.timeParamsClipLevelTableLayoutPanel.Name = "timeParamsClipLevelTableLayoutPanel";
+            this.timeParamsClipLevelTableLayoutPanel.RowCount = 2;
+            this.timeParamsClipLevelTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.timeParamsClipLevelTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.timeParamsClipLevelTableLayoutPanel.Size = new System.Drawing.Size(1042, 122);
+            this.timeParamsClipLevelTableLayoutPanel.TabIndex = 4;
             // 
             // lsterValueLabel
             // 
             this.lsterValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lsterValueLabel.AutoSize = true;
             this.lsterValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lsterValueLabel.Location = new System.Drawing.Point(795, 90);
+            this.lsterValueLabel.Location = new System.Drawing.Point(783, 83);
             this.lsterValueLabel.Name = "lsterValueLabel";
             this.lsterValueLabel.Size = new System.Drawing.Size(17, 17);
             this.lsterValueLabel.TabIndex = 7;
@@ -621,7 +626,7 @@ namespace SoundTimeParametersEvaluation
             this.vdrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.vdrValueLabel.AutoSize = true;
             this.vdrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vdrValueLabel.Location = new System.Drawing.Point(267, 90);
+            this.vdrValueLabel.Location = new System.Drawing.Point(263, 83);
             this.vdrValueLabel.Name = "vdrValueLabel";
             this.vdrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.vdrValueLabel.TabIndex = 6;
@@ -632,7 +637,7 @@ namespace SoundTimeParametersEvaluation
             this.hzcrrValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.hzcrrValueLabel.AutoSize = true;
             this.hzcrrValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hzcrrValueLabel.Location = new System.Drawing.Point(795, 24);
+            this.hzcrrValueLabel.Location = new System.Drawing.Point(783, 22);
             this.hzcrrValueLabel.Name = "hzcrrValueLabel";
             this.hzcrrValueLabel.Size = new System.Drawing.Size(17, 17);
             this.hzcrrValueLabel.TabIndex = 5;
@@ -643,7 +648,7 @@ namespace SoundTimeParametersEvaluation
             this.vstdLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.vstdLabel.AutoSize = true;
             this.vstdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vstdLabel.Location = new System.Drawing.Point(212, 24);
+            this.vstdLabel.Location = new System.Drawing.Point(208, 22);
             this.vstdLabel.Name = "vstdLabel";
             this.vstdLabel.Size = new System.Drawing.Size(49, 17);
             this.vstdLabel.TabIndex = 0;
@@ -654,7 +659,7 @@ namespace SoundTimeParametersEvaluation
             this.vdrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.vdrLabel.AutoSize = true;
             this.vdrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vdrLabel.Location = new System.Drawing.Point(220, 90);
+            this.vdrLabel.Location = new System.Drawing.Point(216, 83);
             this.vdrLabel.Name = "vdrLabel";
             this.vdrLabel.Size = new System.Drawing.Size(41, 17);
             this.vdrLabel.TabIndex = 1;
@@ -665,7 +670,7 @@ namespace SoundTimeParametersEvaluation
             this.hzcrrLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.hzcrrLabel.AutoSize = true;
             this.hzcrrLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.hzcrrLabel.Location = new System.Drawing.Point(729, 24);
+            this.hzcrrLabel.Location = new System.Drawing.Point(717, 22);
             this.hzcrrLabel.Name = "hzcrrLabel";
             this.hzcrrLabel.Size = new System.Drawing.Size(60, 17);
             this.hzcrrLabel.TabIndex = 2;
@@ -676,7 +681,7 @@ namespace SoundTimeParametersEvaluation
             this.lsterLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lsterLabel.AutoSize = true;
             this.lsterLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lsterLabel.Location = new System.Drawing.Point(732, 90);
+            this.lsterLabel.Location = new System.Drawing.Point(720, 83);
             this.lsterLabel.Name = "lsterLabel";
             this.lsterLabel.Size = new System.Drawing.Size(57, 17);
             this.lsterLabel.TabIndex = 3;
@@ -687,7 +692,7 @@ namespace SoundTimeParametersEvaluation
             this.vstdValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.vstdValueLabel.AutoSize = true;
             this.vstdValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.vstdValueLabel.Location = new System.Drawing.Point(267, 24);
+            this.vstdValueLabel.Location = new System.Drawing.Point(263, 22);
             this.vstdValueLabel.Name = "vstdValueLabel";
             this.vstdValueLabel.Size = new System.Drawing.Size(17, 17);
             this.vstdValueLabel.TabIndex = 4;
@@ -851,6 +856,58 @@ namespace SoundTimeParametersEvaluation
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
+            // timeParamsTableLayoutPanel
+            // 
+            this.timeParamsTableLayoutPanel.ColumnCount = 2;
+            this.timeParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.timeParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.timeParamsTableLayoutPanel.Controls.Add(this.timeParamsChartTableLayoutPanel, 1, 0);
+            this.timeParamsTableLayoutPanel.Controls.Add(this.timeParamsLabelsTableLayoutPanel, 0, 0);
+            this.timeParamsTableLayoutPanel.Controls.Add(this.timeParamsClipLevelTableLayoutPanel, 1, 1);
+            this.timeParamsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.timeParamsTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.timeParamsTableLayoutPanel.Name = "timeParamsTableLayoutPanel";
+            this.timeParamsTableLayoutPanel.RowCount = 2;
+            this.timeParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.timeParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.timeParamsTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
+            this.timeParamsTableLayoutPanel.TabIndex = 6;
+            // 
+            // mainTabControl
+            // 
+            this.mainLayoutPanel.SetColumnSpan(this.mainTabControl, 2);
+            this.mainTabControl.Controls.Add(this.timeParamsTabPage);
+            this.mainTabControl.Controls.Add(this.tabPage2);
+            this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainTabControl.Location = new System.Drawing.Point(13, 149);
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.Padding = new System.Drawing.Point(0, 0);
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1324, 543);
+            this.mainTabControl.TabIndex = 7;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
+            // 
+            // timeParamsTabPage
+            // 
+            this.timeParamsTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.timeParamsTabPage.Controls.Add(this.timeParamsTableLayoutPanel);
+            this.timeParamsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.timeParamsTabPage.Name = "timeParamsTabPage";
+            this.timeParamsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.timeParamsTabPage.Size = new System.Drawing.Size(1316, 517);
+            this.timeParamsTabPage.TabIndex = 0;
+            this.timeParamsTabPage.Text = "Time Parameters";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1316, 517);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -862,7 +919,7 @@ namespace SoundTimeParametersEvaluation
             this.Text = "Time parameters of sound";
             this.mainLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.timeParamsChartTableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.musicChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.soundSpeechChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeChart)).EndInit();
@@ -870,15 +927,18 @@ namespace SoundTimeParametersEvaluation
             ((System.ComponentModel.ISupportInitialize)(this.silenceChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.zcrChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.steChart)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.timeParamsLabelsTableLayoutPanel.ResumeLayout(false);
+            this.timeParamsLabelsTableLayoutPanel.PerformLayout();
             this.mpfGroupBox.ResumeLayout(false);
             this.mpfGroupBox.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.timeParamsClipLevelTableLayoutPanel.ResumeLayout(false);
+            this.timeParamsClipLevelTableLayoutPanel.PerformLayout();
             this.windowTypeGroupBox.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.timeParamsTableLayoutPanel.ResumeLayout(false);
+            this.mainTabControl.ResumeLayout(false);
+            this.timeParamsTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -891,8 +951,8 @@ namespace SoundTimeParametersEvaluation
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel timeParamsChartTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel timeParamsLabelsTableLayoutPanel;
         private System.Windows.Forms.Label volumeLabel;
         private System.Windows.Forms.Label steLabel;
         private System.Windows.Forms.Label zcrLabel;
@@ -910,7 +970,7 @@ namespace SoundTimeParametersEvaluation
         private System.Windows.Forms.GroupBox mpfGroupBox;
         private System.Windows.Forms.Button mpfButton;
         private System.Windows.Forms.TextBox mpfTextBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel timeParamsClipLevelTableLayoutPanel;
         private System.Windows.Forms.Label vstdLabel;
         private System.Windows.Forms.Label vdrLabel;
         private System.Windows.Forms.Label hzcrrLabel;
@@ -941,6 +1001,10 @@ namespace SoundTimeParametersEvaluation
         private System.Windows.Forms.ToolStripMenuItem exportMusicToolStripMenuItem;
         private System.Windows.Forms.GroupBox windowTypeGroupBox;
         private System.Windows.Forms.ComboBox windowTypeComboBox;
+        private System.Windows.Forms.TabControl mainTabControl;
+        private System.Windows.Forms.TabPage timeParamsTabPage;
+        private System.Windows.Forms.TableLayoutPanel timeParamsTableLayoutPanel;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 

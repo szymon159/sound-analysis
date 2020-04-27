@@ -21,6 +21,7 @@ namespace SoundTimeParametersEvaluation
         private int milisecondsPerFrame = 40;
         private int samplesPerFrame;
         private double sampleRate;
+        private WindowType selectedWindowType = WindowType.Rectangular;
 
         private CustomPoint[] parsedFile;
         private Statistics statistics;
@@ -196,6 +197,15 @@ namespace SoundTimeParametersEvaluation
             var type = (sender as ToolStripMenuItem).ToStatisticsType();
 
             statistics.ExportByType(type);
+        }
+
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var shouldShowWindowType = mainTabControl.SelectedIndex != 0;
+
+            windowTypeGroupBox.Visible = shouldShowWindowType;
+            windowTypeComboBox.Visible = shouldShowWindowType;
+            windowTypeComboBox.SelectedItem = selectedWindowType;
         }
 
         #endregion
