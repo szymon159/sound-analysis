@@ -33,4 +33,11 @@ namespace SoundTimeParametersEvaluation
         SoundSpeech,
         Music
     }
+
+    public enum WindowType
+    {
+        Rectangular,
+        Hamming,
+        Hann
+    }
 }
