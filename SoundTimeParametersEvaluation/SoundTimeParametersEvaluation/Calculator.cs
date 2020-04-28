@@ -1,6 +1,8 @@
-﻿using System;
+﻿using NAudio.Dsp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -50,6 +52,26 @@ namespace SoundTimeParametersEvaluation
                     return GetHighZeroCrossingRateRatio(zeroCrossingRate, parsedFile, sampleRate);
                 default:
                     return 0.0;
+            }
+        }
+
+        public static void CalculateFrequencyCharacteristic(AnalysisType analysisType, CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult)
+        {
+            // TODO: Remove
+            transformResult = new CustomPoint[1];
+
+            switch (analysisType)
+            {
+                case AnalysisType.Fourier:
+                    CalculateFourierTransform(parsedFile, sampleRate, out transformResult);
+                    break;
+                case AnalysisType.Cepstrum:
+                    break;
+                case AnalysisType.FundamentalFrequency:
+                    break;
+                default:
+                    transformResult = null;
+                    break;
             }
         }
 
@@ -261,6 +283,26 @@ namespace SoundTimeParametersEvaluation
             var sum = zeroCrossingRate.Sum(value => Math.Sign(value - 1.5 * avg) + 1);
 
             return sum / (2.0 * zeroCrossingRate.Length);
+        }
+
+        private static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult)
+        {
+            var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(parsedFile.Length, 2));
+            var newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
+            var transformData = new Complex[newSamplesCount];
+            transformResult = new CustomPoint[newSamplesCount / 2];
+
+            for (int i = 0; i < parsedFile.Length; i++)
+                transformData[i].X = (float)parsedFile[i].Y;
+
+            FastFourierTransform.FFT(false, closestPowerOfTwo, transformData);
+
+            var herzPerSample = sampleRate / newSamplesCount;
+            for (int i = 0; i < newSamplesCount / 2; i++)
+            {
+                transformResult[i].X = i * herzPerSample;
+                transformResult[i].Y = 10 * Math.Log10(transformData[i].SquaredModulus());
+            }
         }
     }
 }

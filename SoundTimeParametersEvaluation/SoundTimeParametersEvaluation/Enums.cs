@@ -40,4 +40,12 @@ namespace SoundTimeParametersEvaluation
         Hamming,
         Hann
     }
+
+    public enum AnalysisType
+    {
+        SoundParameters,
+        Fourier,
+        Cepstrum,
+        FundamentalFrequency
+    }
 }

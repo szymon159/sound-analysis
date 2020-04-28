@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using NAudio.Dsp;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,8 @@ namespace SoundTimeParametersEvaluation
         private int samplesPerFrame;
         private double sampleRate;
         private WindowType selectedWindowType = WindowType.Rectangular;
+        //private ChartType selectedChartType = ChartType.SoundParameters;
+        private Dictionary<AnalysisType, bool> shouldRecalculateChart;
 
         private CustomPoint[] parsedFile;
         private Statistics statistics;
@@ -61,9 +64,15 @@ namespace SoundTimeParametersEvaluation
             labels.Add(ClipLevelParamType.VolumeDynamicRange, vdrValueLabel);
             labels.Add(ClipLevelParamType.LowShortTimeEnergyRatio, lsterValueLabel);
             labels.Add(ClipLevelParamType.HighZeroCrossingRateRatio, hzcrrValueLabel);
+
+            shouldRecalculateChart = new Dictionary<AnalysisType, bool>();
+            shouldRecalculateChart.Add(AnalysisType.SoundParameters, true);
+            shouldRecalculateChart.Add(AnalysisType.Fourier, true);
+            shouldRecalculateChart.Add(AnalysisType.Cepstrum, true);
+            shouldRecalculateChart.Add(AnalysisType.FundamentalFrequency, true);
         }
 
-        private void UpdateParameters()
+        private void UpdateTimeParameters()
         {
             UpdateFrameLevelParameter(FrameLevelParamType.Volume);
             UpdateFrameLevelParameter(FrameLevelParamType.ShortTimeEnergy);
@@ -74,8 +83,8 @@ namespace SoundTimeParametersEvaluation
             UpdateFrameLevelParameter(FrameLevelParamType.Music);
 
             var volume = volumeChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
-            var energy = steChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 
-            var zeroCrossingRate = zcrChart.Series[0].Points.SelectMany(point => point.YValues ).ToArray(); 
+            var energy = steChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
+            var zeroCrossingRate = zcrChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
 
             UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume, energy, zeroCrossingRate);
@@ -91,7 +100,7 @@ namespace SoundTimeParametersEvaluation
             chartLabels[parameter].Text = result.ToString("0.000");
 
             var chart = charts[parameter];
-            ChartHelper.UpdateChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+            ChartHelper.UpdateFrameLevelChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
         }
 
         private void UpdateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, double[] zeroCrossingRate)
@@ -105,7 +114,7 @@ namespace SoundTimeParametersEvaluation
             statistics.Clear();
             int framesCount = silenceChart.Series[0].Points.Count;
 
-            for(int i = 0; i < framesCount; i++)
+            for (int i = 0; i < framesCount; i++)
             {
                 var silencePoint = new CustomPoint(silenceChart.Series[0].Points[i]);
                 var soundlessSoundPoint = new CustomPoint(soundlessSpeechChart.Series[0].Points[i]);
@@ -129,8 +138,31 @@ namespace SoundTimeParametersEvaluation
 
         private void UpdateMPFValue()
         {
-            if(int.TryParse(mpfTextBox.Text, out milisecondsPerFrame))
+            if (int.TryParse(mpfTextBox.Text, out milisecondsPerFrame))
                 samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
+        }
+
+        private void UpdateFrequencyCharacteristic(AnalysisType chartType)
+        {
+            switch(chartType)
+            {
+                case AnalysisType.SoundParameters:
+                    UpdateTimeParameters();
+                    break;
+                case AnalysisType.Fourier:
+                    UpdateFourierTransform();
+                    break;
+            }
+
+            shouldRecalculateChart[chartType] = false;
+        }
+
+        private void UpdateFourierTransform()
+        {
+            CustomPoint[] fourierResult;
+
+            Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult);
+            ChartHelper.UpdateCustomPointChart(ref fourierTransformChart, fourierResult);
         }
 
         private void LoadFile(string filePath)
@@ -173,7 +205,7 @@ namespace SoundTimeParametersEvaluation
                 chart1.Series[0].Points.Clear();
 
                 LoadFile(filePath);
-                UpdateParameters();
+                UpdateTimeParameters();
             }
         }
 
@@ -181,7 +213,7 @@ namespace SoundTimeParametersEvaluation
         {
             UpdateMPFValue();
             if(parsedFile != null && parsedFile.Length > 0)
-                UpdateParameters();
+                UpdateTimeParameters();
         }
 
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
@@ -206,6 +238,10 @@ namespace SoundTimeParametersEvaluation
             windowTypeGroupBox.Visible = shouldShowWindowType;
             windowTypeComboBox.Visible = shouldShowWindowType;
             windowTypeComboBox.SelectedItem = selectedWindowType;
+
+            var selectedChartType = (AnalysisType)mainTabControl.SelectedIndex;
+            if (parsedFile != null && parsedFile.Length != 0 && shouldRecalculateChart[selectedChartType])
+                UpdateFrequencyCharacteristic(selectedChartType);
         }
 
         #endregion

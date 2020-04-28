@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Dsp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,16 @@ namespace SoundTimeParametersEvaluation
                 return StatisticsType.Music;
 
             throw new ArgumentOutOfRangeException($"No StatisticsType corresponds item with name {item.Name}");
+        }
+
+        public static double SquaredModulus(this Complex complex)
+        {
+            return complex.X * complex.X + complex.Y * complex.Y;
+        }
+
+        public static double Modulus(this Complex complex)
+        {
+            return Math.Sqrt(complex.X * complex.X + complex.Y * complex.Y);
         }
     }
 }
