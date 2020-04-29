@@ -1,5 +1,4 @@
-﻿using NAudio.Dsp;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +22,7 @@ namespace SoundTimeParametersEvaluation
         private int samplesPerFrame;
         private double sampleRate;
         private WindowType selectedWindowType = WindowType.Rectangular;
-        //private ChartType selectedChartType = ChartType.SoundParameters;
+        private AnalysisType selectedAnalysisType = AnalysisType.SoundParameters;
         private Dictionary<AnalysisType, bool> shouldRecalculateChart;
 
         private CustomPoint[] parsedFile;
@@ -142,9 +141,9 @@ namespace SoundTimeParametersEvaluation
                 samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
         }
 
-        private void UpdateFrequencyCharacteristic(AnalysisType chartType)
+        private void UpdateAnalysisResults(AnalysisType analysisType)
         {
-            switch(chartType)
+            switch(analysisType)
             {
                 case AnalysisType.SoundParameters:
                     UpdateTimeParameters();
@@ -154,7 +153,7 @@ namespace SoundTimeParametersEvaluation
                     break;
             }
 
-            shouldRecalculateChart[chartType] = false;
+            shouldRecalculateChart[analysisType] = false;
         }
 
         private void UpdateFourierTransform()
@@ -205,7 +204,7 @@ namespace SoundTimeParametersEvaluation
                 chart1.Series[0].Points.Clear();
 
                 LoadFile(filePath);
-                UpdateTimeParameters();
+                UpdateAnalysisResults(selectedAnalysisType);
             }
         }
 
@@ -239,9 +238,9 @@ namespace SoundTimeParametersEvaluation
             windowTypeComboBox.Visible = shouldShowWindowType;
             windowTypeComboBox.SelectedItem = selectedWindowType;
 
-            var selectedChartType = (AnalysisType)mainTabControl.SelectedIndex;
-            if (parsedFile != null && parsedFile.Length != 0 && shouldRecalculateChart[selectedChartType])
-                UpdateFrequencyCharacteristic(selectedChartType);
+            selectedAnalysisType = (AnalysisType)mainTabControl.SelectedIndex;
+            if (parsedFile != null && parsedFile.Length != 0 && shouldRecalculateChart[selectedAnalysisType])
+                UpdateAnalysisResults(selectedAnalysisType);
         }
 
         #endregion
