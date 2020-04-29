@@ -290,18 +290,18 @@ namespace SoundTimeParametersEvaluation
             var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(parsedFile.Length, 2));
             var newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
             var transformData = new Complex32[newSamplesCount];
-            transformResult = new CustomPoint[parsedFile.Length / 2];
+            transformResult = new CustomPoint[newSamplesCount / 2];
 
             for (int i = 0; i < parsedFile.Length; i++)
                 transformData[i] = (float)parsedFile[i].Y;
 
             Fourier.Forward(transformData);
 
-            var herzPerSample = sampleRate / parsedFile.Length;
-            for (int i = 0; i < parsedFile.Length / 2; i++)
+            var herzPerSample = sampleRate / newSamplesCount;
+            for (int i = 0; i < (newSamplesCount / 2); i++)
             {
                 transformResult[i].X = i * herzPerSample;
-                transformResult[i].Y = 10 * Math.Log10(transformData[i].MagnitudeSquared);
+                transformResult[i].Y = 10 * Math.Log10(transformData[i].MagnitudeSquared());
             }
         }
     }

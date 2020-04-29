@@ -107,6 +107,7 @@ namespace SoundTimeParametersEvaluation
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.fourierTransformChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -243,6 +244,7 @@ namespace SoundTimeParametersEvaluation
             this.mainLayoutPanel.SetColumnSpan(this.mainTabControl, 2);
             this.mainTabControl.Controls.Add(this.timeParamsTabPage);
             this.mainTabControl.Controls.Add(this.fourierTransformTabPage);
+            this.mainTabControl.Controls.Add(this.tabPage1);
             this.mainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainTabControl.Location = new System.Drawing.Point(13, 149);
             this.mainTabControl.Name = "mainTabControl";
@@ -914,6 +916,16 @@ namespace SoundTimeParametersEvaluation
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1316, 517);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // fourierTransformChart
             // 
             chartArea9.AxisX.Interval = 1000D;
@@ -936,7 +948,7 @@ namespace SoundTimeParametersEvaluation
             series9.Name = "Series1";
             this.fourierTransformChart.Series.Add(series9);
             this.fourierTransformChart.Size = new System.Drawing.Size(1310, 511);
-            this.fourierTransformChart.TabIndex = 9;
+            this.fourierTransformChart.TabIndex = 11;
             // 
             // MainForm
             // 
@@ -1037,6 +1049,7 @@ namespace SoundTimeParametersEvaluation
         private System.Windows.Forms.TabPage timeParamsTabPage;
         private System.Windows.Forms.TableLayoutPanel timeParamsTableLayoutPanel;
         private System.Windows.Forms.TabPage fourierTransformTabPage;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataVisualization.Charting.Chart fourierTransformChart;
     }
 }
