@@ -142,7 +142,12 @@ namespace SoundTimeParametersEvaluation
         private void UpdateMPFValue()
         {
             if (int.TryParse(mpfTextBox.Text, out milisecondsPerFrame))
+            {
                 samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
+                // TODO: Do not call even handler from here
+                if(selectedFourierTransfromScope == FourierTransfromScope.OneFrame)
+                    frameStartTextBox_TextChanged(this, null);
+            }
         }
 
         private void UpdateAnalysisResults(AnalysisType analysisType)
