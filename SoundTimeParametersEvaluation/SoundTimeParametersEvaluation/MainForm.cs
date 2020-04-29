@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using MathNet.Numerics.IntegralTransforms;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,15 +18,18 @@ namespace SoundTimeParametersEvaluation
         private Dictionary<FrameLevelParamType, Chart> charts;
         private Dictionary<FrameLevelParamType, Label> chartLabels;
         private Dictionary<ClipLevelParamType, Label> labels;
+        private Dictionary<AnalysisType, bool> shouldRecalculateChart;
 
         private int milisecondsPerFrame = 40;
         private int samplesPerFrame;
         private double sampleRate;
+        private CustomPoint[] parsedFile;
+
         private WindowType selectedWindowType = WindowType.Rectangular;
         private AnalysisType selectedAnalysisType = AnalysisType.SoundParameters;
-        private Dictionary<AnalysisType, bool> shouldRecalculateChart;
+        private FourierTransfromScope selectedFourierTransfromScope = FourierTransfromScope.WholeClip;
+        private double selectedFrameStartTime = 0.0;
 
-        private CustomPoint[] parsedFile;
         private Statistics statistics;
 
         public MainForm()
@@ -158,9 +162,20 @@ namespace SoundTimeParametersEvaluation
 
         private void UpdateFourierTransform()
         {
-            CustomPoint[] fourierResult;
+            var fourierResult = new CustomPoint[1];
 
-            Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult);
+            switch (selectedFourierTransfromScope)
+            {
+                case FourierTransfromScope.WholeClip:
+                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult);
+                    break;
+                case FourierTransfromScope.OneFrame:
+                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult, samplesPerFrame, (int)(sampleRate * selectedFrameStartTime));
+                    break;
+                default:
+                    break;
+            }
+
             ChartHelper.UpdateCustomPointChart(ref fourierTransformChart, fourierResult);
         }
 
@@ -241,6 +256,44 @@ namespace SoundTimeParametersEvaluation
             selectedAnalysisType = (AnalysisType)mainTabControl.SelectedIndex;
             if (parsedFile != null && parsedFile.Length != 0 && shouldRecalculateChart[selectedAnalysisType])
                 UpdateAnalysisResults(selectedAnalysisType);
+        }
+
+        private void oneFrameRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedFourierTransfromScope = FourierTransfromScope.OneFrame;
+            frameStartTextBox.Enabled = true;
+            shouldRecalculateChart[AnalysisType.Fourier] = true;
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(AnalysisType.Fourier);
+        }
+
+        private void wholeClipRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            selectedFourierTransfromScope = FourierTransfromScope.WholeClip;
+            frameStartTextBox.Enabled = false;
+            shouldRecalculateChart[AnalysisType.Fourier] = true;
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(AnalysisType.Fourier);
+        }
+
+        private void frameStartTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (double.TryParse(frameStartTextBox.Text, out selectedFrameStartTime) && selectedFrameStartTime >= 0)
+            {
+                if (selectedFrameStartTime > (parsedFile.Length - samplesPerFrame) / sampleRate)
+                {
+                    selectedFrameStartTime = (parsedFile.Length - samplesPerFrame) / sampleRate;
+                    frameStartTextBox.Text = selectedFrameStartTime.ToString("N3");
+                }
+
+                shouldRecalculateChart[AnalysisType.Fourier] = true;
+                if (parsedFile != null && parsedFile.Length != 0)
+                    UpdateAnalysisResults(AnalysisType.Fourier);
+            }
+            else
+            {
+                frameStartTextBox.Text = selectedFrameStartTime.ToString("N3");
+            }
         }
 
         #endregion

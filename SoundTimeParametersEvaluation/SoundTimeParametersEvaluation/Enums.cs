@@ -48,4 +48,10 @@ namespace SoundTimeParametersEvaluation
         Cepstrum,
         FundamentalFrequency
     }
+
+    public enum FourierTransfromScope
+    {
+        WholeClip,
+        OneFrame
+    }
 }

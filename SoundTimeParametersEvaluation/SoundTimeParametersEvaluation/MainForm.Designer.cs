@@ -91,6 +91,15 @@ namespace SoundTimeParametersEvaluation
             this.lsterLabel = new System.Windows.Forms.Label();
             this.vstdValueLabel = new System.Windows.Forms.Label();
             this.fourierTransformTabPage = new System.Windows.Forms.TabPage();
+            this.fourierTransformTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.fourierTransformChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.fourierTransformScopePanel = new System.Windows.Forms.Panel();
+            this.oneFrameRadioButton = new System.Windows.Forms.RadioButton();
+            this.wholeClipRadioButton = new System.Windows.Forms.RadioButton();
+            this.fourierFrameTimePanel = new System.Windows.Forms.Panel();
+            this.frameStartTextBox = new System.Windows.Forms.TextBox();
+            this.frameStartLabel = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,8 +116,6 @@ namespace SoundTimeParametersEvaluation
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.fourierTransformChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.mpfGroupBox.SuspendLayout();
@@ -127,8 +134,11 @@ namespace SoundTimeParametersEvaluation
             this.timeParamsLabelsTableLayoutPanel.SuspendLayout();
             this.timeParamsClipLevelTableLayoutPanel.SuspendLayout();
             this.fourierTransformTabPage.SuspendLayout();
-            this.menuStrip.SuspendLayout();
+            this.fourierTransformTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fourierTransformChart)).BeginInit();
+            this.fourierTransformScopePanel.SuspendLayout();
+            this.fourierFrameTimePanel.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -778,7 +788,7 @@ namespace SoundTimeParametersEvaluation
             // 
             // fourierTransformTabPage
             // 
-            this.fourierTransformTabPage.Controls.Add(this.fourierTransformChart);
+            this.fourierTransformTabPage.Controls.Add(this.fourierTransformTableLayoutPanel);
             this.fourierTransformTabPage.Location = new System.Drawing.Point(4, 22);
             this.fourierTransformTabPage.Name = "fourierTransformTabPage";
             this.fourierTransformTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -786,6 +796,127 @@ namespace SoundTimeParametersEvaluation
             this.fourierTransformTabPage.TabIndex = 1;
             this.fourierTransformTabPage.Text = "Fourier Transform";
             this.fourierTransformTabPage.UseVisualStyleBackColor = true;
+            // 
+            // fourierTransformTableLayoutPanel
+            // 
+            this.fourierTransformTableLayoutPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.fourierTransformTableLayoutPanel.ColumnCount = 2;
+            this.fourierTransformTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.fourierTransformTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierTransformChart, 0, 1);
+            this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierTransformScopePanel, 0, 0);
+            this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierFrameTimePanel, 1, 0);
+            this.fourierTransformTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierTransformTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.fourierTransformTableLayoutPanel.Name = "fourierTransformTableLayoutPanel";
+            this.fourierTransformTableLayoutPanel.RowCount = 2;
+            this.fourierTransformTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.fourierTransformTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.fourierTransformTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
+            this.fourierTransformTableLayoutPanel.TabIndex = 12;
+            // 
+            // fourierTransformChart
+            // 
+            chartArea9.AxisX.Interval = 1000D;
+            chartArea9.AxisX.MajorGrid.Enabled = false;
+            chartArea9.AxisX.Minimum = 0D;
+            chartArea9.AxisX.Title = "Frequency [Hz]";
+            chartArea9.AxisY.IsLabelAutoFit = false;
+            chartArea9.AxisY.MajorGrid.Enabled = false;
+            chartArea9.AxisY.MajorTickMark.Enabled = false;
+            chartArea9.AxisY.Title = "Magnitute";
+            chartArea9.Name = "ChartArea1";
+            this.fourierTransformChart.ChartAreas.Add(chartArea9);
+            this.fourierTransformTableLayoutPanel.SetColumnSpan(this.fourierTransformChart, 2);
+            this.fourierTransformChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierTransformChart.Location = new System.Drawing.Point(3, 33);
+            this.fourierTransformChart.Name = "fourierTransformChart";
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series9.Color = System.Drawing.Color.Green;
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            this.fourierTransformChart.Series.Add(series9);
+            this.fourierTransformChart.Size = new System.Drawing.Size(1304, 475);
+            this.fourierTransformChart.TabIndex = 11;
+            // 
+            // fourierTransformScopePanel
+            // 
+            this.fourierTransformScopePanel.Controls.Add(this.oneFrameRadioButton);
+            this.fourierTransformScopePanel.Controls.Add(this.wholeClipRadioButton);
+            this.fourierTransformScopePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierTransformScopePanel.Location = new System.Drawing.Point(3, 3);
+            this.fourierTransformScopePanel.Name = "fourierTransformScopePanel";
+            this.fourierTransformScopePanel.Size = new System.Drawing.Size(649, 24);
+            this.fourierTransformScopePanel.TabIndex = 12;
+            // 
+            // oneFrameRadioButton
+            // 
+            this.oneFrameRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.oneFrameRadioButton.AutoSize = true;
+            this.oneFrameRadioButton.Location = new System.Drawing.Point(130, 4);
+            this.oneFrameRadioButton.Name = "oneFrameRadioButton";
+            this.oneFrameRadioButton.Size = new System.Drawing.Size(77, 17);
+            this.oneFrameRadioButton.TabIndex = 1;
+            this.oneFrameRadioButton.Text = "One Frame";
+            this.oneFrameRadioButton.UseVisualStyleBackColor = true;
+            this.oneFrameRadioButton.CheckedChanged += new System.EventHandler(this.oneFrameRadioButton_CheckedChanged);
+            // 
+            // wholeClipRadioButton
+            // 
+            this.wholeClipRadioButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.wholeClipRadioButton.AutoSize = true;
+            this.wholeClipRadioButton.Checked = true;
+            this.wholeClipRadioButton.Location = new System.Drawing.Point(14, 4);
+            this.wholeClipRadioButton.Name = "wholeClipRadioButton";
+            this.wholeClipRadioButton.Size = new System.Drawing.Size(76, 17);
+            this.wholeClipRadioButton.TabIndex = 0;
+            this.wholeClipRadioButton.TabStop = true;
+            this.wholeClipRadioButton.Text = "Whole Clip";
+            this.wholeClipRadioButton.UseVisualStyleBackColor = true;
+            this.wholeClipRadioButton.CheckedChanged += new System.EventHandler(this.wholeClipRadioButton_CheckedChanged);
+            // 
+            // fourierFrameTimePanel
+            // 
+            this.fourierFrameTimePanel.Controls.Add(this.frameStartTextBox);
+            this.fourierFrameTimePanel.Controls.Add(this.frameStartLabel);
+            this.fourierFrameTimePanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierFrameTimePanel.Location = new System.Drawing.Point(658, 3);
+            this.fourierFrameTimePanel.Name = "fourierFrameTimePanel";
+            this.fourierFrameTimePanel.Size = new System.Drawing.Size(649, 24);
+            this.fourierFrameTimePanel.TabIndex = 13;
+            // 
+            // frameStartTextBox
+            // 
+            this.frameStartTextBox.Enabled = false;
+            this.frameStartTextBox.Location = new System.Drawing.Point(537, 1);
+            this.frameStartTextBox.Name = "frameStartTextBox";
+            this.frameStartTextBox.Size = new System.Drawing.Size(100, 20);
+            this.frameStartTextBox.TabIndex = 1;
+            this.frameStartTextBox.TextChanged += new System.EventHandler(this.frameStartTextBox_TextChanged);
+            // 
+            // frameStartLabel
+            // 
+            this.frameStartLabel.AutoSize = true;
+            this.frameStartLabel.Location = new System.Drawing.Point(407, 4);
+            this.frameStartLabel.Name = "frameStartLabel";
+            this.frameStartLabel.Size = new System.Drawing.Size(124, 13);
+            this.frameStartLabel.TabIndex = 0;
+            this.frameStartLabel.Text = "Frame Start (in seconds):";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1316, 517);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // menuStrip
             // 
@@ -916,40 +1047,6 @@ namespace SoundTimeParametersEvaluation
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1316, 517);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // fourierTransformChart
-            // 
-            chartArea9.AxisX.Interval = 1000D;
-            chartArea9.AxisX.MajorGrid.Enabled = false;
-            chartArea9.AxisX.Minimum = 0D;
-            chartArea9.AxisX.Title = "Frequency [Hz]";
-            chartArea9.AxisY.IsLabelAutoFit = false;
-            chartArea9.AxisY.MajorGrid.Enabled = false;
-            chartArea9.AxisY.MajorTickMark.Enabled = false;
-            chartArea9.AxisY.Title = "Volume [dB]";
-            chartArea9.Name = "ChartArea1";
-            this.fourierTransformChart.ChartAreas.Add(chartArea9);
-            this.fourierTransformChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fourierTransformChart.Location = new System.Drawing.Point(3, 3);
-            this.fourierTransformChart.Name = "fourierTransformChart";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series9.Color = System.Drawing.Color.Green;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.fourierTransformChart.Series.Add(series9);
-            this.fourierTransformChart.Size = new System.Drawing.Size(1310, 511);
-            this.fourierTransformChart.TabIndex = 11;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -980,9 +1077,14 @@ namespace SoundTimeParametersEvaluation
             this.timeParamsClipLevelTableLayoutPanel.ResumeLayout(false);
             this.timeParamsClipLevelTableLayoutPanel.PerformLayout();
             this.fourierTransformTabPage.ResumeLayout(false);
+            this.fourierTransformTableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.fourierTransformChart)).EndInit();
+            this.fourierTransformScopePanel.ResumeLayout(false);
+            this.fourierTransformScopePanel.PerformLayout();
+            this.fourierFrameTimePanel.ResumeLayout(false);
+            this.fourierFrameTimePanel.PerformLayout();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fourierTransformChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1051,6 +1153,13 @@ namespace SoundTimeParametersEvaluation
         private System.Windows.Forms.TabPage fourierTransformTabPage;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataVisualization.Charting.Chart fourierTransformChart;
+        private System.Windows.Forms.TableLayoutPanel fourierTransformTableLayoutPanel;
+        private System.Windows.Forms.Panel fourierTransformScopePanel;
+        private System.Windows.Forms.RadioButton oneFrameRadioButton;
+        private System.Windows.Forms.RadioButton wholeClipRadioButton;
+        private System.Windows.Forms.Panel fourierFrameTimePanel;
+        private System.Windows.Forms.Label frameStartLabel;
+        private System.Windows.Forms.TextBox frameStartTextBox;
     }
 }
 

@@ -55,7 +55,7 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static void CalculateFrequencyCharacteristic(AnalysisType analysisType, CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult)
+        public static void CalculateFrequencyCharacteristic(AnalysisType analysisType, CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
         {
             // TODO: Remove
             transformResult = new CustomPoint[1];
@@ -63,7 +63,7 @@ namespace SoundTimeParametersEvaluation
             switch (analysisType)
             {
                 case AnalysisType.Fourier:
-                    CalculateFourierTransform(parsedFile, sampleRate, out transformResult);
+                    CalculateFourierTransform(parsedFile, sampleRate, out transformResult, samplesPerFrame, selectedSampleIndex);
                     break;
                 case AnalysisType.Cepstrum:
                     break;
@@ -285,15 +285,30 @@ namespace SoundTimeParametersEvaluation
             return sum / (2.0 * zeroCrossingRate.Length);
         }
 
-        private static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult)
+        private static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
         {
-            var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(parsedFile.Length, 2));
+            var samplesToTransform = new List<CustomPoint>();
+
+            if(selectedSampleIndex != null)
+            {
+                if (selectedSampleIndex.Value + samplesPerFrame >= parsedFile.Length)
+                    selectedSampleIndex = parsedFile.Length - samplesPerFrame - 1;
+
+                for (int i = 0; i < samplesPerFrame; i++)
+                    samplesToTransform.Add(parsedFile[selectedSampleIndex.Value + i]);
+            }
+            else
+            {
+                samplesToTransform = parsedFile.ToList();
+            }    
+
+            var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(samplesToTransform.Count, 2));
             var newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
             var transformData = new Complex32[newSamplesCount];
             transformResult = new CustomPoint[newSamplesCount / 2];
 
-            for (int i = 0; i < parsedFile.Length; i++)
-                transformData[i] = (float)parsedFile[i].Y;
+            for (int i = 0; i < samplesToTransform.Count; i++)
+                transformData[i] = (float)samplesToTransform[i].Y;
 
             Fourier.Forward(transformData);
 
