@@ -248,6 +248,7 @@ namespace SoundTimeParametersEvaluation
             this.windowTypeComboBox.Size = new System.Drawing.Size(185, 21);
             this.windowTypeComboBox.TabIndex = 0;
             this.windowTypeComboBox.Visible = false;
+            this.windowTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.windowTypeComboBox_SelectedIndexChanged);
             // 
             // mainTabControl
             // 
@@ -897,6 +898,7 @@ namespace SoundTimeParametersEvaluation
             this.frameStartTextBox.Name = "frameStartTextBox";
             this.frameStartTextBox.Size = new System.Drawing.Size(100, 20);
             this.frameStartTextBox.TabIndex = 1;
+            this.frameStartTextBox.Text = "0";
             this.frameStartTextBox.TextChanged += new System.EventHandler(this.frameStartTextBox_TextChanged);
             // 
             // frameStartLabel

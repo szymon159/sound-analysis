@@ -172,10 +172,10 @@ namespace SoundTimeParametersEvaluation
             switch (selectedFourierTransfromScope)
             {
                 case FourierTransfromScope.WholeClip:
-                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult);
+                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, selectedWindowType, out fourierResult);
                     break;
                 case FourierTransfromScope.OneFrame:
-                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, out fourierResult, samplesPerFrame, (int)(sampleRate * selectedFrameStartTime));
+                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, selectedWindowType, out fourierResult, samplesPerFrame, (int)(sampleRate * selectedFrameStartTime));
                     break;
                 default:
                     break;
@@ -302,5 +302,14 @@ namespace SoundTimeParametersEvaluation
         }
 
         #endregion
+
+        private void windowTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedWindowType = (WindowType)windowTypeComboBox.SelectedIndex;
+
+            shouldRecalculateChart[AnalysisType.Fourier] = true;
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(AnalysisType.Fourier);
+        }
     }
 }

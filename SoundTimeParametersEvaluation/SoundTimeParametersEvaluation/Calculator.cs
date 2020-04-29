@@ -55,7 +55,7 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static void CalculateFrequencyCharacteristic(AnalysisType analysisType, CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
+        public static void CalculateFrequencyCharacteristic(AnalysisType analysisType, CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
         {
             // TODO: Remove
             transformResult = new CustomPoint[1];
@@ -63,7 +63,7 @@ namespace SoundTimeParametersEvaluation
             switch (analysisType)
             {
                 case AnalysisType.Fourier:
-                    CalculateFourierTransform(parsedFile, sampleRate, out transformResult, samplesPerFrame, selectedSampleIndex);
+                    CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out transformResult, samplesPerFrame, selectedSampleIndex);
                     break;
                 case AnalysisType.Cepstrum:
                     break;
@@ -285,10 +285,10 @@ namespace SoundTimeParametersEvaluation
             return sum / (2.0 * zeroCrossingRate.Length);
         }
 
-        private static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
+        private static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
         {
+            // Get the samples for analysis
             var samplesToTransform = new List<CustomPoint>();
-
             if(selectedSampleIndex != null)
             {
                 if (selectedSampleIndex.Value + samplesPerFrame >= parsedFile.Length)
@@ -300,18 +300,37 @@ namespace SoundTimeParametersEvaluation
             else
             {
                 samplesToTransform = parsedFile.ToList();
-            }    
+            }
 
+            // Get window function for analysis
+            double[] window = null;
+            switch (selectedWindowType)
+            {
+                case WindowType.Rectangular:
+                    window = Window.Dirichlet(samplesToTransform.Count);
+                    break;
+                case WindowType.Hamming:
+                    window = Window.Hamming(samplesToTransform.Count);
+                    break;
+                case WindowType.Hann:
+                    window = Window.Hann(samplesToTransform.Count);
+                    break;
+            }
+
+            // Align samples number to next power of 2
             var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(samplesToTransform.Count, 2));
             var newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
             var transformData = new Complex32[newSamplesCount];
             transformResult = new CustomPoint[newSamplesCount / 2];
 
+            // Assign data to array of Complex
             for (int i = 0; i < samplesToTransform.Count; i++)
-                transformData[i] = (float)samplesToTransform[i].Y;
+                transformData[i] = (float)(samplesToTransform[i].Y * window[i]);
 
+            // Perform transformation
             Fourier.Forward(transformData);
 
+            // Compute frequency and magnitute to return
             var herzPerSample = sampleRate / newSamplesCount;
             for (int i = 0; i < (newSamplesCount / 2); i++)
             {
