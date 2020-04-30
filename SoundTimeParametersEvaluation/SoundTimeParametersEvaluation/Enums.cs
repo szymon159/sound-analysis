@@ -45,7 +45,7 @@ namespace SoundTimeParametersEvaluation
     {
         SoundParameters,
         Fourier,
-        Cepstrum,
+        Spectrum,
         FundamentalFrequency
     }
 

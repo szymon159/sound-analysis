@@ -24,6 +24,7 @@ namespace SoundTimeParametersEvaluation
         private int samplesPerFrame;
         private double sampleRate;
         private CustomPoint[] parsedFile;
+        private double frameOverlapping = 0.5;
 
         private WindowType selectedWindowType = WindowType.Rectangular;
         private AnalysisType selectedAnalysisType = AnalysisType.SoundParameters;
@@ -71,7 +72,7 @@ namespace SoundTimeParametersEvaluation
             shouldRecalculateChart = new Dictionary<AnalysisType, bool>();
             shouldRecalculateChart.Add(AnalysisType.SoundParameters, true);
             shouldRecalculateChart.Add(AnalysisType.Fourier, true);
-            shouldRecalculateChart.Add(AnalysisType.Cepstrum, true);
+            shouldRecalculateChart.Add(AnalysisType.Spectrum, true);
             shouldRecalculateChart.Add(AnalysisType.FundamentalFrequency, true);
         }
 
@@ -144,10 +145,19 @@ namespace SoundTimeParametersEvaluation
             if (int.TryParse(mpfTextBox.Text, out milisecondsPerFrame))
             {
                 samplesPerFrame = milisecondsPerFrame * (int)sampleRate / 1000;
-                // TODO: Do not call even handler from here
-                if(selectedFourierTransfromScope == FourierTransfromScope.OneFrame)
-                    frameStartTextBox_TextChanged(this, null);
+                InvalidateCharts();
             }
+        }
+
+        private void InvalidateCharts()
+        {
+            foreach(var analysisType in shouldRecalculateChart.Keys.ToList())
+            {
+                shouldRecalculateChart[analysisType] = true;
+            }
+
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(selectedAnalysisType);
         }
 
         private void UpdateAnalysisResults(AnalysisType analysisType)
@@ -159,6 +169,9 @@ namespace SoundTimeParametersEvaluation
                     break;
                 case AnalysisType.Fourier:
                     UpdateFourierTransform();
+                    break;
+                case AnalysisType.Spectrum:
+                    UpdateSpectrum();
                     break;
             }
 
@@ -172,16 +185,22 @@ namespace SoundTimeParametersEvaluation
             switch (selectedFourierTransfromScope)
             {
                 case FourierTransfromScope.WholeClip:
-                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, selectedWindowType, out fourierResult);
+                    Calculator.CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out fourierResult);
                     break;
                 case FourierTransfromScope.OneFrame:
-                    Calculator.CalculateFrequencyCharacteristic(AnalysisType.Fourier, parsedFile, sampleRate, selectedWindowType, out fourierResult, samplesPerFrame, (int)(sampleRate * selectedFrameStartTime));
+                    Calculator.CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out fourierResult, samplesPerFrame, (int)(sampleRate * selectedFrameStartTime));
                     break;
                 default:
                     break;
             }
 
             ChartHelper.UpdateCustomPointChart(ref fourierTransformChart, fourierResult);
+        }
+
+        private void UpdateSpectrum()
+        {
+            Calculator.CalculateSpectrogram(parsedFile, selectedWindowType, samplesPerFrame, frameOverlapping, out double[,] transformResult);
+            ChartHelper.UpdateSpectrogram(ref spectrogramPlotView, transformResult, parsedFile.Last().X, sampleRate);
         }
 
         private void LoadFile(string filePath)
@@ -231,8 +250,6 @@ namespace SoundTimeParametersEvaluation
         private void mpfButton_Click(object sender, EventArgs e)
         {
             UpdateMPFValue();
-            if(parsedFile != null && parsedFile.Length > 0)
-                UpdateTimeParameters();
         }
 
         private void displayToolStripMenuItem_Click(object sender, EventArgs e)
@@ -301,15 +318,21 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        #endregion
-
         private void windowTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedWindowType = (WindowType)windowTypeComboBox.SelectedIndex;
-
-            shouldRecalculateChart[AnalysisType.Fourier] = true;
-            if (parsedFile != null && parsedFile.Length != 0)
-                UpdateAnalysisResults(AnalysisType.Fourier);
+            InvalidateCharts();
         }
+
+        private void frameOverlappingTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            frameOverlapping = frameOverlappingTrackBar.Value / 100.0;
+            frameOverlappingValueLabel.Text = frameOverlapping.ToString();
+            shouldRecalculateChart[AnalysisType.Spectrum] = true;
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(AnalysisType.Spectrum);
+        }
+
+        #endregion
     }
 }
