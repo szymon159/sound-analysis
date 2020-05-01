@@ -173,6 +173,9 @@ namespace SoundTimeParametersEvaluation
                 case AnalysisType.Spectrum:
                     UpdateSpectrum();
                     break;
+                case AnalysisType.FundamentalFrequency:
+                    UpdateFundamentalFrequency();
+                    break;
             }
 
             shouldRecalculateChart[analysisType] = false;
@@ -201,6 +204,12 @@ namespace SoundTimeParametersEvaluation
         {
             Calculator.CalculateSpectrogram(parsedFile, selectedWindowType, samplesPerFrame, frameOverlapping, out double[,] transformResult);
             ChartHelper.UpdateSpectrogram(ref spectrogramPlotView, transformResult, parsedFile.Last().X, sampleRate);
+        }
+
+        private void UpdateFundamentalFrequency()
+        {
+            Calculator.CalculateFundamentalFrequency(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult);
+            ChartHelper.UpdateCustomPointChart(ref fundamentalFrequencyChart, transformResult);
         }
 
         private void LoadFile(string filePath)

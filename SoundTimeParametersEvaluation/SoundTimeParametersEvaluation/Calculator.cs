@@ -3,6 +3,7 @@ using MathNet.Numerics.IntegralTransforms;
 using NAudio.Dsp;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
@@ -61,6 +62,9 @@ namespace SoundTimeParametersEvaluation
         {
             // Get the samples for analysis
             var samplesToTransform = new List<CustomPoint>();
+            Complex32[] transformData;
+            int newSamplesCount;
+
             if (selectedSampleIndex != null)
             {
                 if (selectedSampleIndex.Value + samplesPerFrame >= parsedFile.Length)
@@ -68,38 +72,16 @@ namespace SoundTimeParametersEvaluation
 
                 for (int i = 0; i < samplesPerFrame; i++)
                     samplesToTransform.Add(parsedFile[selectedSampleIndex.Value + i]);
+
+                transformData = GetSamplesForFourier(samplesToTransform, selectedWindowType, out newSamplesCount);
             }
             else
             {
-                samplesToTransform = parsedFile.ToList();
+                transformData = GetSamplesForFourier(parsedFile, selectedWindowType, out newSamplesCount);
             }
-
-            // Get window function for analysis
-            double[] window = null;
-            switch (selectedWindowType)
-            {
-                case WindowType.Rectangular:
-                    window = Window.Dirichlet(samplesToTransform.Count);
-                    break;
-                case WindowType.Hamming:
-                    window = Window.Hamming(samplesToTransform.Count);
-                    break;
-                case WindowType.Hann:
-                    window = Window.Hann(samplesToTransform.Count);
-                    break;
-            }
-
-            // Align samples number to next power of 2
-            var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(samplesToTransform.Count, 2));
-            var newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
-            var transformData = new Complex32[newSamplesCount];
-            transformResult = new CustomPoint[newSamplesCount / 2];
-
-            // Assign data to array of Complex
-            for (int i = 0; i < samplesToTransform.Count; i++)
-                transformData[i] = (float)(samplesToTransform[i].Y * window[i]);
 
             // Perform transformation
+            transformResult = new CustomPoint[newSamplesCount / 2];
             Fourier.Forward(transformData);
 
             // Compute frequency and magnitute to return
@@ -131,6 +113,24 @@ namespace SoundTimeParametersEvaluation
 
             }
         }
+
+        public static void CalculateFundamentalFrequency(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult)
+        {
+            var transformData = GetSamplesForFourier(parsedFile, selectedWindowType, out int newSamplesCount);
+            Fourier.Forward(transformData);
+
+            var dataForInversedFourier = transformData.Select(complexValue => new Complex32((float)Math.Log10(complexValue.MagnitudeSquared()), 0)).ToArray();
+            Fourier.Inverse(dataForInversedFourier);
+
+            transformResult = new CustomPoint[dataForInversedFourier.Length / 2];
+            for(int i = 0; i < dataForInversedFourier.Length / 2; i++)
+            {
+                transformResult[i].X = i / sampleRate;
+                transformResult[i].Y = -20 * Math.Log10(transformData[i].MagnitudeSquared());
+            }
+        }
+
+        #region Time Parameters
 
         private static double GetEnergy(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrame, bool takeRoot = false)
         {
@@ -342,6 +342,39 @@ namespace SoundTimeParametersEvaluation
             return sum / (2.0 * zeroCrossingRate.Length);
         }
 
+        #endregion
+
+        #region Frequency Analysis
+
+        private static Complex32[] GetSamplesForFourier(IEnumerable<CustomPoint> samplesToTransform, WindowType selectedWindowType, out int newSamplesCount)
+        {
+            // Get window function for analysis
+            double[] window = null;
+            switch (selectedWindowType)
+            {
+                case WindowType.Rectangular:
+                    window = Window.Dirichlet(samplesToTransform.Count());
+                    break;
+                case WindowType.Hamming:
+                    window = Window.Hamming(samplesToTransform.Count());
+                    break;
+                case WindowType.Hann:
+                    window = Window.Hann(samplesToTransform.Count());
+                    break;
+            }
+
+            // Align samples number to next power of 2
+            var closestPowerOfTwo = (int)Math.Ceiling(Math.Log(samplesToTransform.Count(), 2));
+            newSamplesCount = (int)Math.Pow(2, closestPowerOfTwo);
+            var transformData = new Complex32[newSamplesCount];
+
+            // Assign data to array of Complex
+            for (int i = 0; i < samplesToTransform.Count(); i++)
+                transformData[i] = (float)(samplesToTransform.ElementAt(i).Y * window[i]);
+
+            return transformData;
+        }
+
         private static Complex32[][] GetSamplesForSpectrogram(CustomPoint[] parsedFile, int samplesPerFrame, double frameOverlapping, WindowType selectedWindowType, out int rowCount, out int columnCount)
         {
             var frameOffset = (int)((1 - frameOverlapping) * samplesPerFrame);
@@ -383,5 +416,7 @@ namespace SoundTimeParametersEvaluation
 
             return result;
         }
+
+        #endregion
     }
 }
