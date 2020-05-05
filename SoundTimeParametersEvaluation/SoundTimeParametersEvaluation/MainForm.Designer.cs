@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SoundTimeParametersEvaluation
+namespace SoundAnalysis
 {
     partial class MainForm
     {
@@ -266,9 +266,9 @@ namespace SoundTimeParametersEvaluation
             this.windowTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.windowTypeComboBox.FormattingEnabled = true;
             this.windowTypeComboBox.Items.AddRange(new object[] {
-            SoundTimeParametersEvaluation.WindowType.Rectangular,
-            SoundTimeParametersEvaluation.WindowType.Hamming,
-            SoundTimeParametersEvaluation.WindowType.Hann});
+            SoundAnalysis.WindowType.Rectangular,
+            SoundAnalysis.WindowType.Hamming,
+            SoundAnalysis.WindowType.Hann});
             this.windowTypeComboBox.Location = new System.Drawing.Point(41, 24);
             this.windowTypeComboBox.Name = "windowTypeComboBox";
             this.windowTypeComboBox.Size = new System.Drawing.Size(185, 21);

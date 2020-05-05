@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace SoundTimeParametersEvaluation
+namespace SoundAnalysis
 {
     public static class Calculator
     {

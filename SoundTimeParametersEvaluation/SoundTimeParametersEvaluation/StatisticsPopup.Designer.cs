@@ -1,4 +1,4 @@
-﻿namespace SoundTimeParametersEvaluation
+﻿namespace SoundAnalysis
 {
     partial class StatisticsPopup
     {
