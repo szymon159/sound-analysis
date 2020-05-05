@@ -50,6 +50,7 @@ namespace SoundAnalysis
             System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mpfGroupBox = new System.Windows.Forms.GroupBox();
@@ -1280,6 +1281,7 @@ namespace SoundAnalysis
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.mainLayoutPanel);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Sound analysis";
             this.mainLayoutPanel.ResumeLayout(false);
