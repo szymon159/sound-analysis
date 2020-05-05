@@ -1,13 +1,9 @@
 ﻿using MathNet.Numerics;
 using MathNet.Numerics.IntegralTransforms;
-using NAudio.Dsp;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SoundTimeParametersEvaluation
 {
@@ -114,20 +110,44 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static void CalculateFundamentalFrequency(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult)
+        public static float CalculateFundamentalFrequency(CustomPoint[] parsedFile, WindowType selectedWindowType, double frameOverlapping, int samplesPerFrame, double sampleRate, out double[] resultInFrame)
         {
-            var transformData = GetSamplesForFourier(parsedFile, selectedWindowType, out int newSamplesCount);
-            Fourier.Forward(transformData);
+            // Frequency ranges where we look for peak
+            const int minFrequency = 50;
+            const int maxFrequency = 400;
 
-            var dataForInversedFourier = transformData.Select(complexValue => new Complex32((float)Math.Log10(complexValue.MagnitudeSquared()), 0)).ToArray();
-            Fourier.Inverse(dataForInversedFourier);
+            // Ids of first and last frame in each transformed frame (corresponding to min and max frequencies)
+            var firstSample = (int)((2 * minFrequency * samplesPerFrame) / sampleRate);
+            var lastSample = (int)((2 * maxFrequency * samplesPerFrame) / sampleRate);
 
-            transformResult = new CustomPoint[dataForInversedFourier.Length / 2];
-            for(int i = 0; i < dataForInversedFourier.Length / 2; i++)
+            // Samples are same as for spectrogram
+            var samplesToTransform = GetSamplesForSpectrogram(parsedFile, samplesPerFrame, frameOverlapping, selectedWindowType, out int rowCount, out int columnCount);
+
+            resultInFrame = new double[samplesToTransform.Length];
+            for(int i = 0; i < samplesToTransform.Length; i++)
             {
-                transformResult[i].X = i / sampleRate;
-                transformResult[i].Y = -20 * Math.Log10(transformData[i].MagnitudeSquared());
+                // First fft
+                Fourier.Forward(samplesToTransform[i]);
+
+                // Inverse fft
+                var dataForInversedFourier = samplesToTransform[i]
+                    .Select(complex => new Complex32((float)Math.Log10(complex.MagnitudeSquared), 0)).ToArray();
+                Fourier.Inverse(dataForInversedFourier);
+
+                // Take correct range to look for peak
+                var inversedData = dataForInversedFourier.Select(complex => complex.Real).ToArray();
+                var dataInRange = new ArraySegment<float>(inversedData, firstSample, lastSample - firstSample).ToList();
+                var peakIdx = dataInRange.IndexOf(dataInRange.Max());
+
+                // Adjust offset
+                var frequencyInFrame = firstSample + peakIdx;
+
+                // Adjust value
+                var herzPerFrame = sampleRate / (2 * samplesPerFrame);
+                resultInFrame[i] = frequencyInFrame * herzPerFrame;
             }
+
+            return (float)resultInFrame.Max();
         }
 
         #region Time Parameters

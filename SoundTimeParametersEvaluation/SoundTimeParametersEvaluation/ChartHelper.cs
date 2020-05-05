@@ -54,6 +54,7 @@ namespace SoundTimeParametersEvaluation
                 X1 = lengthInSeconds,
                 Y0 = 0,
                 Y1 = sampleRate / 2,
+                Interpolate = true
             };
 
             spectrogramPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title = "Frequency [Hz]" });
