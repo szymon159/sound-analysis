@@ -209,9 +209,9 @@ namespace SoundTimeParametersEvaluation
 
         private void UpdateFundamentalFrequency()
         {
-            var fundamentalFrequency = Calculator.CalculateFundamentalFrequency(parsedFile, selectedWindowType, frameOverlapping, samplesPerFrame, sampleRate, out double[] resultInFrame);
+            var fundamentalFrequency = Calculator.CalculateFundamentalFrequency(parsedFile, selectedWindowType, frameOverlapping, samplesPerFrame, sampleRate, out CustomPoint[] transformResult);
             fundamentalFrequencyValueLabel.Text = string.Format($"{fundamentalFrequency:N2} Hz");
-            ChartHelper.UpdateFrameLevelChart(ref fundamentalFrequencyChart, resultInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+            ChartHelper.UpdateCustomPointChart(ref fundamentalFrequencyChart, transformResult);
         }
 
         private void LoadFile(string filePath)

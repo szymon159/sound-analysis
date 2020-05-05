@@ -92,7 +92,7 @@ namespace SoundTimeParametersEvaluation
         public static void CalculateSpectrogram(CustomPoint[] parsedFile, WindowType selectedWindowType, int samplesPerFrame, double frameOverlapping, out double[,] transformResult)
         {
             // Get data for analysis
-            var samplesToTransform = GetSamplesForSpectrogram(parsedFile, samplesPerFrame, frameOverlapping, selectedWindowType, out int rowCount, out int columnCount);
+            var samplesToTransform = GetSamplesForSpectrogram(parsedFile, samplesPerFrame, frameOverlapping, selectedWindowType, out int rowCount, out int columnCount, out _);
 
             // Perform transformation
             transformResult = new double[columnCount, rowCount / 2];
@@ -110,7 +110,7 @@ namespace SoundTimeParametersEvaluation
             }
         }
 
-        public static float CalculateFundamentalFrequency(CustomPoint[] parsedFile, WindowType selectedWindowType, double frameOverlapping, int samplesPerFrame, double sampleRate, out double[] resultInFrame)
+        public static float CalculateFundamentalFrequency(CustomPoint[] parsedFile, WindowType selectedWindowType, double frameOverlapping, int samplesPerFrame, double sampleRate, out CustomPoint[] transformResult)
         {
             // Frequency ranges where we look for peak
             const int minFrequency = 50;
@@ -121,9 +121,9 @@ namespace SoundTimeParametersEvaluation
             var lastSample = (int)((2 * maxFrequency * samplesPerFrame) / sampleRate);
 
             // Samples are same as for spectrogram
-            var samplesToTransform = GetSamplesForSpectrogram(parsedFile, samplesPerFrame, frameOverlapping, selectedWindowType, out int rowCount, out int columnCount);
+            var samplesToTransform = GetSamplesForSpectrogram(parsedFile, samplesPerFrame, frameOverlapping, selectedWindowType, out int rowCount, out int columnCount, out int frameOffset);
 
-            resultInFrame = new double[samplesToTransform.Length];
+            transformResult = new CustomPoint[samplesToTransform.Length];
             for(int i = 0; i < samplesToTransform.Length; i++)
             {
                 // First fft
@@ -144,10 +144,11 @@ namespace SoundTimeParametersEvaluation
 
                 // Adjust value
                 var herzPerFrame = sampleRate / (2 * samplesPerFrame);
-                resultInFrame[i] = frequencyInFrame * herzPerFrame;
+                transformResult[i].X = (i * frameOffset + samplesPerFrame / 2) / sampleRate; 
+                transformResult[i].Y = frequencyInFrame * herzPerFrame;
             }
 
-            return (float)resultInFrame.Max();
+            return (float)transformResult.Max(point => point.Y);
         }
 
         #region Time Parameters
@@ -395,9 +396,9 @@ namespace SoundTimeParametersEvaluation
             return transformData;
         }
 
-        private static Complex32[][] GetSamplesForSpectrogram(CustomPoint[] parsedFile, int samplesPerFrame, double frameOverlapping, WindowType selectedWindowType, out int rowCount, out int columnCount)
+        private static Complex32[][] GetSamplesForSpectrogram(CustomPoint[] parsedFile, int samplesPerFrame, double frameOverlapping, WindowType selectedWindowType, out int rowCount, out int columnCount, out int frameOffset)
         {
-            var frameOffset = (int)((1 - frameOverlapping) * samplesPerFrame);
+            frameOffset = (int)((1 - frameOverlapping) * samplesPerFrame);
             if (frameOffset == 0)
                 frameOffset = 1;
 
