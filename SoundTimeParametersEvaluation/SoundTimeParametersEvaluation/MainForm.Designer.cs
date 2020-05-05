@@ -110,6 +110,10 @@ namespace SoundAnalysis
             this.frameOverlappingTrackBar = new System.Windows.Forms.TrackBar();
             this.fundamentalFrequencyTabPage = new System.Windows.Forms.TabPage();
             this.fundamentalFrequencyTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.frameOverlappingTrackBar2 = new System.Windows.Forms.TrackBar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.frameOverlappingValueLabel2 = new System.Windows.Forms.Label();
+            this.frameOverlappingLabel2 = new System.Windows.Forms.Label();
             this.fundamentalFrequencyValueLabel = new System.Windows.Forms.Label();
             this.fundamentalFrequencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fundamentalFrequencyLabel = new System.Windows.Forms.Label();
@@ -129,10 +133,6 @@ namespace SoundAnalysis
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.frameOverlappingValueLabel2 = new System.Windows.Forms.Label();
-            this.frameOverlappingLabel2 = new System.Windows.Forms.Label();
-            this.frameOverlappingTrackBar2 = new System.Windows.Forms.TrackBar();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.mpfGroupBox.SuspendLayout();
@@ -161,10 +161,10 @@ namespace SoundAnalysis
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar)).BeginInit();
             this.fundamentalFrequencyTabPage.SuspendLayout();
             this.fundamentalFrequencyTableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).BeginInit();
             this.menuStrip.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -1055,6 +1055,48 @@ namespace SoundAnalysis
             this.fundamentalFrequencyTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
             this.fundamentalFrequencyTableLayoutPanel.TabIndex = 0;
             // 
+            // frameOverlappingTrackBar2
+            // 
+            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.frameOverlappingTrackBar2, 2);
+            this.frameOverlappingTrackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frameOverlappingTrackBar2.LargeChange = 10;
+            this.frameOverlappingTrackBar2.Location = new System.Drawing.Point(134, 3);
+            this.frameOverlappingTrackBar2.Maximum = 99;
+            this.frameOverlappingTrackBar2.Name = "frameOverlappingTrackBar2";
+            this.frameOverlappingTrackBar2.Size = new System.Drawing.Size(1173, 24);
+            this.frameOverlappingTrackBar2.SmallChange = 5;
+            this.frameOverlappingTrackBar2.TabIndex = 19;
+            this.frameOverlappingTrackBar2.Value = 50;
+            this.frameOverlappingTrackBar2.ValueChanged += new System.EventHandler(this.frameOverlappingTrackBar_ValueChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.frameOverlappingValueLabel2);
+            this.panel2.Controls.Add(this.frameOverlappingLabel2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(125, 24);
+            this.panel2.TabIndex = 18;
+            // 
+            // frameOverlappingValueLabel2
+            // 
+            this.frameOverlappingValueLabel2.AutoSize = true;
+            this.frameOverlappingValueLabel2.Location = new System.Drawing.Point(100, 4);
+            this.frameOverlappingValueLabel2.Name = "frameOverlappingValueLabel2";
+            this.frameOverlappingValueLabel2.Size = new System.Drawing.Size(22, 13);
+            this.frameOverlappingValueLabel2.TabIndex = 1;
+            this.frameOverlappingValueLabel2.Text = "0.5";
+            // 
+            // frameOverlappingLabel2
+            // 
+            this.frameOverlappingLabel2.AutoSize = true;
+            this.frameOverlappingLabel2.Location = new System.Drawing.Point(4, 4);
+            this.frameOverlappingLabel2.Name = "frameOverlappingLabel2";
+            this.frameOverlappingLabel2.Size = new System.Drawing.Size(97, 13);
+            this.frameOverlappingLabel2.TabIndex = 0;
+            this.frameOverlappingLabel2.Text = "Frame overlapping:";
+            // 
             // fundamentalFrequencyValueLabel
             // 
             this.fundamentalFrequencyValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1231,48 +1273,6 @@ namespace SoundAnalysis
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.frameOverlappingValueLabel2);
-            this.panel2.Controls.Add(this.frameOverlappingLabel2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(125, 24);
-            this.panel2.TabIndex = 18;
-            // 
-            // frameOverlappingValueLabel2
-            // 
-            this.frameOverlappingValueLabel2.AutoSize = true;
-            this.frameOverlappingValueLabel2.Location = new System.Drawing.Point(100, 4);
-            this.frameOverlappingValueLabel2.Name = "frameOverlappingValueLabel2";
-            this.frameOverlappingValueLabel2.Size = new System.Drawing.Size(22, 13);
-            this.frameOverlappingValueLabel2.TabIndex = 1;
-            this.frameOverlappingValueLabel2.Text = "0.5";
-            // 
-            // frameOverlappingLabel2
-            // 
-            this.frameOverlappingLabel2.AutoSize = true;
-            this.frameOverlappingLabel2.Location = new System.Drawing.Point(4, 4);
-            this.frameOverlappingLabel2.Name = "frameOverlappingLabel2";
-            this.frameOverlappingLabel2.Size = new System.Drawing.Size(97, 13);
-            this.frameOverlappingLabel2.TabIndex = 0;
-            this.frameOverlappingLabel2.Text = "Frame overlapping:";
-            // 
-            // frameOverlappingTrackBar2
-            // 
-            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.frameOverlappingTrackBar2, 2);
-            this.frameOverlappingTrackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frameOverlappingTrackBar2.LargeChange = 10;
-            this.frameOverlappingTrackBar2.Location = new System.Drawing.Point(134, 3);
-            this.frameOverlappingTrackBar2.Maximum = 99;
-            this.frameOverlappingTrackBar2.Name = "frameOverlappingTrackBar2";
-            this.frameOverlappingTrackBar2.Size = new System.Drawing.Size(1173, 24);
-            this.frameOverlappingTrackBar2.SmallChange = 5;
-            this.frameOverlappingTrackBar2.TabIndex = 19;
-            this.frameOverlappingTrackBar2.Value = 50;
-            this.frameOverlappingTrackBar2.ValueChanged += new System.EventHandler(this.frameOverlappingTrackBar_ValueChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1281,7 +1281,7 @@ namespace SoundAnalysis
             this.Controls.Add(this.mainLayoutPanel);
             this.Controls.Add(this.menuStrip);
             this.Name = "MainForm";
-            this.Text = "Time parameters of sound";
+            this.Text = "Sound analysis";
             this.mainLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.mpfGroupBox.ResumeLayout(false);
@@ -1318,12 +1318,12 @@ namespace SoundAnalysis
             this.fundamentalFrequencyTabPage.ResumeLayout(false);
             this.fundamentalFrequencyTableLayoutPanel.ResumeLayout(false);
             this.fundamentalFrequencyTableLayoutPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
