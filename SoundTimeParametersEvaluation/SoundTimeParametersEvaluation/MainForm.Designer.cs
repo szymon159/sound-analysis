@@ -109,6 +109,10 @@ namespace SoundTimeParametersEvaluation
             this.frameOverlappingLabel = new System.Windows.Forms.Label();
             this.frameOverlappingTrackBar = new System.Windows.Forms.TrackBar();
             this.fundamentalFrequencyTabPage = new System.Windows.Forms.TabPage();
+            this.fundamentalFrequencyTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.fundamentalFrequencyValueLabel = new System.Windows.Forms.Label();
+            this.fundamentalFrequencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.fundamentalFrequencyLabel = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,10 +129,10 @@ namespace SoundTimeParametersEvaluation
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fundamentalFrequencyTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.fundamentalFrequencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.fundamentalFrequencyLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.frameOverlappingValueLabel2 = new System.Windows.Forms.Label();
+            this.frameOverlappingLabel2 = new System.Windows.Forms.Label();
+            this.frameOverlappingTrackBar2 = new System.Windows.Forms.TrackBar();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.mpfGroupBox.SuspendLayout();
@@ -156,9 +160,11 @@ namespace SoundTimeParametersEvaluation
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar)).BeginInit();
             this.fundamentalFrequencyTabPage.SuspendLayout();
-            this.menuStrip.SuspendLayout();
             this.fundamentalFrequencyTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).BeginInit();
+            this.menuStrip.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).BeginInit();
             this.SuspendLayout();
             // 
             // mainLayoutPanel
@@ -1026,6 +1032,76 @@ namespace SoundTimeParametersEvaluation
             this.fundamentalFrequencyTabPage.TabIndex = 3;
             this.fundamentalFrequencyTabPage.Text = "Fundamental Frequency";
             // 
+            // fundamentalFrequencyTableLayoutPanel
+            // 
+            this.fundamentalFrequencyTableLayoutPanel.ColumnCount = 3;
+            this.fundamentalFrequencyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.fundamentalFrequencyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.fundamentalFrequencyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.frameOverlappingTrackBar2, 1, 0);
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.panel2, 0, 0);
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyValueLabel, 2, 1);
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyChart, 0, 2);
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyLabel, 0, 1);
+            this.fundamentalFrequencyTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalFrequencyTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.fundamentalFrequencyTableLayoutPanel.Name = "fundamentalFrequencyTableLayoutPanel";
+            this.fundamentalFrequencyTableLayoutPanel.RowCount = 3;
+            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.fundamentalFrequencyTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
+            this.fundamentalFrequencyTableLayoutPanel.TabIndex = 0;
+            // 
+            // fundamentalFrequencyValueLabel
+            // 
+            this.fundamentalFrequencyValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.fundamentalFrequencyValueLabel.AutoSize = true;
+            this.fundamentalFrequencyValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.fundamentalFrequencyValueLabel.Location = new System.Drawing.Point(658, 36);
+            this.fundamentalFrequencyValueLabel.Name = "fundamentalFrequencyValueLabel";
+            this.fundamentalFrequencyValueLabel.Size = new System.Drawing.Size(27, 17);
+            this.fundamentalFrequencyValueLabel.TabIndex = 17;
+            this.fundamentalFrequencyValueLabel.Text = "Hz";
+            // 
+            // fundamentalFrequencyChart
+            // 
+            chartArea10.AxisX.MajorGrid.Enabled = false;
+            chartArea10.AxisX.Minimum = 0D;
+            chartArea10.AxisX.Title = "Time [s]";
+            chartArea10.AxisY.IsLabelAutoFit = false;
+            chartArea10.AxisY.MajorGrid.Enabled = false;
+            chartArea10.AxisY.MajorTickMark.Enabled = false;
+            chartArea10.AxisY.Title = "Frequency [Hz]";
+            chartArea10.Name = "ChartArea1";
+            this.fundamentalFrequencyChart.ChartAreas.Add(chartArea10);
+            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.fundamentalFrequencyChart, 3);
+            this.fundamentalFrequencyChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalFrequencyChart.Location = new System.Drawing.Point(3, 63);
+            this.fundamentalFrequencyChart.Name = "fundamentalFrequencyChart";
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series10.Color = System.Drawing.Color.Green;
+            series10.Legend = "Legend1";
+            series10.Name = "Series1";
+            this.fundamentalFrequencyChart.Series.Add(series10);
+            this.fundamentalFrequencyChart.Size = new System.Drawing.Size(1304, 445);
+            this.fundamentalFrequencyChart.TabIndex = 15;
+            // 
+            // fundamentalFrequencyLabel
+            // 
+            this.fundamentalFrequencyLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.fundamentalFrequencyLabel.AutoSize = true;
+            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.fundamentalFrequencyLabel, 2);
+            this.fundamentalFrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.fundamentalFrequencyLabel.Location = new System.Drawing.Point(487, 36);
+            this.fundamentalFrequencyLabel.Name = "fundamentalFrequencyLabel";
+            this.fundamentalFrequencyLabel.Size = new System.Drawing.Size(165, 17);
+            this.fundamentalFrequencyLabel.TabIndex = 16;
+            this.fundamentalFrequencyLabel.Text = "Fundamental Frequency:";
+            // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1155,68 +1231,47 @@ namespace SoundTimeParametersEvaluation
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
-            // fundamentalFrequencyTableLayoutPanel
+            // panel2
             // 
-            this.fundamentalFrequencyTableLayoutPanel.ColumnCount = 2;
-            this.fundamentalFrequencyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.fundamentalFrequencyTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.label1, 1, 0);
-            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyChart, 0, 1);
-            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyLabel, 0, 0);
-            this.fundamentalFrequencyTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalFrequencyTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.fundamentalFrequencyTableLayoutPanel.Name = "fundamentalFrequencyTableLayoutPanel";
-            this.fundamentalFrequencyTableLayoutPanel.RowCount = 2;
-            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.fundamentalFrequencyTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.fundamentalFrequencyTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
-            this.fundamentalFrequencyTableLayoutPanel.TabIndex = 0;
+            this.panel2.Controls.Add(this.frameOverlappingValueLabel2);
+            this.panel2.Controls.Add(this.frameOverlappingLabel2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(125, 24);
+            this.panel2.TabIndex = 18;
             // 
-            // fundamentalFrequencyChart
+            // frameOverlappingValueLabel2
             // 
-            chartArea10.AxisX.MajorGrid.Enabled = false;
-            chartArea10.AxisX.Minimum = 0D;
-            chartArea10.AxisX.Title = "Time [s]";
-            chartArea10.AxisY.IsLabelAutoFit = false;
-            chartArea10.AxisY.MajorGrid.Enabled = false;
-            chartArea10.AxisY.MajorTickMark.Enabled = false;
-            chartArea10.AxisY.Title = "Frequency [Hz]";
-            chartArea10.Name = "ChartArea1";
-            this.fundamentalFrequencyChart.ChartAreas.Add(chartArea10);
-            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.fundamentalFrequencyChart, 2);
-            this.fundamentalFrequencyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalFrequencyChart.Location = new System.Drawing.Point(3, 33);
-            this.fundamentalFrequencyChart.Name = "fundamentalFrequencyChart";
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series10.Color = System.Drawing.Color.Green;
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.fundamentalFrequencyChart.Series.Add(series10);
-            this.fundamentalFrequencyChart.Size = new System.Drawing.Size(1304, 511);
-            this.fundamentalFrequencyChart.TabIndex = 15;
+            this.frameOverlappingValueLabel2.AutoSize = true;
+            this.frameOverlappingValueLabel2.Location = new System.Drawing.Point(100, 4);
+            this.frameOverlappingValueLabel2.Name = "frameOverlappingValueLabel2";
+            this.frameOverlappingValueLabel2.Size = new System.Drawing.Size(22, 13);
+            this.frameOverlappingValueLabel2.TabIndex = 1;
+            this.frameOverlappingValueLabel2.Text = "0.5";
             // 
-            // fundamentalFrequencyLabel
+            // frameOverlappingLabel2
             // 
-            this.fundamentalFrequencyLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.fundamentalFrequencyLabel.AutoSize = true;
-            this.fundamentalFrequencyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fundamentalFrequencyLabel.Location = new System.Drawing.Point(487, 6);
-            this.fundamentalFrequencyLabel.Name = "fundamentalFrequencyLabel";
-            this.fundamentalFrequencyLabel.Size = new System.Drawing.Size(165, 17);
-            this.fundamentalFrequencyLabel.TabIndex = 16;
-            this.fundamentalFrequencyLabel.Text = "Fundamental Frequency:";
+            this.frameOverlappingLabel2.AutoSize = true;
+            this.frameOverlappingLabel2.Location = new System.Drawing.Point(4, 4);
+            this.frameOverlappingLabel2.Name = "frameOverlappingLabel2";
+            this.frameOverlappingLabel2.Size = new System.Drawing.Size(97, 13);
+            this.frameOverlappingLabel2.TabIndex = 0;
+            this.frameOverlappingLabel2.Text = "Frame overlapping:";
             // 
-            // label1
+            // frameOverlappingTrackBar2
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(658, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 17);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Hz";
+            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.frameOverlappingTrackBar2, 2);
+            this.frameOverlappingTrackBar2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.frameOverlappingTrackBar2.LargeChange = 10;
+            this.frameOverlappingTrackBar2.Location = new System.Drawing.Point(134, 3);
+            this.frameOverlappingTrackBar2.Maximum = 99;
+            this.frameOverlappingTrackBar2.Name = "frameOverlappingTrackBar2";
+            this.frameOverlappingTrackBar2.Size = new System.Drawing.Size(1173, 24);
+            this.frameOverlappingTrackBar2.SmallChange = 5;
+            this.frameOverlappingTrackBar2.TabIndex = 19;
+            this.frameOverlappingTrackBar2.Value = 50;
+            this.frameOverlappingTrackBar2.ValueChanged += new System.EventHandler(this.frameOverlappingTrackBar_ValueChanged);
             // 
             // MainForm
             // 
@@ -1261,11 +1316,14 @@ namespace SoundTimeParametersEvaluation
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar)).EndInit();
             this.fundamentalFrequencyTabPage.ResumeLayout(false);
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             this.fundamentalFrequencyTableLayoutPanel.ResumeLayout(false);
             this.fundamentalFrequencyTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1350,8 +1408,12 @@ namespace SoundTimeParametersEvaluation
         private OxyPlot.WindowsForms.PlotView spectrogramPlotView;
         private System.Windows.Forms.TableLayoutPanel fundamentalFrequencyTableLayoutPanel;
         private System.Windows.Forms.DataVisualization.Charting.Chart fundamentalFrequencyChart;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label fundamentalFrequencyLabel;
+        private System.Windows.Forms.TrackBar frameOverlappingTrackBar2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label frameOverlappingValueLabel2;
+        private System.Windows.Forms.Label frameOverlappingLabel2;
+        private System.Windows.Forms.Label fundamentalFrequencyValueLabel;
     }
 }
 

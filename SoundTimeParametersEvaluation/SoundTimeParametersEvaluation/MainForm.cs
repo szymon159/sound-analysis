@@ -25,6 +25,7 @@ namespace SoundTimeParametersEvaluation
         private double sampleRate;
         private CustomPoint[] parsedFile;
         private double frameOverlapping = 0.5;
+        private bool shouldUpdateTrackBarValue = true;
 
         private WindowType selectedWindowType = WindowType.Rectangular;
         private AnalysisType selectedAnalysisType = AnalysisType.SoundParameters;
@@ -209,7 +210,7 @@ namespace SoundTimeParametersEvaluation
         private void UpdateFundamentalFrequency()
         {
             var fundamentalFrequency = Calculator.CalculateFundamentalFrequency(parsedFile, selectedWindowType, frameOverlapping, samplesPerFrame, sampleRate, out double[] resultInFrame);
-            fundamentalFrequencyLabel.Text = fundamentalFrequency.ToString("N2");
+            fundamentalFrequencyValueLabel.Text = string.Format($"{fundamentalFrequency:N2} Hz");
             ChartHelper.UpdateFrameLevelChart(ref fundamentalFrequencyChart, resultInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
         }
 
@@ -336,11 +337,26 @@ namespace SoundTimeParametersEvaluation
 
         private void frameOverlappingTrackBar_ValueChanged(object sender, EventArgs e)
         {
+            if(!shouldUpdateTrackBarValue)
+            {
+                shouldUpdateTrackBarValue = true;
+                return;
+            }
+
+            shouldUpdateTrackBarValue = false;
+            var changedTrackBar = sender as TrackBar;
+            if (changedTrackBar == frameOverlappingTrackBar)
+                frameOverlappingTrackBar2.Value = changedTrackBar.Value;
+            else
+                frameOverlappingTrackBar.Value = changedTrackBar.Value;
+
             frameOverlapping = frameOverlappingTrackBar.Value / 100.0;
             frameOverlappingValueLabel.Text = frameOverlapping.ToString();
+            frameOverlappingValueLabel2.Text = frameOverlapping.ToString();
             shouldRecalculateChart[AnalysisType.Spectrum] = true;
+            shouldRecalculateChart[AnalysisType.FundamentalFrequency] = true;
             if (parsedFile != null && parsedFile.Length != 0)
-                UpdateAnalysisResults(AnalysisType.Spectrum);
+                UpdateAnalysisResults(selectedAnalysisType);
         }
 
         #endregion
