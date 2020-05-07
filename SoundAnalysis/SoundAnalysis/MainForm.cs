@@ -192,7 +192,7 @@ namespace SoundAnalysis
                     break;
             }
 
-            ChartHelper.UpdateCustomPointChart(ref fourierTransformChart, fourierResult);
+            ChartHelper.UpdateCustomPointChart(ref fourierPlotView, fourierResult, "Frequency [Hz]", "Magnitude", "Fourier Transform");
         }
 
         private void UpdateSpectrum()
@@ -205,7 +205,7 @@ namespace SoundAnalysis
         {
             var fundamentalFrequency = Calculator.CalculateFundamentalFrequency(parsedFile, selectedWindowType, frameOverlapping, samplesPerFrame, sampleRate, out CustomPoint[] transformResult);
             fundamentalFrequencyValueLabel.Text = string.Format($"{fundamentalFrequency:N2} Hz");
-            ChartHelper.UpdateCustomPointChart(ref fundamentalFrequencyChart, transformResult);
+            ChartHelper.UpdateCustomPointChart(ref fundamentalFrequencyPlotView, transformResult, "Time [s]", "Frequency [Hz]");
         }
 
         private void LoadFile(string filePath)

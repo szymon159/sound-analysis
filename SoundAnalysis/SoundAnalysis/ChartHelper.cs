@@ -27,12 +27,25 @@ namespace SoundAnalysis
             }
         }
 
-        internal static void UpdateCustomPointChart(ref Chart chart, CustomPoint[] points)
+        internal static void UpdateCustomPointChart(ref PlotView chart, CustomPoint[] points, string labelX, string labelY, string title = null)
         {
-            chart.Series[0].Points.Clear();
+            var chartPlotModel = new PlotModel
+            {
+                PlotType = PlotType.XY,
+                Background = OxyColors.White
+            };
+            if (!string.IsNullOrEmpty(title))
+                chartPlotModel.Title = title;
 
-            foreach(var point in points)
-                chart.Series[0].Points.AddXY(point.X, point.Y);
+            var series = new LineSeries();
+            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Title = labelY });
+            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Title = labelX });
+
+            foreach (var point in points)
+                series.Points.Add(new OxyPlot.DataPoint(point.X, point.Y));
+
+            chartPlotModel.Series.Add(series);
+            chart.Model = chartPlotModel;
         }
 
         internal static void UpdateSpectrogram(ref PlotView spectrogram, double[,] data, double lengthInSeconds, double sampleRate)

@@ -46,10 +46,6 @@ namespace SoundAnalysis
             System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -95,7 +91,6 @@ namespace SoundAnalysis
             this.vstdValueLabel = new System.Windows.Forms.Label();
             this.fourierTransformTabPage = new System.Windows.Forms.TabPage();
             this.fourierTransformTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.fourierTransformChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fourierTransformScopePanel = new System.Windows.Forms.Panel();
             this.oneFrameRadioButton = new System.Windows.Forms.RadioButton();
             this.wholeClipRadioButton = new System.Windows.Forms.RadioButton();
@@ -116,7 +111,6 @@ namespace SoundAnalysis
             this.frameOverlappingValueLabel2 = new System.Windows.Forms.Label();
             this.frameOverlappingLabel2 = new System.Windows.Forms.Label();
             this.fundamentalFrequencyValueLabel = new System.Windows.Forms.Label();
-            this.fundamentalFrequencyChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fundamentalFrequencyLabel = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,6 +128,8 @@ namespace SoundAnalysis
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fourierPlotView = new OxyPlot.WindowsForms.PlotView();
+            this.fundamentalFrequencyPlotView = new OxyPlot.WindowsForms.PlotView();
             this.mainLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.mpfGroupBox.SuspendLayout();
@@ -153,7 +149,6 @@ namespace SoundAnalysis
             this.timeParamsClipLevelTableLayoutPanel.SuspendLayout();
             this.fourierTransformTabPage.SuspendLayout();
             this.fourierTransformTableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fourierTransformChart)).BeginInit();
             this.fourierTransformScopePanel.SuspendLayout();
             this.fourierFrameTimePanel.SuspendLayout();
             this.spectrumTabPage.SuspendLayout();
@@ -164,7 +159,6 @@ namespace SoundAnalysis
             this.fundamentalFrequencyTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -832,9 +826,9 @@ namespace SoundAnalysis
             this.fourierTransformTableLayoutPanel.ColumnCount = 2;
             this.fourierTransformTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.fourierTransformTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierTransformChart, 0, 1);
             this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierTransformScopePanel, 0, 0);
             this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierFrameTimePanel, 1, 0);
+            this.fourierTransformTableLayoutPanel.Controls.Add(this.fourierPlotView, 0, 1);
             this.fourierTransformTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fourierTransformTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.fourierTransformTableLayoutPanel.Name = "fourierTransformTableLayoutPanel";
@@ -843,31 +837,6 @@ namespace SoundAnalysis
             this.fourierTransformTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.fourierTransformTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
             this.fourierTransformTableLayoutPanel.TabIndex = 12;
-            // 
-            // fourierTransformChart
-            // 
-            chartArea9.AxisX.Interval = 1000D;
-            chartArea9.AxisX.MajorGrid.Enabled = false;
-            chartArea9.AxisX.Minimum = 0D;
-            chartArea9.AxisX.Title = "Frequency [Hz]";
-            chartArea9.AxisY.IsLabelAutoFit = false;
-            chartArea9.AxisY.MajorGrid.Enabled = false;
-            chartArea9.AxisY.MajorTickMark.Enabled = false;
-            chartArea9.AxisY.Title = "Magnitute";
-            chartArea9.Name = "ChartArea1";
-            this.fourierTransformChart.ChartAreas.Add(chartArea9);
-            this.fourierTransformTableLayoutPanel.SetColumnSpan(this.fourierTransformChart, 2);
-            this.fourierTransformChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fourierTransformChart.Location = new System.Drawing.Point(3, 33);
-            this.fourierTransformChart.Name = "fourierTransformChart";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series9.Color = System.Drawing.Color.Green;
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.fourierTransformChart.Series.Add(series9);
-            this.fourierTransformChart.Size = new System.Drawing.Size(1304, 475);
-            this.fourierTransformChart.TabIndex = 11;
             // 
             // fourierTransformScopePanel
             // 
@@ -1042,8 +1011,8 @@ namespace SoundAnalysis
             this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.frameOverlappingTrackBar2, 1, 0);
             this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.panel2, 0, 0);
             this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyValueLabel, 2, 1);
-            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyChart, 0, 2);
             this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyLabel, 0, 1);
+            this.fundamentalFrequencyTableLayoutPanel.Controls.Add(this.fundamentalFrequencyPlotView, 0, 2);
             this.fundamentalFrequencyTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fundamentalFrequencyTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.fundamentalFrequencyTableLayoutPanel.Name = "fundamentalFrequencyTableLayoutPanel";
@@ -1108,30 +1077,6 @@ namespace SoundAnalysis
             this.fundamentalFrequencyValueLabel.Size = new System.Drawing.Size(27, 17);
             this.fundamentalFrequencyValueLabel.TabIndex = 17;
             this.fundamentalFrequencyValueLabel.Text = "Hz";
-            // 
-            // fundamentalFrequencyChart
-            // 
-            chartArea10.AxisX.MajorGrid.Enabled = false;
-            chartArea10.AxisX.Minimum = 0D;
-            chartArea10.AxisX.Title = "Time [s]";
-            chartArea10.AxisY.IsLabelAutoFit = false;
-            chartArea10.AxisY.MajorGrid.Enabled = false;
-            chartArea10.AxisY.MajorTickMark.Enabled = false;
-            chartArea10.AxisY.Title = "Frequency [Hz]";
-            chartArea10.Name = "ChartArea1";
-            this.fundamentalFrequencyChart.ChartAreas.Add(chartArea10);
-            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.fundamentalFrequencyChart, 3);
-            this.fundamentalFrequencyChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fundamentalFrequencyChart.Location = new System.Drawing.Point(3, 63);
-            this.fundamentalFrequencyChart.Name = "fundamentalFrequencyChart";
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series10.Color = System.Drawing.Color.Green;
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.fundamentalFrequencyChart.Series.Add(series10);
-            this.fundamentalFrequencyChart.Size = new System.Drawing.Size(1304, 445);
-            this.fundamentalFrequencyChart.TabIndex = 15;
             // 
             // fundamentalFrequencyLabel
             // 
@@ -1274,6 +1219,34 @@ namespace SoundAnalysis
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
+            // fourierPlotView
+            // 
+            this.fourierPlotView.BackColor = System.Drawing.Color.White;
+            this.fourierTransformTableLayoutPanel.SetColumnSpan(this.fourierPlotView, 2);
+            this.fourierPlotView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fourierPlotView.Location = new System.Drawing.Point(3, 33);
+            this.fourierPlotView.Name = "fourierPlotView";
+            this.fourierPlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fourierPlotView.Size = new System.Drawing.Size(1304, 475);
+            this.fourierPlotView.TabIndex = 14;
+            this.fourierPlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fourierPlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fourierPlotView.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
+            // fundamentalFrequencyPlotView
+            // 
+            this.fundamentalFrequencyPlotView.BackColor = System.Drawing.Color.White;
+            this.fundamentalFrequencyTableLayoutPanel.SetColumnSpan(this.fundamentalFrequencyPlotView, 3);
+            this.fundamentalFrequencyPlotView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fundamentalFrequencyPlotView.Location = new System.Drawing.Point(3, 63);
+            this.fundamentalFrequencyPlotView.Name = "fundamentalFrequencyPlotView";
+            this.fundamentalFrequencyPlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.fundamentalFrequencyPlotView.Size = new System.Drawing.Size(1304, 445);
+            this.fundamentalFrequencyPlotView.TabIndex = 20;
+            this.fundamentalFrequencyPlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.fundamentalFrequencyPlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.fundamentalFrequencyPlotView.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1306,7 +1279,6 @@ namespace SoundAnalysis
             this.timeParamsClipLevelTableLayoutPanel.PerformLayout();
             this.fourierTransformTabPage.ResumeLayout(false);
             this.fourierTransformTableLayoutPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fourierTransformChart)).EndInit();
             this.fourierTransformScopePanel.ResumeLayout(false);
             this.fourierTransformScopePanel.PerformLayout();
             this.fourierFrameTimePanel.ResumeLayout(false);
@@ -1323,7 +1295,6 @@ namespace SoundAnalysis
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fundamentalFrequencyChart)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -1393,7 +1364,6 @@ namespace SoundAnalysis
         private System.Windows.Forms.TableLayoutPanel timeParamsTableLayoutPanel;
         private System.Windows.Forms.TabPage fourierTransformTabPage;
         private System.Windows.Forms.TabPage spectrumTabPage;
-        private System.Windows.Forms.DataVisualization.Charting.Chart fourierTransformChart;
         private System.Windows.Forms.TableLayoutPanel fourierTransformTableLayoutPanel;
         private System.Windows.Forms.Panel fourierTransformScopePanel;
         private System.Windows.Forms.RadioButton oneFrameRadioButton;
@@ -1409,13 +1379,14 @@ namespace SoundAnalysis
         private System.Windows.Forms.TabPage fundamentalFrequencyTabPage;
         private OxyPlot.WindowsForms.PlotView spectrogramPlotView;
         private System.Windows.Forms.TableLayoutPanel fundamentalFrequencyTableLayoutPanel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart fundamentalFrequencyChart;
         private System.Windows.Forms.Label fundamentalFrequencyLabel;
         private System.Windows.Forms.TrackBar frameOverlappingTrackBar2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label frameOverlappingValueLabel2;
         private System.Windows.Forms.Label frameOverlappingLabel2;
         private System.Windows.Forms.Label fundamentalFrequencyValueLabel;
+        private OxyPlot.WindowsForms.PlotView fourierPlotView;
+        private OxyPlot.WindowsForms.PlotView fundamentalFrequencyPlotView;
     }
 }
 
