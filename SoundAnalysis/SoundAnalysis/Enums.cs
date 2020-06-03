@@ -36,10 +36,11 @@
 
     public enum AnalysisType
     {
-        SoundParameters,
+        SoundTimeParameters,
         Fourier,
         Spectrum,
-        FundamentalFrequency
+        FundamentalFrequency,
+        SoundFrequencyParameters
     }
 
     public enum FourierTransfromScope

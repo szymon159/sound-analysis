@@ -9,7 +9,7 @@ namespace SoundAnalysis
 {
     public static class Calculator
     {
-        public static double CalculateFrameLevelParameter(FrameLevelParamType parameter, CustomPoint[] parsedFile, int samplesPerFrame, double sampleRate, out double[] resultInFrame)
+        public static double CalculateFrameLevelParameter(FrameLevelParamType parameter, CustomPoint[] parsedFile, int samplesPerFrame, double sampleRate, out double[] resultInFrames)
         {
             int framesCount = parsedFile.Length / samplesPerFrame;
             if (parsedFile.Length % samplesPerFrame != 0)
@@ -18,21 +18,21 @@ namespace SoundAnalysis
             switch (parameter)
             {
                 case FrameLevelParamType.Volume:
-                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame, true);
+                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrames, true);
                 case FrameLevelParamType.ShortTimeEnergy:
-                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrame);
+                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrames);
                 case FrameLevelParamType.ZeroCrossingRate:
-                    return GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                    return GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 case FrameLevelParamType.SilentRatio:
-                    return GetSilentRatio(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                    return GetSilentRatio(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 case FrameLevelParamType.SoundlessSpeech:
-                    return GetSoundlessSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                    return GetSoundlessSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 case FrameLevelParamType.SoundSpeech:
-                    return GetSoundSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                    return GetSoundSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 case FrameLevelParamType.Music:
-                    return GetMusic(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrame);
+                    return GetMusic(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 default:
-                    resultInFrame = new double[framesCount];
+                    resultInFrames = new double[framesCount];
                     return 0.0;
             }
         }
@@ -53,6 +53,8 @@ namespace SoundAnalysis
                     return 0.0;
             }
         }
+
+        #region Frequency Analysis
 
         public static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
         {
@@ -151,12 +153,14 @@ namespace SoundAnalysis
             return (float)transformResult.Max(point => point.Y);
         }
 
+        #endregion
+
         #region Time Parameters
 
-        private static double GetEnergy(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrame, bool takeRoot = false)
+        private static double GetEnergy(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrames, bool takeRoot = false)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             for (int i = 0; i < framesCount; i++)
             {
@@ -173,22 +177,22 @@ namespace SoundAnalysis
                 }
 
                 // Operations for each frame
-                resultInFrame[i] = squaredSum / samplesPerFrame;
+                resultInFrames[i] = squaredSum / samplesPerFrame;
                 if (takeRoot)
-                    resultInFrame[i] = Math.Sqrt(resultInFrame[i]);
+                    resultInFrames[i] = Math.Sqrt(resultInFrames[i]);
                 //
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
             return avgResult;
         }
 
-        private static double GetZeroCrossingRate(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        private static double GetZeroCrossingRate(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrames)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             for (int i = 0; i < framesCount; i++)
             {
@@ -214,20 +218,20 @@ namespace SoundAnalysis
                 }
 
                 // Operations for each frame
-                resultInFrame[i] = squaredSum / (2.0 * samplesPerFrame);
+                resultInFrames[i] = squaredSum / (2.0 * samplesPerFrame);
                 //
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
             return avgResult;
         }
 
-        private static double GetSilentRatio(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        private static double GetSilentRatio(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrames)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] volumeResultInFrame, true);
             GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out double[] zcrResultInFrame);
@@ -236,20 +240,20 @@ namespace SoundAnalysis
             {
                 // Operations for each frame
                 if (volumeResultInFrame[i] < 0.005 && zcrResultInFrame[i] < 0.1)
-                    resultInFrame[i] = 1;
+                    resultInFrames[i] = 1;
                 //
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
             return avgResult;
         }
 
-        private static double GetSoundlessSpeech(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        private static double GetSoundlessSpeech(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrames)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] energyResultInFrame);
             GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out double[] zcrResultInFrame);
@@ -258,20 +262,20 @@ namespace SoundAnalysis
             {
                 // Operations for each frame
                 if (energyResultInFrame[i] < 0.001 && zcrResultInFrame[i] < 0.1)
-                    resultInFrame[i] = 1;
+                    resultInFrames[i] = 1;
                 //
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
             return avgResult;
         }
 
-        private static double GetSoundSpeech(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        private static double GetSoundSpeech(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrames)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] energyResultInFrame);
             GetZeroCrossingRate(parsedFile, samplesPerFrame, framesCount, sampleRate, out double[] zcrResultInFrame);
@@ -280,20 +284,20 @@ namespace SoundAnalysis
             {
                 // Operations for each frame
                 if (energyResultInFrame[i] > 0.001 && zcrResultInFrame[i] < 0.1)
-                    resultInFrame[i] = 1;
+                    resultInFrames[i] = 1;
                 //  
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
             return avgResult;
         }
 
-        private static double GetMusic(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrame)
+        private static double GetMusic(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, double sampleRate, out double[] resultInFrames)
         {
             double avgResult = 0.0f;
-            resultInFrame = new double[framesCount];
+            resultInFrames = new double[framesCount];
 
             GetEnergy(parsedFile, samplesPerFrame, framesCount, out double[] energyResultInFrame);
             GetEnergy(parsedFile, (int)sampleRate, framesCount, out double[] energyInOneSecFrame);
@@ -305,10 +309,10 @@ namespace SoundAnalysis
             {
                 // Operations for each frame
                 if (energyResultInFrame[i] > 0.001 && zcrResultInFrame[i] > 0.1)
-                    resultInFrame[i] = 1;
+                    resultInFrames[i] = 1;
                 //  
 
-                avgResult += resultInFrame[i];
+                avgResult += resultInFrames[i];
             }
 
             avgResult /= framesCount;
@@ -365,7 +369,7 @@ namespace SoundAnalysis
 
         #endregion
 
-        #region Frequency Analysis
+        #region Fourier Helpers
 
         private static Complex32[] GetSamplesForFourier(IEnumerable<CustomPoint> samplesToTransform, WindowType selectedWindowType, out int newSamplesCount)
         {
