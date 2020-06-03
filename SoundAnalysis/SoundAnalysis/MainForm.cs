@@ -279,7 +279,7 @@ namespace SoundAnalysis
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var shouldShowWindowType = mainTabControl.SelectedIndex != 0;
+            var shouldShowWindowType = mainTabControl.SelectedIndex > 0 && mainTabControl.SelectedIndex < 4;
 
             windowTypeGroupBox.Visible = shouldShowWindowType;
             windowTypeComboBox.Visible = shouldShowWindowType;
@@ -331,7 +331,10 @@ namespace SoundAnalysis
         private void windowTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedWindowType = (WindowType)windowTypeComboBox.SelectedIndex;
-            InvalidateCharts();
+
+            shouldRecalculateChart[AnalysisType.Fourier] = true;
+            shouldRecalculateChart[AnalysisType.Spectrum] = true;
+            shouldRecalculateChart[AnalysisType.FundamentalFrequency] = true;
         }
 
         private void frameOverlappingTrackBar_ValueChanged(object sender, EventArgs e)
