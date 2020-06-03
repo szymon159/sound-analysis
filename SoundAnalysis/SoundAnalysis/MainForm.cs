@@ -228,7 +228,7 @@ namespace SoundAnalysis
                     double timeInSeconds = i / sampleRate;
                     parsedFile[i] = new CustomPoint(timeInSeconds, wholeFile[i]);
 
-                    chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
+                    recordingChart.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace SoundAnalysis
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var filePath = openFileDialog.FileName;
-                chart1.Series[0].Points.Clear();
+                recordingChart.Series[0].Points.Clear();
 
                 LoadFile(filePath);
                 UpdateAnalysisResults(selectedAnalysisType);
