@@ -9,7 +9,7 @@ namespace SoundAnalysis
 {
     public static class ChartHelper
     {
-        public static void UpdateFrameLevelChart(ref PlotView chart, double[] valueInFrame, int samplesPerFrame, int samplesCount, double sampleRate, out CustomPoint[] resultPoints)
+        public static void UpdateFrameLevelChart(ref PlotView chart, double[] valueInFrame, int samplesPerFrame, int samplesCount, double sampleRate, out CustomPoint[] resultPoints, bool displayAxes = false)
         {
             resultPoints = new CustomPoint[valueInFrame.Length];
 
@@ -21,8 +21,8 @@ namespace SoundAnalysis
 
             var series = new LineSeries();
             var chartMaxY = 1.2 * valueInFrame.Max();
-            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, IsAxisVisible = false, Maximum = chartMaxY });
-            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, IsAxisVisible = false });
+            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, IsAxisVisible = displayAxes, Maximum = chartMaxY });
+            chartPlotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, IsAxisVisible = displayAxes });
 
             int frameCenter = -samplesPerFrame / 2;
             int samplesInLastFrame = samplesCount % samplesPerFrame;

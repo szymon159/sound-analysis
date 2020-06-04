@@ -8,7 +8,10 @@
         SilentRatio,
         SoundlessSpeech,
         SoundSpeech,
-        Music
+        Music,
+        FrequencyVolume,
+        FrequencyCentroid,
+        EffectiveBandwidth
     }
 
     public enum ClipLevelParamType

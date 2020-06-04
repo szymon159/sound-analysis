@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SoundAnalysis
 {
@@ -51,6 +50,9 @@ namespace SoundAnalysis
             charts.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechPlotView);
             charts.Add(FrameLevelParamType.SoundSpeech, soundSpeechPlotView);
             charts.Add(FrameLevelParamType.Music, musicPlotView);
+            charts.Add(FrameLevelParamType.FrequencyVolume, freqVolumePlotView);
+            charts.Add(FrameLevelParamType.FrequencyCentroid, fcPlotView);
+            charts.Add(FrameLevelParamType.EffectiveBandwidth, bwPlotView);
 
             chartLabels = new Dictionary<FrameLevelParamType, Label>();
             chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
@@ -60,6 +62,9 @@ namespace SoundAnalysis
             chartLabels.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechValueLabel);
             chartLabels.Add(FrameLevelParamType.SoundSpeech, soundSpeechValueLabel);
             chartLabels.Add(FrameLevelParamType.Music, musicValueLabel);
+            chartLabels.Add(FrameLevelParamType.FrequencyVolume, freqVolumeValueLabel);
+            chartLabels.Add(FrameLevelParamType.FrequencyCentroid, fcValueLabel);
+            chartLabels.Add(FrameLevelParamType.EffectiveBandwidth, bwValueLabel);
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
@@ -95,6 +100,26 @@ namespace SoundAnalysis
             UpdateClipLevelParameter(ClipLevelParamType.HighZeroCrossingRateRatio, volume, energy, zeroCrossingRate);
 
             UpdateStatistics(silencePoints, soundlessSpeechPoints, soundSpeechPoints, musicPoints);
+        }
+
+        private void UpdateFrequencyParameters()
+        {
+            var framesCount = parsedFile.Length / samplesPerFrame;
+
+            var avgVolume = Calculator.CalculateFrequencyVolume(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] volume);
+            chartLabels[FrameLevelParamType.FrequencyVolume].Text = avgVolume.ToString("0.00");
+            var volumeChart = charts[FrameLevelParamType.FrequencyVolume];
+            ChartHelper.UpdateFrameLevelChart(ref volumeChart, volume, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgFrequencyCentroid = Calculator.CalculateFrequencyCentroid(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] frequencyCentroid);
+            chartLabels[FrameLevelParamType.FrequencyCentroid].Text = avgFrequencyCentroid.ToString("0.00");
+            var fcChart = charts[FrameLevelParamType.FrequencyCentroid];
+            ChartHelper.UpdateFrameLevelChart(ref fcChart, frequencyCentroid, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgBandwidth = Calculator.CalculateEffectiveBandwith(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, frequencyCentroid, out double[] effectiveBandwith);
+            chartLabels[FrameLevelParamType.EffectiveBandwidth].Text = avgBandwidth.ToString("0.00");
+            var bwChart = charts[FrameLevelParamType.EffectiveBandwidth];
+            ChartHelper.UpdateFrameLevelChart(ref bwChart, effectiveBandwith, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
         }
 
         private void UpdateFrameLevelParameter(FrameLevelParamType parameter, out CustomPoint[] resultPoints)
@@ -176,6 +201,7 @@ namespace SoundAnalysis
                     UpdateFundamentalFrequency();
                     break;
                 case AnalysisType.SoundFrequencyParameters:
+                    UpdateFrequencyParameters();
                     break;
             }
 
@@ -294,6 +320,7 @@ namespace SoundAnalysis
         {
             selectedFourierTransfromScope = FourierTransfromScope.OneFrame;
             frameStartTextBox.Enabled = true;
+
             shouldRecalculateChart[AnalysisType.Fourier] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(AnalysisType.Fourier);
@@ -303,6 +330,7 @@ namespace SoundAnalysis
         {
             selectedFourierTransfromScope = FourierTransfromScope.WholeClip;
             frameStartTextBox.Enabled = false;
+
             shouldRecalculateChart[AnalysisType.Fourier] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(AnalysisType.Fourier);

@@ -18,7 +18,7 @@ namespace SoundAnalysis
             switch (parameter)
             {
                 case FrameLevelParamType.Volume:
-                    return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrames, true);
+                    return GetVolume(parsedFile, samplesPerFrame, framesCount, out resultInFrames);
                 case FrameLevelParamType.ShortTimeEnergy:
                     return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrames);
                 case FrameLevelParamType.ZeroCrossingRate:
@@ -31,7 +31,7 @@ namespace SoundAnalysis
                     return GetSoundSpeech(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
                 case FrameLevelParamType.Music:
                     return GetMusic(parsedFile, samplesPerFrame, framesCount, sampleRate, out resultInFrames);
-                default:
+               default:
                     resultInFrames = new double[framesCount];
                     return 0.0;
             }
@@ -87,7 +87,7 @@ namespace SoundAnalysis
             for (int i = 0; i < (newSamplesCount / 2); i++)
             {
                 transformResult[i].X = i * herzPerSample;
-                transformResult[i].Y = 10 * Math.Log10(transformData[i].MagnitudeSquared());
+                transformResult[i].Y = Math.Log10(transformData[i].MagnitudeSquared()) + 10;
             }
         }
 
@@ -155,7 +155,110 @@ namespace SoundAnalysis
 
         #endregion
 
+        #region Frequency Parameters
+
+        public static double CalculateFrequencyVolume(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, int samplesPerFrame, int framesCount, out double[] resultInFrames)
+        {
+            resultInFrames = new double[framesCount];
+            var sampleIndex = 0;
+            var average = 0.0;
+
+            // Need to shift all the values so that min value is set to 0 
+            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
+            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult, samplesPerFrame, sampleIndex);
+
+                foreach (var spectrumPoint in transformResult)
+                {
+                    var spectrumValue = spectrumPoint.Y + shift;
+                    resultInFrames[i] += spectrumValue * spectrumValue;
+                }
+                resultInFrames[i] /= transformResult.Length;
+                average += resultInFrames[i];
+
+                sampleIndex += samplesPerFrame;
+            }
+
+            return average / framesCount;
+        }
+
+        public static double CalculateFrequencyCentroid(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, int samplesPerFrame, int framesCount, out double[] resultInFrames)
+        {
+            resultInFrames = new double[framesCount];
+            var sampleIndex = 0;
+            var average = 0.0;
+
+            // Need to shift all the values so that min value is set to 0 
+            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
+            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult, samplesPerFrame, sampleIndex);
+
+                double nominator = 0.0;
+                double denominator = 0.0;
+                foreach (var spectrumPoint in transformResult)
+                {
+                    var spectrumValue = spectrumPoint.Y + shift;
+
+                    nominator += spectrumPoint.X * spectrumValue;
+                    denominator += spectrumValue;
+                }
+                resultInFrames[i] = nominator / denominator;
+                average += resultInFrames[i];
+
+                sampleIndex += samplesPerFrame;
+            }
+
+            return average / framesCount;
+        }
+
+        public static double CalculateEffectiveBandwith(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, int samplesPerFrame, int framesCount, double[] frequencyCentroid, out double[] resultInFrames)
+        {
+            resultInFrames = new double[framesCount];
+            var sampleIndex = 0;
+            var average = 0.0;
+
+            // Need to shift all the values so that min value is set to 0 
+            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
+            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult, samplesPerFrame, sampleIndex);
+
+                double nominator = 0.0;
+                double denominator = 0.0;
+                foreach (var spectrumPoint in transformResult)
+                {
+                    var spectrumValue = spectrumPoint.Y + shift;
+
+                    nominator += Math.Pow((spectrumPoint.X - frequencyCentroid[i]) * spectrumValue, 2);
+                    denominator += spectrumValue * spectrumValue;
+                }
+                resultInFrames[i] = Math.Sqrt(nominator / denominator);
+                average += resultInFrames[i];
+
+                sampleIndex += samplesPerFrame;
+            }
+
+            return average / framesCount;
+        }
+
+        #endregion
+
         #region Time Parameters
+
+        private static double GetVolume(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrames)
+        {
+            // Volume is almost the same as energy but the square root should be applied to result in each frame 
+            // Call with the parameter takeRoot set to true
+            return GetEnergy(parsedFile, samplesPerFrame, framesCount, out resultInFrames, true);
+        }
 
         private static double GetEnergy(CustomPoint[] parsedFile, int samplesPerFrame, int framesCount, out double[] resultInFrames, bool takeRoot = false)
         {
