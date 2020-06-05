@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Windows.Forms.DataVisualization.Charting;
+﻿using OxyPlot;
+using System.Linq;
 
 namespace SoundAnalysis
 {
@@ -16,8 +16,13 @@ namespace SoundAnalysis
 
         public CustomPoint(DataPoint point)
         {
-            X = point.XValue;
-            Y = point.YValues.Single();
+            X = point.X;
+            Y = point.Y;
+        }
+
+        public DataPoint ToOxyPlotDataPoint()
+        {
+            return new DataPoint(X, Y);
         }
     }
 }

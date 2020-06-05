@@ -1,30 +1,34 @@
 ﻿using NAudio.Wave;
+using OxyPlot.WindowsForms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SoundAnalysis
 {
     public partial class MainForm : Form
     {
-        private Dictionary<FrameLevelParamType, Chart> charts;
+        private CustomPoint[] parsedFile;
+
+        private Dictionary<FrameLevelParamType, PlotView> charts;
         private Dictionary<FrameLevelParamType, Label> chartLabels;
         private Dictionary<ClipLevelParamType, Label> labels;
         private Dictionary<AnalysisType, bool> shouldRecalculateChart;
 
-        private int milisecondsPerFrame = 40;
+        private int milisecondsPerFrame = 20;
         private int samplesPerFrame;
         private double sampleRate;
-        private CustomPoint[] parsedFile;
         private double frameOverlapping = 0.5;
         private bool shouldUpdateTrackBarValue = true;
+        private double selectedFrameStartTime = 0.0;
+        private int bandStart = 0;
+        private int bandEnd = 100;
 
         private WindowType selectedWindowType = WindowType.Rectangular;
-        private AnalysisType selectedAnalysisType = AnalysisType.SoundParameters;
+        private AnalysisType selectedAnalysisType = AnalysisType.SoundTimeParameters;
         private FourierTransfromScope selectedFourierTransfromScope = FourierTransfromScope.WholeClip;
-        private double selectedFrameStartTime = 0.0;
 
         private Statistics statistics;
 
@@ -33,21 +37,25 @@ namespace SoundAnalysis
             InitializeComponent();
             InitializeCollections();
 
-            UpdateMPFTextBox();
+            UpdateTextBoxes();
         }
 
         private void InitializeCollections()
         {
             statistics = new Statistics();
-
-            charts = new Dictionary<FrameLevelParamType, Chart>();
-            charts.Add(FrameLevelParamType.Volume, volumeChart);
-            charts.Add(FrameLevelParamType.ShortTimeEnergy, steChart);
-            charts.Add(FrameLevelParamType.ZeroCrossingRate, zcrChart);
-            charts.Add(FrameLevelParamType.SilentRatio, silenceChart);
-            charts.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechChart);
-            charts.Add(FrameLevelParamType.SoundSpeech, soundSpeechChart);
-            charts.Add(FrameLevelParamType.Music, musicChart);
+        
+            charts = new Dictionary<FrameLevelParamType, PlotView>();
+            charts.Add(FrameLevelParamType.Volume, volumePlotView);
+            charts.Add(FrameLevelParamType.ShortTimeEnergy, stePlotView);
+            charts.Add(FrameLevelParamType.ZeroCrossingRate, zcrPlotView);
+            charts.Add(FrameLevelParamType.SilentRatio, silencePlotView);
+            charts.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechPlotView);
+            charts.Add(FrameLevelParamType.SoundSpeech, soundSpeechPlotView);
+            charts.Add(FrameLevelParamType.Music, musicPlotView);
+            charts.Add(FrameLevelParamType.FrequencyVolume, freqVolumePlotView);
+            charts.Add(FrameLevelParamType.FrequencyCentroid, fcPlotView);
+            charts.Add(FrameLevelParamType.EffectiveBandwidth, bwPlotView);
+            charts.Add(FrameLevelParamType.BandEnergy, bePlotView);
 
             chartLabels = new Dictionary<FrameLevelParamType, Label>();
             chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
@@ -57,6 +65,10 @@ namespace SoundAnalysis
             chartLabels.Add(FrameLevelParamType.SoundlessSpeech, soundlessSpeechValueLabel);
             chartLabels.Add(FrameLevelParamType.SoundSpeech, soundSpeechValueLabel);
             chartLabels.Add(FrameLevelParamType.Music, musicValueLabel);
+            chartLabels.Add(FrameLevelParamType.FrequencyVolume, freqVolumeValueLabel);
+            chartLabels.Add(FrameLevelParamType.FrequencyCentroid, fcValueLabel);
+            chartLabels.Add(FrameLevelParamType.EffectiveBandwidth, bwValueLabel);
+            chartLabels.Add(FrameLevelParamType.BandEnergy, beValueLabel);
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
@@ -65,41 +77,68 @@ namespace SoundAnalysis
             labels.Add(ClipLevelParamType.HighZeroCrossingRateRatio, hzcrrValueLabel);
 
             shouldRecalculateChart = new Dictionary<AnalysisType, bool>();
-            shouldRecalculateChart.Add(AnalysisType.SoundParameters, true);
+            shouldRecalculateChart.Add(AnalysisType.SoundTimeParameters, true);
             shouldRecalculateChart.Add(AnalysisType.Fourier, true);
             shouldRecalculateChart.Add(AnalysisType.Spectrum, true);
             shouldRecalculateChart.Add(AnalysisType.FundamentalFrequency, true);
+            shouldRecalculateChart.Add(AnalysisType.SoundFrequencyParameters, true);
         }
 
         private void UpdateTimeParameters()
         {
-            UpdateFrameLevelParameter(FrameLevelParamType.Volume);
-            UpdateFrameLevelParameter(FrameLevelParamType.ShortTimeEnergy);
-            UpdateFrameLevelParameter(FrameLevelParamType.ZeroCrossingRate);
-            UpdateFrameLevelParameter(FrameLevelParamType.SilentRatio);
-            UpdateFrameLevelParameter(FrameLevelParamType.SoundlessSpeech);
-            UpdateFrameLevelParameter(FrameLevelParamType.SoundSpeech);
-            UpdateFrameLevelParameter(FrameLevelParamType.Music);
+            UpdateFrameLevelParameter(FrameLevelParamType.Volume, out CustomPoint[] volumePoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.ShortTimeEnergy, out CustomPoint[] energyPoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.ZeroCrossingRate, out CustomPoint[] zeroCrossingRatePoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.SilentRatio, out CustomPoint[] silencePoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.SoundlessSpeech, out CustomPoint[] soundlessSpeechPoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.SoundSpeech, out CustomPoint[] soundSpeechPoints);
+            UpdateFrameLevelParameter(FrameLevelParamType.Music, out CustomPoint[] musicPoints);
 
-            var volume = volumeChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
-            var energy = steChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
-            var zeroCrossingRate = zcrChart.Series[0].Points.SelectMany(point => point.YValues).ToArray();
+            var volume = volumePoints.Select(p => p.Y).ToArray();
+            var energy = energyPoints.Select(p => p.Y).ToArray();
+            var zeroCrossingRate = zeroCrossingRatePoints.Select(p => p.Y).ToArray();
 
             UpdateClipLevelParameter(ClipLevelParamType.VolumeStandardDeviation, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.VolumeDynamicRange, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.LowShortTimeEnergyRatio, volume, energy, zeroCrossingRate);
             UpdateClipLevelParameter(ClipLevelParamType.HighZeroCrossingRateRatio, volume, energy, zeroCrossingRate);
 
-            UpdateStatistics();
+            UpdateStatistics(silencePoints, soundlessSpeechPoints, soundSpeechPoints, musicPoints);
         }
 
-        private void UpdateFrameLevelParameter(FrameLevelParamType parameter)
+        private void UpdateFrequencyParameters()
         {
-            double result = Calculator.CalculateFrameLevelParameter(parameter, parsedFile, samplesPerFrame, sampleRate, out double[] valueInFrame);
+            var framesCount = parsedFile.Length / samplesPerFrame;
+
+            Calculator.CalculateFrequencyVolume(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] volume);
+            var avgVolume = Calculator.Normalize(ref volume);
+            chartLabels[FrameLevelParamType.FrequencyVolume].Text = avgVolume.ToString("0.00");
+            var volumeChart = charts[FrameLevelParamType.FrequencyVolume];
+            ChartHelper.UpdateFrameLevelChart(ref volumeChart, volume, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgFrequencyCentroid = Calculator.CalculateFrequencyCentroid(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] frequencyCentroid);
+            chartLabels[FrameLevelParamType.FrequencyCentroid].Text = avgFrequencyCentroid.ToString("0.00");
+            var fcChart = charts[FrameLevelParamType.FrequencyCentroid];
+            ChartHelper.UpdateFrameLevelChart(ref fcChart, frequencyCentroid, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgBandwidth = Calculator.CalculateEffectiveBandwith(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, frequencyCentroid, out double[] effectiveBandwith);
+            chartLabels[FrameLevelParamType.EffectiveBandwidth].Text = avgBandwidth.ToString("0.00");
+            var bwChart = charts[FrameLevelParamType.EffectiveBandwidth];
+            ChartHelper.UpdateFrameLevelChart(ref bwChart, effectiveBandwith, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgEnergy = Calculator.CalculateBandEnergy(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, bandStart, bandEnd, out double[] bandEnergy);
+            chartLabels[FrameLevelParamType.BandEnergy].Text = avgEnergy.ToString("0.00");
+            var beChart = charts[FrameLevelParamType.BandEnergy];
+            ChartHelper.UpdateFrameLevelChart(ref beChart, bandEnergy, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+        }
+
+        private void UpdateFrameLevelParameter(FrameLevelParamType parameter, out CustomPoint[] resultPoints)
+        {
+            double result = Calculator.CalculateFrameLevelParameter(parameter, parsedFile, samplesPerFrame, sampleRate, out double[] valueInFrames);
             chartLabels[parameter].Text = result.ToString("0.000");
 
             var chart = charts[parameter];
-            ChartHelper.UpdateFrameLevelChart(ref chart, valueInFrame, samplesPerFrame, parsedFile.Length, sampleRate);
+            ChartHelper.UpdateFrameLevelChart(ref chart, valueInFrames, samplesPerFrame, parsedFile.Length, sampleRate, out resultPoints);
         }
 
         private void UpdateClipLevelParameter(ClipLevelParamType parameter, double[] volume, double[] energy, double[] zeroCrossingRate)
@@ -108,17 +147,17 @@ namespace SoundAnalysis
             labels[parameter].Text = result.ToString("0.000");
         }
 
-        private void UpdateStatistics()
+        private void UpdateStatistics(CustomPoint[] silencePoints, CustomPoint[] soundlessSpeechPoints, CustomPoint[] soundSpeechPoints, CustomPoint[] musicPoints)
         {
             statistics.Clear();
-            int framesCount = silenceChart.Series[0].Points.Count;
+            int framesCount = silencePoints.Length;
 
             for (int i = 0; i < framesCount; i++)
             {
-                var silencePoint = new CustomPoint(silenceChart.Series[0].Points[i]);
-                var soundlessSoundPoint = new CustomPoint(soundlessSpeechChart.Series[0].Points[i]);
-                var soundPoint = new CustomPoint(soundSpeechChart.Series[0].Points[i]);
-                var musicPoint = new CustomPoint(musicChart.Series[0].Points[i]);
+                var silencePoint = silencePoints[i];
+                var soundlessSoundPoint = soundlessSpeechPoints[i];
+                var soundPoint = soundSpeechPoints[i];
+                var musicPoint = musicPoints[i];
                 if (silencePoint.Y == 1)
                     statistics.AddMarkerByType(StatisticsType.Silence, TimeMarker.FromSample(silencePoint.X, milisecondsPerFrame));
                 if (soundlessSoundPoint.Y == 1)
@@ -130,9 +169,26 @@ namespace SoundAnalysis
             }
         }
 
+        private void UpdateTextBoxes()
+        {
+            UpdateMPFTextBox();
+            UpdateBandStartTextBox();
+            UpdateBandEndTextBox();
+        }
+
         private void UpdateMPFTextBox()
         {
             mpfTextBox.Text = milisecondsPerFrame.ToString();
+        }
+
+        private void UpdateBandStartTextBox()
+        {
+            bandStartTextBox.Text = bandStart.ToString();
+        }
+
+        private void UpdateBandEndTextBox()
+        {
+            bandEndTextBox.Text = bandEnd.ToString();
         }
 
         private void UpdateMPFValue()
@@ -159,7 +215,7 @@ namespace SoundAnalysis
         {
             switch(analysisType)
             {
-                case AnalysisType.SoundParameters:
+                case AnalysisType.SoundTimeParameters:
                     UpdateTimeParameters();
                     break;
                 case AnalysisType.Fourier:
@@ -170,6 +226,9 @@ namespace SoundAnalysis
                     break;
                 case AnalysisType.FundamentalFrequency:
                     UpdateFundamentalFrequency();
+                    break;
+                case AnalysisType.SoundFrequencyParameters:
+                    UpdateFrequencyParameters();
                     break;
             }
 
@@ -220,6 +279,7 @@ namespace SoundAnalysis
                     wholeFile.AddRange(readBuffer.Take(samplesRead));
                 }
 
+                var fileName = Path.GetFileName(filePath);
                 parsedFile = new CustomPoint[wholeFile.Count];
                 sampleRate = audioFileReader.WaveFormat.SampleRate;
                 samplesPerFrame = milisecondsPerFrame * audioFileReader.WaveFormat.SampleRate / 1000;
@@ -227,9 +287,8 @@ namespace SoundAnalysis
                 {
                     double timeInSeconds = i / sampleRate;
                     parsedFile[i] = new CustomPoint(timeInSeconds, wholeFile[i]);
-
-                    chart1.Series[0].Points.AddXY(parsedFile[i].X, parsedFile[i].Y);
                 }
+                ChartHelper.UpdateCustomPointChart(ref recordingPlotView, parsedFile, "Time [s]", "", fileName);
             }
         }
 
@@ -245,7 +304,6 @@ namespace SoundAnalysis
             if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var filePath = openFileDialog.FileName;
-                chart1.Series[0].Points.Clear();
 
                 LoadFile(filePath);
                 UpdateAnalysisResults(selectedAnalysisType);
@@ -289,6 +347,7 @@ namespace SoundAnalysis
         {
             selectedFourierTransfromScope = FourierTransfromScope.OneFrame;
             frameStartTextBox.Enabled = true;
+
             shouldRecalculateChart[AnalysisType.Fourier] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(AnalysisType.Fourier);
@@ -298,6 +357,7 @@ namespace SoundAnalysis
         {
             selectedFourierTransfromScope = FourierTransfromScope.WholeClip;
             frameStartTextBox.Enabled = false;
+
             shouldRecalculateChart[AnalysisType.Fourier] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(AnalysisType.Fourier);
@@ -326,7 +386,14 @@ namespace SoundAnalysis
         private void windowTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedWindowType = (WindowType)windowTypeComboBox.SelectedIndex;
-            InvalidateCharts();
+
+            shouldRecalculateChart[AnalysisType.Fourier] = true;
+            shouldRecalculateChart[AnalysisType.Spectrum] = true;
+            shouldRecalculateChart[AnalysisType.FundamentalFrequency] = true;
+            shouldRecalculateChart[AnalysisType.SoundFrequencyParameters] = true;
+
+            if (parsedFile != null && parsedFile.Length != 0)
+                UpdateAnalysisResults(selectedAnalysisType);
         }
 
         private void frameOverlappingTrackBar_ValueChanged(object sender, EventArgs e)
@@ -351,6 +418,29 @@ namespace SoundAnalysis
             shouldRecalculateChart[AnalysisType.FundamentalFrequency] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(selectedAnalysisType);
+        }
+
+        private void applyBandButton_Click(object sender, EventArgs e)
+        {
+            var oldStart = bandStart;
+            var oldEnd = bandEnd;
+
+            int.TryParse(bandStartTextBox.Text, out bandStart);
+            int.TryParse(bandEndTextBox.Text, out bandEnd);
+
+            if(oldStart != bandStart || oldEnd != bandEnd)
+            {
+                shouldRecalculateChart[AnalysisType.SoundFrequencyParameters] = true;
+                if (parsedFile != null && parsedFile.Length != 0)
+                {
+                    var framesCount = parsedFile.Length / samplesPerFrame;
+
+                    var avgEnergy = Calculator.CalculateBandEnergy(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, bandStart, bandEnd, out double[] bandEnergy);
+                    chartLabels[FrameLevelParamType.BandEnergy].Text = avgEnergy.ToString("0.00");
+                    var beChart = charts[FrameLevelParamType.BandEnergy];
+                    ChartHelper.UpdateFrameLevelChart(ref beChart, bandEnergy, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+                }
+            }
         }
 
         #endregion

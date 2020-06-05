@@ -8,7 +8,11 @@
         SilentRatio,
         SoundlessSpeech,
         SoundSpeech,
-        Music
+        Music,
+        FrequencyVolume,
+        FrequencyCentroid,
+        EffectiveBandwidth,
+        BandEnergy
     }
 
     public enum ClipLevelParamType
@@ -36,10 +40,11 @@
 
     public enum AnalysisType
     {
-        SoundParameters,
+        SoundTimeParameters,
         Fourier,
         Spectrum,
-        FundamentalFrequency
+        FundamentalFrequency,
+        SoundFrequencyParameters
     }
 
     public enum FourierTransfromScope
