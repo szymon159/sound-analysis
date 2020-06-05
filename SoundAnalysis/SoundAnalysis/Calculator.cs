@@ -289,7 +289,7 @@ namespace SoundAnalysis
                 }
 
                 resultInFrames[i] = nominator / denominator;
-                average += resultInFrames[i];
+                average += resultInFrames[i] / spectrumPoints.Count();
 
                 sampleIndex += samplesPerFrame;
             }
