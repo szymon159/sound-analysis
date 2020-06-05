@@ -37,7 +37,7 @@ namespace SoundAnalysis
             InitializeComponent();
             InitializeCollections();
 
-            UpdateMPFTextBox();
+            UpdateTextBoxes();
         }
 
         private void InitializeCollections()
@@ -169,9 +169,26 @@ namespace SoundAnalysis
             }
         }
 
+        private void UpdateTextBoxes()
+        {
+            UpdateMPFTextBox();
+            UpdateBandStartTextBox();
+            UpdateBandEndTextBox();
+        }
+
         private void UpdateMPFTextBox()
         {
             mpfTextBox.Text = milisecondsPerFrame.ToString();
+        }
+
+        private void UpdateBandStartTextBox()
+        {
+            bandStartTextBox.Text = bandStart.ToString();
+        }
+
+        private void UpdateBandEndTextBox()
+        {
+            bandEndTextBox.Text = bandEnd.ToString();
         }
 
         private void UpdateMPFValue()
@@ -401,6 +418,22 @@ namespace SoundAnalysis
             shouldRecalculateChart[AnalysisType.FundamentalFrequency] = true;
             if (parsedFile != null && parsedFile.Length != 0)
                 UpdateAnalysisResults(selectedAnalysisType);
+        }
+
+        private void applyBandButton_Click(object sender, EventArgs e)
+        {
+            var oldStart = bandStart;
+            var oldEnd = bandEnd;
+
+            int.TryParse(bandStartTextBox.Text, out bandStart);
+            int.TryParse(bandEndTextBox.Text, out bandEnd);
+
+            if(oldStart != bandStart || oldEnd != bandEnd)
+            {
+                shouldRecalculateChart[AnalysisType.SoundFrequencyParameters] = true;
+                if (parsedFile != null && parsedFile.Length != 0)
+                    UpdateAnalysisResults(AnalysisType.SoundFrequencyParameters);
+            }
         }
 
         #endregion

@@ -205,10 +205,6 @@ namespace SoundAnalysis
             var sampleIndex = 0;
             var average = 0.0;
 
-            // Need to shift all the values so that min value is set to 0 
-            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
-            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
-
             for (int i = 0; i < framesCount; i++)
             {
                 CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult, samplesPerFrame, sampleIndex);
@@ -217,7 +213,7 @@ namespace SoundAnalysis
                 double denominator = 0.0;
                 foreach (var spectrumPoint in transformResult)
                 {
-                    var spectrumValue = spectrumPoint.Y + shift;
+                    var spectrumValue = spectrumPoint.Y;
 
                     nominator += spectrumPoint.X * spectrumValue;
                     denominator += spectrumValue;
@@ -238,8 +234,8 @@ namespace SoundAnalysis
             var average = 0.0;
 
             // Need to shift all the values so that min value is set to 0 
-            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
-            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
+            //CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
+            //var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
 
             for (int i = 0; i < framesCount; i++)
             {
@@ -249,7 +245,7 @@ namespace SoundAnalysis
                 double denominator = 0.0;
                 foreach (var spectrumPoint in transformResult)
                 {
-                    var spectrumValue = spectrumPoint.Y + shift;
+                    var spectrumValue = spectrumPoint.Y; /*+ shift;*/
 
                     nominator += Math.Pow((spectrumPoint.X - frequencyCentroid[i]) * spectrumValue, 2);
                     denominator += spectrumValue * spectrumValue;

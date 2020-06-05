@@ -98,16 +98,28 @@ namespace SoundAnalysis
             this.fundamentalFrequencyLabel = new System.Windows.Forms.Label();
             this.fundamentalFrequencyPlotView = new OxyPlot.WindowsForms.PlotView();
             this.frequencyParamsTabPage = new System.Windows.Forms.TabPage();
-            this.frequencyParamsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.freqParamsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.bandEndPanel = new System.Windows.Forms.Panel();
+            this.applyBandButton = new System.Windows.Forms.Button();
+            this.bandEndTextBox = new System.Windows.Forms.TextBox();
+            this.bandEndLabel = new System.Windows.Forms.Label();
+            this.bandStartPanel = new System.Windows.Forms.Panel();
+            this.bandStartTextBox = new System.Windows.Forms.TextBox();
+            this.bandStartLabel = new System.Windows.Forms.Label();
+            this.freqParamsChartsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.frequencyParamsChartsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.bePlotView = new OxyPlot.WindowsForms.PlotView();
             this.freqVolumePlotView = new OxyPlot.WindowsForms.PlotView();
             this.fcPlotView = new OxyPlot.WindowsForms.PlotView();
             this.bwPlotView = new OxyPlot.WindowsForms.PlotView();
             this.frequencyParamsLabelsTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.beValueLabel = new System.Windows.Forms.Label();
+            this.beLabel = new System.Windows.Forms.Label();
             this.bwValueLabel = new System.Windows.Forms.Label();
             this.fcValueLabel = new System.Windows.Forms.Label();
             this.freqVolumeLabel = new System.Windows.Forms.Label();
             this.fcLabel = new System.Windows.Forms.Label();
+            this.bwLabel = new System.Windows.Forms.Label();
             this.freqVolumeValueLabel = new System.Windows.Forms.Label();
             this.recordingPlotView = new OxyPlot.WindowsForms.PlotView();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -126,10 +138,6 @@ namespace SoundAnalysis
             this.musicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.displayMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportMusicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bwLabel = new System.Windows.Forms.Label();
-            this.beLabel = new System.Windows.Forms.Label();
-            this.beValueLabel = new System.Windows.Forms.Label();
-            this.bePlotView = new OxyPlot.WindowsForms.PlotView();
             this.mainLayoutPanel.SuspendLayout();
             this.mpfGroupBox.SuspendLayout();
             this.windowTypeGroupBox.SuspendLayout();
@@ -152,7 +160,10 @@ namespace SoundAnalysis
             ((System.ComponentModel.ISupportInitialize)(this.frameOverlappingTrackBar2)).BeginInit();
             this.frameOverlappingPanel2.SuspendLayout();
             this.frequencyParamsTabPage.SuspendLayout();
-            this.frequencyParamsTableLayoutPanel.SuspendLayout();
+            this.freqParamsTableLayoutPanel.SuspendLayout();
+            this.bandEndPanel.SuspendLayout();
+            this.bandStartPanel.SuspendLayout();
+            this.freqParamsChartsTableLayoutPanel.SuspendLayout();
             this.frequencyParamsChartsTableLayoutPanel.SuspendLayout();
             this.frequencyParamsLabelsTableLayoutPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -1023,7 +1034,7 @@ namespace SoundAnalysis
             // frequencyParamsTabPage
             // 
             this.frequencyParamsTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.frequencyParamsTabPage.Controls.Add(this.frequencyParamsTableLayoutPanel);
+            this.frequencyParamsTabPage.Controls.Add(this.freqParamsTableLayoutPanel);
             this.frequencyParamsTabPage.Location = new System.Drawing.Point(4, 22);
             this.frequencyParamsTabPage.Name = "frequencyParamsTabPage";
             this.frequencyParamsTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -1031,21 +1042,107 @@ namespace SoundAnalysis
             this.frequencyParamsTabPage.TabIndex = 5;
             this.frequencyParamsTabPage.Text = "Frequency Parameters";
             // 
-            // frequencyParamsTableLayoutPanel
+            // freqParamsTableLayoutPanel
             // 
-            this.frequencyParamsTableLayoutPanel.ColumnCount = 2;
-            this.frequencyParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.frequencyParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.frequencyParamsTableLayoutPanel.Controls.Add(this.frequencyParamsChartsTableLayoutPanel, 1, 0);
-            this.frequencyParamsTableLayoutPanel.Controls.Add(this.frequencyParamsLabelsTableLayoutPanel, 0, 0);
-            this.frequencyParamsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frequencyParamsTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
-            this.frequencyParamsTableLayoutPanel.Name = "frequencyParamsTableLayoutPanel";
-            this.frequencyParamsTableLayoutPanel.RowCount = 1;
-            this.frequencyParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.frequencyParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 511F));
-            this.frequencyParamsTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
-            this.frequencyParamsTableLayoutPanel.TabIndex = 6;
+            this.freqParamsTableLayoutPanel.ColumnCount = 2;
+            this.freqParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.freqParamsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.freqParamsTableLayoutPanel.Controls.Add(this.bandEndPanel, 1, 0);
+            this.freqParamsTableLayoutPanel.Controls.Add(this.bandStartPanel, 0, 0);
+            this.freqParamsTableLayoutPanel.Controls.Add(this.freqParamsChartsTableLayoutPanel, 0, 1);
+            this.freqParamsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.freqParamsTableLayoutPanel.Location = new System.Drawing.Point(3, 3);
+            this.freqParamsTableLayoutPanel.Name = "freqParamsTableLayoutPanel";
+            this.freqParamsTableLayoutPanel.RowCount = 2;
+            this.freqParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.freqParamsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.freqParamsTableLayoutPanel.Size = new System.Drawing.Size(1310, 511);
+            this.freqParamsTableLayoutPanel.TabIndex = 7;
+            // 
+            // bandEndPanel
+            // 
+            this.bandEndPanel.Controls.Add(this.applyBandButton);
+            this.bandEndPanel.Controls.Add(this.bandEndTextBox);
+            this.bandEndPanel.Controls.Add(this.bandEndLabel);
+            this.bandEndPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bandEndPanel.Location = new System.Drawing.Point(658, 3);
+            this.bandEndPanel.Name = "bandEndPanel";
+            this.bandEndPanel.Size = new System.Drawing.Size(649, 24);
+            this.bandEndPanel.TabIndex = 15;
+            // 
+            // applyBandButton
+            // 
+            this.applyBandButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.applyBandButton.Location = new System.Drawing.Point(212, -1);
+            this.applyBandButton.Name = "applyBandButton";
+            this.applyBandButton.Size = new System.Drawing.Size(86, 24);
+            this.applyBandButton.TabIndex = 2;
+            this.applyBandButton.Text = "Apply";
+            this.applyBandButton.UseVisualStyleBackColor = true;
+            this.applyBandButton.Click += new System.EventHandler(this.applyBandButton_Click);
+            // 
+            // bandEndTextBox
+            // 
+            this.bandEndTextBox.Location = new System.Drawing.Point(106, 1);
+            this.bandEndTextBox.Name = "bandEndTextBox";
+            this.bandEndTextBox.Size = new System.Drawing.Size(100, 20);
+            this.bandEndTextBox.TabIndex = 1;
+            this.bandEndTextBox.Text = "0";
+            // 
+            // bandEndLabel
+            // 
+            this.bandEndLabel.AutoSize = true;
+            this.bandEndLabel.Location = new System.Drawing.Point(3, 4);
+            this.bandEndLabel.Name = "bandEndLabel";
+            this.bandEndLabel.Size = new System.Drawing.Size(97, 13);
+            this.bandEndLabel.TabIndex = 0;
+            this.bandEndLabel.Text = "Band End (in herz):";
+            // 
+            // bandStartPanel
+            // 
+            this.bandStartPanel.Controls.Add(this.bandStartTextBox);
+            this.bandStartPanel.Controls.Add(this.bandStartLabel);
+            this.bandStartPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bandStartPanel.Location = new System.Drawing.Point(3, 3);
+            this.bandStartPanel.Name = "bandStartPanel";
+            this.bandStartPanel.Size = new System.Drawing.Size(649, 24);
+            this.bandStartPanel.TabIndex = 14;
+            // 
+            // bandStartTextBox
+            // 
+            this.bandStartTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bandStartTextBox.Location = new System.Drawing.Point(537, 1);
+            this.bandStartTextBox.Name = "bandStartTextBox";
+            this.bandStartTextBox.Size = new System.Drawing.Size(100, 20);
+            this.bandStartTextBox.TabIndex = 1;
+            this.bandStartTextBox.Text = "0";
+            // 
+            // bandStartLabel
+            // 
+            this.bandStartLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bandStartLabel.AutoSize = true;
+            this.bandStartLabel.Location = new System.Drawing.Point(431, 4);
+            this.bandStartLabel.Name = "bandStartLabel";
+            this.bandStartLabel.Size = new System.Drawing.Size(100, 13);
+            this.bandStartLabel.TabIndex = 0;
+            this.bandStartLabel.Text = "Band Start (in herz):";
+            // 
+            // freqParamsChartsTableLayoutPanel
+            // 
+            this.freqParamsChartsTableLayoutPanel.ColumnCount = 2;
+            this.freqParamsTableLayoutPanel.SetColumnSpan(this.freqParamsChartsTableLayoutPanel, 2);
+            this.freqParamsChartsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.freqParamsChartsTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.freqParamsChartsTableLayoutPanel.Controls.Add(this.frequencyParamsChartsTableLayoutPanel, 1, 0);
+            this.freqParamsChartsTableLayoutPanel.Controls.Add(this.frequencyParamsLabelsTableLayoutPanel, 0, 0);
+            this.freqParamsChartsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.freqParamsChartsTableLayoutPanel.Location = new System.Drawing.Point(3, 33);
+            this.freqParamsChartsTableLayoutPanel.Name = "freqParamsChartsTableLayoutPanel";
+            this.freqParamsChartsTableLayoutPanel.RowCount = 1;
+            this.freqParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.freqParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 475F));
+            this.freqParamsChartsTableLayoutPanel.Size = new System.Drawing.Size(1304, 475);
+            this.freqParamsChartsTableLayoutPanel.TabIndex = 6;
             // 
             // frequencyParamsChartsTableLayoutPanel
             // 
@@ -1056,15 +1153,29 @@ namespace SoundAnalysis
             this.frequencyParamsChartsTableLayoutPanel.Controls.Add(this.fcPlotView, 0, 1);
             this.frequencyParamsChartsTableLayoutPanel.Controls.Add(this.bwPlotView, 0, 2);
             this.frequencyParamsChartsTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.frequencyParamsChartsTableLayoutPanel.Location = new System.Drawing.Point(265, 3);
+            this.frequencyParamsChartsTableLayoutPanel.Location = new System.Drawing.Point(263, 3);
             this.frequencyParamsChartsTableLayoutPanel.Name = "frequencyParamsChartsTableLayoutPanel";
             this.frequencyParamsChartsTableLayoutPanel.RowCount = 4;
             this.frequencyParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.frequencyParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.frequencyParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.frequencyParamsChartsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.frequencyParamsChartsTableLayoutPanel.Size = new System.Drawing.Size(1042, 505);
+            this.frequencyParamsChartsTableLayoutPanel.Size = new System.Drawing.Size(1038, 469);
             this.frequencyParamsChartsTableLayoutPanel.TabIndex = 1;
+            // 
+            // bePlotView
+            // 
+            this.bePlotView.BackColor = System.Drawing.Color.White;
+            this.bePlotView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bePlotView.Location = new System.Drawing.Point(3, 354);
+            this.bePlotView.Name = "bePlotView";
+            this.bePlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.bePlotView.Size = new System.Drawing.Size(1032, 112);
+            this.bePlotView.TabIndex = 3;
+            this.bePlotView.Text = "bePlotView";
+            this.bePlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.bePlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.bePlotView.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // freqVolumePlotView
             // 
@@ -1073,7 +1184,7 @@ namespace SoundAnalysis
             this.freqVolumePlotView.Location = new System.Drawing.Point(3, 3);
             this.freqVolumePlotView.Name = "freqVolumePlotView";
             this.freqVolumePlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.freqVolumePlotView.Size = new System.Drawing.Size(1036, 120);
+            this.freqVolumePlotView.Size = new System.Drawing.Size(1032, 111);
             this.freqVolumePlotView.TabIndex = 0;
             this.freqVolumePlotView.Text = "freqVolumePlotView";
             this.freqVolumePlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -1084,10 +1195,10 @@ namespace SoundAnalysis
             // 
             this.fcPlotView.BackColor = System.Drawing.Color.White;
             this.fcPlotView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fcPlotView.Location = new System.Drawing.Point(3, 129);
+            this.fcPlotView.Location = new System.Drawing.Point(3, 120);
             this.fcPlotView.Name = "fcPlotView";
             this.fcPlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.fcPlotView.Size = new System.Drawing.Size(1036, 120);
+            this.fcPlotView.Size = new System.Drawing.Size(1032, 111);
             this.fcPlotView.TabIndex = 1;
             this.fcPlotView.Text = "fcPlotView";
             this.fcPlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -1098,10 +1209,10 @@ namespace SoundAnalysis
             // 
             this.bwPlotView.BackColor = System.Drawing.Color.White;
             this.bwPlotView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bwPlotView.Location = new System.Drawing.Point(3, 255);
+            this.bwPlotView.Location = new System.Drawing.Point(3, 237);
             this.bwPlotView.Name = "bwPlotView";
             this.bwPlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.bwPlotView.Size = new System.Drawing.Size(1036, 120);
+            this.bwPlotView.Size = new System.Drawing.Size(1032, 111);
             this.bwPlotView.TabIndex = 2;
             this.bwPlotView.Text = "bwPlotView";
             this.bwPlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -1129,15 +1240,37 @@ namespace SoundAnalysis
             this.frequencyParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.frequencyParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.frequencyParamsLabelsTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.frequencyParamsLabelsTableLayoutPanel.Size = new System.Drawing.Size(256, 505);
+            this.frequencyParamsLabelsTableLayoutPanel.Size = new System.Drawing.Size(254, 469);
             this.frequencyParamsLabelsTableLayoutPanel.TabIndex = 2;
+            // 
+            // beValueLabel
+            // 
+            this.beValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.beValueLabel.AutoSize = true;
+            this.beValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.beValueLabel.Location = new System.Drawing.Point(180, 401);
+            this.beValueLabel.Name = "beValueLabel";
+            this.beValueLabel.Size = new System.Drawing.Size(17, 17);
+            this.beValueLabel.TabIndex = 11;
+            this.beValueLabel.Text = "0";
+            // 
+            // beLabel
+            // 
+            this.beLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.beLabel.AutoSize = true;
+            this.beLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.beLabel.Location = new System.Drawing.Point(48, 401);
+            this.beLabel.Name = "beLabel";
+            this.beLabel.Size = new System.Drawing.Size(126, 17);
+            this.beLabel.TabIndex = 10;
+            this.beLabel.Text = "Band Energy (BE):";
             // 
             // bwValueLabel
             // 
             this.bwValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.bwValueLabel.AutoSize = true;
             this.bwValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bwValueLabel.Location = new System.Drawing.Point(182, 306);
+            this.bwValueLabel.Location = new System.Drawing.Point(180, 284);
             this.bwValueLabel.Name = "bwValueLabel";
             this.bwValueLabel.Size = new System.Drawing.Size(17, 17);
             this.bwValueLabel.TabIndex = 9;
@@ -1148,7 +1281,7 @@ namespace SoundAnalysis
             this.fcValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.fcValueLabel.AutoSize = true;
             this.fcValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fcValueLabel.Location = new System.Drawing.Point(182, 180);
+            this.fcValueLabel.Location = new System.Drawing.Point(180, 167);
             this.fcValueLabel.Name = "fcValueLabel";
             this.fcValueLabel.Size = new System.Drawing.Size(17, 17);
             this.fcValueLabel.TabIndex = 8;
@@ -1159,7 +1292,7 @@ namespace SoundAnalysis
             this.freqVolumeLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.freqVolumeLabel.AutoSize = true;
             this.freqVolumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.freqVolumeLabel.Location = new System.Drawing.Point(117, 54);
+            this.freqVolumeLabel.Location = new System.Drawing.Point(115, 50);
             this.freqVolumeLabel.Name = "freqVolumeLabel";
             this.freqVolumeLabel.Size = new System.Drawing.Size(59, 17);
             this.freqVolumeLabel.TabIndex = 0;
@@ -1170,18 +1303,29 @@ namespace SoundAnalysis
             this.fcLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.fcLabel.AutoSize = true;
             this.fcLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.fcLabel.Location = new System.Drawing.Point(9, 180);
+            this.fcLabel.Location = new System.Drawing.Point(7, 167);
             this.fcLabel.Name = "fcLabel";
             this.fcLabel.Size = new System.Drawing.Size(167, 17);
             this.fcLabel.TabIndex = 1;
             this.fcLabel.Text = "Frequency Centroid (FC):";
+            // 
+            // bwLabel
+            // 
+            this.bwLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.bwLabel.AutoSize = true;
+            this.bwLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.bwLabel.Location = new System.Drawing.Point(3, 284);
+            this.bwLabel.Name = "bwLabel";
+            this.bwLabel.Size = new System.Drawing.Size(171, 17);
+            this.bwLabel.TabIndex = 2;
+            this.bwLabel.Text = "Effective Bandwidth (BW):";
             // 
             // freqVolumeValueLabel
             // 
             this.freqVolumeValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.freqVolumeValueLabel.AutoSize = true;
             this.freqVolumeValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.freqVolumeValueLabel.Location = new System.Drawing.Point(182, 54);
+            this.freqVolumeValueLabel.Location = new System.Drawing.Point(180, 50);
             this.freqVolumeValueLabel.Name = "freqVolumeValueLabel";
             this.freqVolumeValueLabel.Size = new System.Drawing.Size(17, 17);
             this.freqVolumeValueLabel.TabIndex = 7;
@@ -1331,53 +1475,6 @@ namespace SoundAnalysis
             this.exportMusicToolStripMenuItem.Text = "Export";
             this.exportMusicToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
-            // bwLabel
-            // 
-            this.bwLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.bwLabel.AutoSize = true;
-            this.bwLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bwLabel.Location = new System.Drawing.Point(5, 306);
-            this.bwLabel.Name = "bwLabel";
-            this.bwLabel.Size = new System.Drawing.Size(171, 17);
-            this.bwLabel.TabIndex = 2;
-            this.bwLabel.Text = "Effective Bandwidth (BW):";
-            // 
-            // beLabel
-            // 
-            this.beLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.beLabel.AutoSize = true;
-            this.beLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.beLabel.Location = new System.Drawing.Point(50, 433);
-            this.beLabel.Name = "beLabel";
-            this.beLabel.Size = new System.Drawing.Size(126, 17);
-            this.beLabel.TabIndex = 10;
-            this.beLabel.Text = "Band Energy (BE):";
-            // 
-            // beValueLabel
-            // 
-            this.beValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.beValueLabel.AutoSize = true;
-            this.beValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.beValueLabel.Location = new System.Drawing.Point(182, 433);
-            this.beValueLabel.Name = "beValueLabel";
-            this.beValueLabel.Size = new System.Drawing.Size(17, 17);
-            this.beValueLabel.TabIndex = 11;
-            this.beValueLabel.Text = "0";
-            // 
-            // bePlotView
-            // 
-            this.bePlotView.BackColor = System.Drawing.Color.White;
-            this.bePlotView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bePlotView.Location = new System.Drawing.Point(3, 381);
-            this.bePlotView.Name = "bePlotView";
-            this.bePlotView.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.bePlotView.Size = new System.Drawing.Size(1036, 121);
-            this.bePlotView.TabIndex = 3;
-            this.bePlotView.Text = "bePlotView";
-            this.bePlotView.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.bePlotView.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.bePlotView.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1419,7 +1516,12 @@ namespace SoundAnalysis
             this.frameOverlappingPanel2.ResumeLayout(false);
             this.frameOverlappingPanel2.PerformLayout();
             this.frequencyParamsTabPage.ResumeLayout(false);
-            this.frequencyParamsTableLayoutPanel.ResumeLayout(false);
+            this.freqParamsTableLayoutPanel.ResumeLayout(false);
+            this.bandEndPanel.ResumeLayout(false);
+            this.bandEndPanel.PerformLayout();
+            this.bandStartPanel.ResumeLayout(false);
+            this.bandStartPanel.PerformLayout();
+            this.freqParamsChartsTableLayoutPanel.ResumeLayout(false);
             this.frequencyParamsChartsTableLayoutPanel.ResumeLayout(false);
             this.frequencyParamsLabelsTableLayoutPanel.ResumeLayout(false);
             this.frequencyParamsLabelsTableLayoutPanel.PerformLayout();
@@ -1508,7 +1610,7 @@ namespace SoundAnalysis
         private System.Windows.Forms.Label fundamentalFrequencyLabel;
         private OxyPlot.WindowsForms.PlotView fundamentalFrequencyPlotView;
         private System.Windows.Forms.TabPage frequencyParamsTabPage;
-        private System.Windows.Forms.TableLayoutPanel frequencyParamsTableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel freqParamsChartsTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel frequencyParamsChartsTableLayoutPanel;
         private System.Windows.Forms.TableLayoutPanel frequencyParamsLabelsTableLayoutPanel;
         private System.Windows.Forms.Label bwValueLabel;
@@ -1531,6 +1633,14 @@ namespace SoundAnalysis
         private System.Windows.Forms.Label beValueLabel;
         private System.Windows.Forms.Label beLabel;
         private System.Windows.Forms.Label bwLabel;
+        private System.Windows.Forms.TableLayoutPanel freqParamsTableLayoutPanel;
+        private System.Windows.Forms.Panel bandEndPanel;
+        private System.Windows.Forms.TextBox bandEndTextBox;
+        private System.Windows.Forms.Label bandEndLabel;
+        private System.Windows.Forms.Panel bandStartPanel;
+        private System.Windows.Forms.TextBox bandStartTextBox;
+        private System.Windows.Forms.Label bandStartLabel;
+        private System.Windows.Forms.Button applyBandButton;
     }
 }
 
