@@ -17,12 +17,14 @@ namespace SoundAnalysis
         private Dictionary<ClipLevelParamType, Label> labels;
         private Dictionary<AnalysisType, bool> shouldRecalculateChart;
 
-        private int milisecondsPerFrame = 40;
+        private int milisecondsPerFrame = 20;
         private int samplesPerFrame;
         private double sampleRate;
         private double frameOverlapping = 0.5;
         private bool shouldUpdateTrackBarValue = true;
         private double selectedFrameStartTime = 0.0;
+        private int bandStart = 0;
+        private int bandEnd = 100;
 
         private WindowType selectedWindowType = WindowType.Rectangular;
         private AnalysisType selectedAnalysisType = AnalysisType.SoundTimeParameters;
@@ -53,6 +55,7 @@ namespace SoundAnalysis
             charts.Add(FrameLevelParamType.FrequencyVolume, freqVolumePlotView);
             charts.Add(FrameLevelParamType.FrequencyCentroid, fcPlotView);
             charts.Add(FrameLevelParamType.EffectiveBandwidth, bwPlotView);
+            charts.Add(FrameLevelParamType.BandEnergy, bePlotView);
 
             chartLabels = new Dictionary<FrameLevelParamType, Label>();
             chartLabels.Add(FrameLevelParamType.Volume, volumeValueLabel);
@@ -65,6 +68,7 @@ namespace SoundAnalysis
             chartLabels.Add(FrameLevelParamType.FrequencyVolume, freqVolumeValueLabel);
             chartLabels.Add(FrameLevelParamType.FrequencyCentroid, fcValueLabel);
             chartLabels.Add(FrameLevelParamType.EffectiveBandwidth, bwValueLabel);
+            chartLabels.Add(FrameLevelParamType.BandEnergy, beValueLabel);
 
             labels = new Dictionary<ClipLevelParamType, Label>();
             labels.Add(ClipLevelParamType.VolumeStandardDeviation, vstdValueLabel);
@@ -106,7 +110,8 @@ namespace SoundAnalysis
         {
             var framesCount = parsedFile.Length / samplesPerFrame;
 
-            var avgVolume = Calculator.CalculateFrequencyVolume(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] volume);
+            Calculator.CalculateFrequencyVolume(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, out double[] volume);
+            var avgVolume = Calculator.Normalize(ref volume);
             chartLabels[FrameLevelParamType.FrequencyVolume].Text = avgVolume.ToString("0.00");
             var volumeChart = charts[FrameLevelParamType.FrequencyVolume];
             ChartHelper.UpdateFrameLevelChart(ref volumeChart, volume, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
@@ -120,6 +125,11 @@ namespace SoundAnalysis
             chartLabels[FrameLevelParamType.EffectiveBandwidth].Text = avgBandwidth.ToString("0.00");
             var bwChart = charts[FrameLevelParamType.EffectiveBandwidth];
             ChartHelper.UpdateFrameLevelChart(ref bwChart, effectiveBandwith, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+
+            var avgEnergy = Calculator.CalculateBandEnergy(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, bandStart, bandEnd, out double[] bandEnergy);
+            chartLabels[FrameLevelParamType.BandEnergy].Text = avgEnergy.ToString("0.00");
+            var beChart = charts[FrameLevelParamType.BandEnergy];
+            ChartHelper.UpdateFrameLevelChart(ref beChart, bandEnergy, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
         }
 
         private void UpdateFrameLevelParameter(FrameLevelParamType parameter, out CustomPoint[] resultPoints)

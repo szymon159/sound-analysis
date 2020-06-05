@@ -54,6 +54,20 @@ namespace SoundAnalysis
             }
         }
 
+        public static double Normalize(ref double[] points)
+        {
+            var max = points.Max();
+            var avg = 0.0;
+
+            for(int i = 0; i < points.Length; i++)
+            {
+                points[i] /= max;
+                avg += points[i];
+            }
+
+            return avg / points.Length;
+        }
+
         #region Frequency Analysis
 
         public static void CalculateFourierTransform(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, out CustomPoint[] transformResult, int samplesPerFrame = 1, int? selectedSampleIndex = null)
@@ -241,6 +255,44 @@ namespace SoundAnalysis
                     denominator += spectrumValue * spectrumValue;
                 }
                 resultInFrames[i] = Math.Sqrt(nominator / denominator);
+                average += resultInFrames[i];
+
+                sampleIndex += samplesPerFrame;
+            }
+
+            return average / framesCount;
+        }
+
+        public static double CalculateBandEnergy(CustomPoint[] parsedFile, double sampleRate, WindowType selectedWindowType, int samplesPerFrame, int framesCount, int bandStart, int bandEnd, out double[] resultInFrames)
+        {
+            resultInFrames = new double[framesCount];
+            var sampleIndex = 0;
+            var average = 0.0;
+
+            // Need to shift all the values so that min value is set to 0 
+            CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] wholeClipTransform);
+            var shift = Math.Abs(wholeClipTransform.Min(p => p.Y));
+            var parsedFileShift = Math.Abs(parsedFile.Min(p => p.Y));
+
+            for (int i = 0; i < framesCount; i++)
+            {
+                CalculateFourierTransform(parsedFile, sampleRate, selectedWindowType, out CustomPoint[] transformResult, samplesPerFrame, sampleIndex);
+
+                double nominator = 0.0;
+                double denominator = 0.0;
+                var spectrumPoints = transformResult.Where(p => p.X >= bandStart && p.X <= bandEnd);
+                foreach(var spectrumPoint in spectrumPoints)
+                {
+                    var spectrumValue = spectrumPoint.Y + shift;
+
+                    nominator += spectrumValue * spectrumValue;
+                }
+                for(int j = 0; j < samplesPerFrame; j++)
+                {
+                    denominator += parsedFile[sampleIndex + j].Y + parsedFileShift;
+                }
+
+                resultInFrames[i] = nominator / denominator;
                 average += resultInFrames[i];
 
                 sampleIndex += samplesPerFrame;

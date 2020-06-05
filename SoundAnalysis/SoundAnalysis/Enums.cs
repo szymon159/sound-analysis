@@ -11,7 +11,8 @@
         Music,
         FrequencyVolume,
         FrequencyCentroid,
-        EffectiveBandwidth
+        EffectiveBandwidth,
+        BandEnergy
     }
 
     public enum ClipLevelParamType
