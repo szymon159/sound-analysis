@@ -432,7 +432,14 @@ namespace SoundAnalysis
             {
                 shouldRecalculateChart[AnalysisType.SoundFrequencyParameters] = true;
                 if (parsedFile != null && parsedFile.Length != 0)
-                    UpdateAnalysisResults(AnalysisType.SoundFrequencyParameters);
+                {
+                    var framesCount = parsedFile.Length / samplesPerFrame;
+
+                    var avgEnergy = Calculator.CalculateBandEnergy(parsedFile, sampleRate, selectedWindowType, samplesPerFrame, framesCount, bandStart, bandEnd, out double[] bandEnergy);
+                    chartLabels[FrameLevelParamType.BandEnergy].Text = avgEnergy.ToString("0.00");
+                    var beChart = charts[FrameLevelParamType.BandEnergy];
+                    ChartHelper.UpdateFrameLevelChart(ref beChart, bandEnergy, samplesPerFrame, parsedFile.Length, sampleRate, out _, true);
+                }
             }
         }
 
